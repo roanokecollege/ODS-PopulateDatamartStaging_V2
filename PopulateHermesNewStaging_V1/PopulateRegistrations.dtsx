@@ -1,0 +1,2944 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/23/2014 11:55:56 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{C2F11439-FDD1-463A-B002-A5FA1669F030}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateRegistrations"
+  DTS:PackageType="5"
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{A80C0E53-87D7-4AAC-A0D9-A37DD65E8B6D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.DataMart]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0E103379-1F82-4136-B83B-431819C95FDB}"
+      DTS:ObjectName="HERMES.DataMart">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.DataMart1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{11134916-93F6-4C6F-9A7B-236699C8F534}"
+      DTS:ObjectName="Hermes.DataMart1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{11134916-93F6-4C6F-9A7B-236699C8F534}Hermes.DataMart1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.DataMart1 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{F3B1963D-B2D9-4346-845D-198B3E7EAC64}"
+      DTS:ObjectName="Hermes.DataMart1 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{F3B1963D-B2D9-4346-845D-198B3E7EAC64}Hermes.DataMart1 1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0CB66A18-5F1E-4B76-AA2C-D6A48CBBB783}"
+      DTS:ObjectName="HERMES.Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.Staging1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{01C809E0-5A6E-4668-91D6-904E3F259169}"
+      DTS:ObjectName="Hermes.Staging1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{01C809E0-5A6E-4668-91D6-904E3F259169}Hermes.Staging1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Mail Connection]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+      DTS:ObjectName="Mail Connection">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=receive.roanoke.edu;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+      DTS:ObjectName="ods.ODS_Reporting">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{8215FB04-EF86-4405-8FBB-77B838AA068A}"
+      DTS:ObjectName="ODS.ODS_Reporting1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{8215FB04-EF86-4405-8FBB-77B838AA068A}ODS.ODS_Reporting1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting1 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{39FA4DC8-40F6-4E1D-BFD2-380FDC7C730D}"
+      DTS:ObjectName="ODS.ODS_Reporting1 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{39FA4DC8-40F6-4E1D-BFD2-380FDC7C730D}ODS.ODS_Reporting1 1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sandbox.DataMart]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{2D1C15C8-EC39-44D5-B95A-EA8527A1CE9C}"
+      DTS:ObjectName="sandbox.DataMart">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{2D1C15C8-EC39-44D5-B95A-EA8527A1CE9C}sandbox.DataMart;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sandbox.DataMart1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1D2DC8D9-780B-474C-929E-36421A90455D}"
+      DTS:ObjectName="sandbox.DataMart1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Table DM_Registrations"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f080084f-7cf7-4d99-8477-4f63de1dfba2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Table DM_Registrations"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.DBO.DM_REGISTRATIONS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Table DM_REGISTRATIONS Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{b076ec22-1b5f-4229-81f0-ca1357dafbaf}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Table DM_REGISTRATIONS Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopRegs ODS Datamart Task: Clear Table DM_REGISTRATIONS Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clear Staging table DM_REGISTRATIONS in package PopulateRegistrations of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted beginning at step PopulateRegistrations.  &#xA;Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy Majors to Herps"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3320582B-C879-454D-B612-BF57AE326D09}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Majors to Herps"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy Majors to Herps\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."DegreeMajors"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Majors to Herps\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Hermes.DataMart1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Hermes.DataMart1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[MAJORS_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="MAJORS_ID"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DegreeMajorCode]"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_ID]" />
+                    <inputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[MAJ_DESC]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MAJ_DESC"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DegreeMajorDescription]"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_DESC]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DegreeMajorCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="DegreeMajorCode" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DegreeMajorDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="DegreeMajorDescription" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Majors to Herps\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Majors to Herps\ADO NET Source"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."R_MAJORS"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Majors to Herps\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_ID]"
+                      length="5"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_ID]"
+                      name="MAJORS_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_ADDDATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_ADDDATE]"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_ADDDATE]"
+                      name="MAJORS_ADDDATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_ADDOPR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_ADDOPR]"
+                      length="20"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_ADDOPR]"
+                      name="MAJORS_ADDOPR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_CHGOPR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_CHGOPR]"
+                      length="20"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJORS_CHGOPR]"
+                      name="MAJORS_CHGOPR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_ACTIVE_FLAG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_ACTIVE_FLAG]"
+                      length="1"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_ACTIVE_FLAG]"
+                      name="MAJ_ACTIVE_FLAG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_CIP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_CIP]"
+                      length="9"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_CIP]"
+                      name="MAJ_CIP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_DESC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_DESC]"
+                      length="30"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_DESC]"
+                      name="MAJ_DESC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_DIVISION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_DIVISION]"
+                      length="5"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[MAJ_DIVISION]"
+                      name="MAJ_DIVISION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      name="ODS_REFRESH_TIMESTAMP"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_ID]"
+                      dataType="wstr"
+                      length="5"
+                      name="MAJORS_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_ADDDATE]"
+                      dataType="dbTimeStamp"
+                      name="MAJORS_ADDDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_ADDOPR]"
+                      dataType="wstr"
+                      length="20"
+                      name="MAJORS_ADDOPR" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJORS_CHGOPR]"
+                      dataType="wstr"
+                      length="20"
+                      name="MAJORS_CHGOPR" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_ACTIVE_FLAG]"
+                      dataType="wstr"
+                      length="1"
+                      name="MAJ_ACTIVE_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_CIP]"
+                      dataType="wstr"
+                      length="9"
+                      name="MAJ_CIP" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_DESC]"
+                      dataType="wstr"
+                      length="30"
+                      name="MAJ_DESC" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[MAJ_DIVISION]"
+                      dataType="wstr"
+                      length="5"
+                      name="MAJ_DIVISION" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_ID]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_ID]"
+                      name="MAJORS_ID" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_ADDDATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_ADDDATE]"
+                      name="MAJORS_ADDDATE" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_ADDOPR]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_ADDOPR]"
+                      name="MAJORS_ADDOPR" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_CHGOPR]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJORS_CHGOPR]"
+                      name="MAJORS_CHGOPR" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_ACTIVE_FLAG]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_ACTIVE_FLAG]"
+                      name="MAJ_ACTIVE_FLAG" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_CIP]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_CIP]"
+                      name="MAJ_CIP" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_DESC]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_DESC]"
+                      name="MAJ_DESC" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_DIVISION]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[MAJ_DIVISION]"
+                      name="MAJ_DIVISION" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy Majors to Herps.Paths[ADO NET Source Output]"
+              endId="Package\Copy Majors to Herps\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Copy Majors to Herps\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy Majors to Herps Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{2764e26d-4858-4fbe-bffb-15332a56d904}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Majors to Herps Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg -Copy Majors to Herps"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The Copy Majors to Herps Task failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DTF Hermes"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D3E1623B-9634-433D-8D6F-C94B9D1A284E}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DTF Hermes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DTF Hermes\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."parent_access"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DTF Hermes\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Hermes.DataMart1 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Hermes.DataMart1 1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[XSPA_STUDENT]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="XSPA_STUDENT"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_STUDENT]"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_STUDENT]" />
+                    <inputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[XSPA_PARENT]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="XSPA_PARENT"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_PARENT]"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_PARENT]" />
+                    <inputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[XSPA_ACCESS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="XSPA_ACCESS_FLAG"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_ACCESS_FLAG]" />
+                    <inputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ODS_REFRESH_TIMESTAMP]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODS_REFRESH_TIMESTAMP"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]" />
+                    <inputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[FIRST_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="FIRST_NAME"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FIRST_NAME]"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[FIRST_NAME]" />
+                    <inputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[LAST_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="57"
+                      cachedName="LAST_NAME"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LAST_NAME]"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LAST_NAME]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_STUDENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_PARENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_PARENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      length="9"
+                      name="XSPA_ACCESS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FIRST_NAME]"
+                      dataType="wstr"
+                      length="30"
+                      name="FIRST_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LAST_NAME]"
+                      dataType="wstr"
+                      length="57"
+                      name="LAST_NAME" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DTF Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DTF Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DTF Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DTF Hermes\ADO NET Source"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."view_parent_access"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DTF Hermes\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1 1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_STUDENT]"
+                      length="10"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_STUDENT]"
+                      name="XSPA_STUDENT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_PARENT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_PARENT]"
+                      length="10"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_PARENT]"
+                      name="XSPA_PARENT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      length="9"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_ACCESS_FLAG]"
+                      name="XSPA_ACCESS_FLAG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      name="ODS_REFRESH_TIMESTAMP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[FIRST_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FIRST_NAME]"
+                      length="30"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[FIRST_NAME]"
+                      name="FIRST_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LAST_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LAST_NAME]"
+                      length="57"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LAST_NAME]"
+                      name="LAST_NAME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_STUDENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_PARENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_PARENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      length="9"
+                      name="XSPA_ACCESS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FIRST_NAME]"
+                      dataType="wstr"
+                      length="30"
+                      name="FIRST_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LAST_NAME]"
+                      dataType="wstr"
+                      length="57"
+                      name="LAST_NAME" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_STUDENT]"
+                      name="XSPA_STUDENT" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_PARENT]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_PARENT]"
+                      name="XSPA_PARENT" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_ACCESS_FLAG]"
+                      name="XSPA_ACCESS_FLAG" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FIRST_NAME]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FIRST_NAME]"
+                      name="FIRST_NAME" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LAST_NAME]"
+                      dataType="wstr"
+                      length="57"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LAST_NAME]"
+                      name="LAST_NAME" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DTF Hermes.Paths[ADO NET Source Output]"
+              endId="Package\DTF Hermes\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\DTF Hermes\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DTF Hermes Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{1e62f3b0-beb7-4fee-ab19-b2596fd92e3f}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DTF Hermes Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg - DTF Hermes"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The DTF Hermes Data Flow Task failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DTF Sandbox"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{EDD49CF4-EEDF-4F4A-AE3E-3A987BF1B07C}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DTF Sandbox"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DTF Sandbox\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"parent_access"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DTF Sandbox\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sandbox.DataMart]"
+                  connectionManagerRefId="Package.ConnectionManagers[sandbox.DataMart]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[XSPA_STUDENT]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="XSPA_STUDENT"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_STUDENT]"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_STUDENT]" />
+                    <inputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[XSPA_PARENT]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="XSPA_PARENT"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_PARENT]"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_PARENT]" />
+                    <inputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[XSPA_ACCESS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="XSPA_ACCESS_FLAG"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_ACCESS_FLAG]" />
+                    <inputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ODS_REFRESH_TIMESTAMP]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODS_REFRESH_TIMESTAMP"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]" />
+                    <inputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[FIRST_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="FIRST_NAME"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FIRST_NAME]"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[FIRST_NAME]" />
+                    <inputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[LAST_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="57"
+                      cachedName="LAST_NAME"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LAST_NAME]"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[LAST_NAME]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_STUDENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_PARENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_PARENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      length="9"
+                      name="XSPA_ACCESS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FIRST_NAME]"
+                      dataType="wstr"
+                      length="30"
+                      name="FIRST_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LAST_NAME]"
+                      dataType="wstr"
+                      length="57"
+                      name="LAST_NAME" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DTF Sandbox\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DTF Sandbox\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DTF Sandbox\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DTF Sandbox\ADO NET Source"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."view_parent_access"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DTF Sandbox\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_STUDENT]"
+                      length="10"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_STUDENT]"
+                      name="XSPA_STUDENT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_PARENT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_PARENT]"
+                      length="10"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_PARENT]"
+                      name="XSPA_PARENT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      length="9"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[XSPA_ACCESS_FLAG]"
+                      name="XSPA_ACCESS_FLAG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      name="ODS_REFRESH_TIMESTAMP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[FIRST_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FIRST_NAME]"
+                      length="30"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[FIRST_NAME]"
+                      name="FIRST_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[LAST_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LAST_NAME]"
+                      length="57"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].Columns[LAST_NAME]"
+                      name="LAST_NAME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_STUDENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_PARENT]"
+                      dataType="wstr"
+                      length="10"
+                      name="XSPA_PARENT" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      length="9"
+                      name="XSPA_ACCESS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FIRST_NAME]"
+                      dataType="wstr"
+                      length="30"
+                      name="FIRST_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LAST_NAME]"
+                      dataType="wstr"
+                      length="57"
+                      name="LAST_NAME" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_STUDENT]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_STUDENT]"
+                      name="XSPA_STUDENT" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_PARENT]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_PARENT]"
+                      name="XSPA_PARENT" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_ACCESS_FLAG]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[XSPA_ACCESS_FLAG]"
+                      name="XSPA_ACCESS_FLAG" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ODS_REFRESH_TIMESTAMP]"
+                      name="ODS_REFRESH_TIMESTAMP" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FIRST_NAME]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FIRST_NAME]"
+                      name="FIRST_NAME" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LAST_NAME]"
+                      dataType="wstr"
+                      length="57"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LAST_NAME]"
+                      name="LAST_NAME" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DTF Sandbox.Paths[ADO NET Source Output]"
+              endId="Package\DTF Sandbox\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\DTF Sandbox\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DTF Sandbox Failure"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{66a735f1-d1a4-47b7-8cef-9063c9052403}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DTF Sandbox Failure"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg - DTF Sandbox"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The DTF Sandbox Data Flow Task failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Student Terms Staging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D072F774-D7FC-48C4-B19B-3D2BD10C49E0}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Student Terms Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Student Terms Staging\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."DM_STUDENT_TERMS"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Student Terms Staging\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Hermes.Staging1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Hermes.Staging1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[FirstTerm]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="FirstTerm"
+                      externalMetadataColumnId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FirstTerm]"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstTerm]" />
+                    <inputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[LastTerm]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="LastTerm"
+                      externalMetadataColumnId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LastTerm]"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastTerm]" />
+                    <inputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[STUDENTS_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="STUDENTS_ID"
+                      externalMetadataColumnId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[RCID]"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[STUDENTS_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[RCID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RCID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FirstTerm]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstTerm" />
+                    <externalMetadataColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LastTerm]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastTerm" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Student Terms Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Student Terms Staging\ADO NET Source"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."student_terms_view"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Student Terms Staging\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[STUDENTS_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[STUDENTS_ID]"
+                      length="10"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[STUDENTS_ID]"
+                      name="STUDENTS_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstTerm]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FirstTerm]"
+                      length="7"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstTerm]"
+                      name="FirstTerm"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastTerm]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastTerm]"
+                      length="7"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastTerm]"
+                      name="LastTerm"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[STUDENTS_ID]"
+                      dataType="wstr"
+                      length="10"
+                      name="STUDENTS_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FirstTerm]"
+                      dataType="wstr"
+                      length="7"
+                      name="FirstTerm" />
+                    <externalMetadataColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastTerm]"
+                      dataType="wstr"
+                      length="7"
+                      name="LastTerm" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[STUDENTS_ID]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[STUDENTS_ID]"
+                      name="STUDENTS_ID" />
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FirstTerm]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FirstTerm]"
+                      name="FirstTerm" />
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastTerm]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastTerm]"
+                      name="LastTerm" />
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Student Terms Staging.Paths[ADO NET Source Output]"
+              endId="Package\Load Student Terms Staging\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Load Student Terms Staging\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Registration Assignment Data to Staging  Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{e466d82a-9002-4bf4-9d76-290bf9568a02}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Registration Assignment Data to Staging  Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopRegs ODS Datamart Task: Move Registration Data to Staging table DM_REGISTRATIONS Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Move Registration Data to Staging table DM_REGISTRATIONS in package PopulateRegistrations of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted beginning at step PopulateRegistrations.  &#xA;Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Registration Data to Staging Table DM_Registrations"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9d1a3453-c0bb-47a0-8c32-05ef9ca2e752}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Registration Data to Staging Table DM_Registrations"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_REGISTRATIONS&#xA;SELECT     dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION AS fkey_courseId, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID AS RCID, dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS AS fkey_RegStatus, GETDATE() AS today, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE AS gpa_value, dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, dbo.R_GRADES.GRD_GRADE AS mid_term_grade, dbo.R_STUDENTS.X_MID_GPA AS term_gpa, &#xA;                      dbo.R_STUDENTS.X_STU_CUM_GPA AS cum_gpa, 'NA' AS permission, dbo.R_STU_MISC3_L.STU_MISC3 AS est_grad_date, &#xA;                      COALESCE (dbo.current_students_on_campus_view.LiveCampus, 0) AS live_campus&#xA;FROM         dbo.SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN&#xA;                      dbo.current_students_on_campus_view ON &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.current_students_on_campus_view.RMAS_PERSON_ID LEFT OUTER JOIN&#xA;                      dbo.R_STU_MISC3_L RIGHT OUTER JOIN&#xA;                      dbo.R_STUDENTS ON dbo.R_STU_MISC3_L.STUDENTS_ID = dbo.R_STUDENTS.STUDENTS_ID ON &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.R_STUDENTS.STUDENTS_ID LEFT OUTER JOIN&#xA;                      dbo.R_STUDENT_COURSE_SEC INNER JOIN&#xA;                      dbo.R_GRADES ON dbo.R_STUDENT_COURSE_SEC.SCS_MID_TERM_GRADE1 = dbo.R_GRADES.GRADES_ID RIGHT OUTER JOIN&#xA;                      dbo.SPT_STUDENT_COURSE_SEC ON &#xA;                      dbo.R_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID ON &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID&#xA;WHERE     (dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS &lt;&gt; 'C') AND (dbo.SPT_STUDENT_ACAD_CRED.STC_TERM IN&#xA;                          (SELECT     term&#xA;                            FROM          dbo.FN_DATAMART_GET_TERMS() AS FN_DATAMART_GET_TERMS_1))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reg_Complete_Pull"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{79258CCA-8BF4-4E3C-93AB-4676B75B66B1}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reg_Complete_Pull"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Registration_Complete_Pull.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Hermes Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EFBAD2BA-510D-4BCB-B04F-828688AA3E52}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Hermes Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0E103379-1F82-4136-B83B-431819C95FDB}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE parent_access; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Hermes Table Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{b2f74a00-0754-4172-b6fb-4d10dbeb73ce}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Hermes Table Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg - Truncate Hermes Table"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="Truncate Hermes table failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Herps Majors"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{531CBF5F-009C-44FB-81DB-28AB0DF73A0D}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Herps Majors"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0E103379-1F82-4136-B83B-431819C95FDB}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DegreeMajors;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Herps Majors Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{eff1578f-0552-44a3-bd32-05c2ec874b59}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Herps Majors Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg - Truncate Herps Majors"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The Truncate Herps Majors Task failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate sandbox table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{70A1AB24-50E1-4618-B5E0-37A8EAB931A7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate sandbox table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1D2DC8D9-780B-474C-929E-36421A90455D}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE parent_access; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate sandbox table failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{33b31ff5-8bb6-44d4-8919-599828ad6cb4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate sandbox table failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg - Truncate sandbox table"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="Truncate sandbox table failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Student Terms Hermes Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e99b81f2-5109-4f71-a1dc-950c440b269b}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Student Terms Hermes Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0CB66A18-5F1E-4B76-AA2C-D6A48CBBB783}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DM_STUDENT_TERMS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F3AA4B39-656F-427F-A3A3-D50681E0D662}"
+      DTS:From="Package\Clear Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Clear Staging Table DM_REGISTRATIONS Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5177F10D-D96F-4E30-8B6B-243BE4B6E496}"
+      DTS:From="Package\Clear Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Move Registration Data to Staging Table DM_Registrations" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{4E58A4E6-4260-48D2-A811-ADCC1E4C6DA7}"
+      DTS:From="Package\Truncate sandbox table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Truncate sandbox table failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF38C208-2A7A-4719-BC71-BA9C688C661A}"
+      DTS:From="Package\Truncate Hermes Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Truncate Hermes Table Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{9D1385E5-659A-4477-878A-AF2BD4E66CFF}"
+      DTS:From="Package\DTF Sandbox"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\DTF Sandbox Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{17912A19-13F1-41B5-A8ED-45C50B37A916}"
+      DTS:From="Package\DTF Hermes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\DTF Hermes Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{26FC8A0B-C361-44F9-8D66-85FBDCBEDE0C}"
+      DTS:From="Package\Truncate Herps Majors"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Truncate Herps Majors Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{FAD18199-07E7-41DA-8AA0-965C2890391B}"
+      DTS:From="Package\Copy Majors to Herps"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\Copy Majors to Herps Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{AE3CEA94-736C-4908-8147-0E514C6190D7}"
+      DTS:From="Package\Copy Majors to Herps"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\Truncate Student Terms Hermes Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{719CB23E-9BC8-4030-B27B-B5A808B7BF5A}"
+      DTS:From="Package\Truncate Student Terms Hermes Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\Load Student Terms Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{AF68A283-263C-4253-AA7C-07A6AF047721}"
+      DTS:From="Package\Move Registration Data to Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Move Registration Assignment Data to Staging  Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{52205D62-D5BB-4985-A312-2509553E9532}"
+      DTS:From="Package\Move Registration Data to Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncate sandbox table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{1C0C539B-627D-42F4-8A4C-FA3FE1E23CAC}"
+      DTS:From="Package\Truncate sandbox table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Truncate Hermes Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{B0E73D8B-1C95-43E8-B836-BC5DD63687DF}"
+      DTS:From="Package\Truncate Hermes Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\DTF Sandbox" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{64F6B76A-3B37-4CFF-9869-CF7885A02827}"
+      DTS:From="Package\DTF Sandbox"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\DTF Hermes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{591B61C2-6136-4720-8E1F-0540B2140364}"
+      DTS:From="Package\Reg_Complete_Pull"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Clear Staging Table DM_Registrations" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{3DA3B460-1B90-4264-865F-BEBFEA76E1C9}"
+      DTS:From="Package\DTF Hermes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Truncate Herps Majors" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{DA210340-6644-4CEF-AAC6-E0A7494024CE}"
+      DTS:From="Package\Truncate Herps Majors"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Copy Majors to Herps" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="258,42"
+          Id="Package\Clear Staging Table DM_Registrations"
+          TopLeft="116,130" />
+        <NodeLayout
+          Size="308,42"
+          Id="Package\Clear Staging Table DM_REGISTRATIONS Failed"
+          TopLeft="683,132" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Copy Majors to Herps"
+          TopLeft="1000,595" />
+        <NodeLayout
+          Size="164,67"
+          Id="Package\Copy Majors to Herps Failed"
+          TopLeft="1159,384" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\DTF Hermes"
+          TopLeft="518,622" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\DTF Hermes Failed"
+          TopLeft="516,729" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\DTF Sandbox"
+          TopLeft="250,619" />
+        <NodeLayout
+          Size="148,44"
+          Id="Package\DTF Sandbox Failure"
+          TopLeft="244,728" />
+        <NodeLayout
+          Size="186,70"
+          Id="Package\Move Registration Assignment Data to Staging  Failed"
+          TopLeft="745,287" />
+        <NodeLayout
+          Size="357,42"
+          Id="Package\Move Registration Data to Staging Table DM_Registrations"
+          TopLeft="109,299" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Reg_Complete_Pull"
+          TopLeft="116,50" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Truncate Hermes Table"
+          TopLeft="159,522" />
+        <NodeLayout
+          Size="220,42"
+          Id="Package\Truncate Hermes Table Failed"
+          TopLeft="429,493" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Truncate Herps Majors"
+          TopLeft="805,527" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Truncate Herps Majors Failed"
+          TopLeft="851,417" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Truncate sandbox table"
+          TopLeft="166,417" />
+        <NodeLayout
+          Size="220,42"
+          Id="Package\Truncate sandbox table failed"
+          TopLeft="593,392" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="374,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="309,0"
+              Start="0,0"
+              End="301.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="301.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="136.50865234375,5,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="203.333333333333,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="84.1666666666667,127"
+              Start="0,0"
+              End="84.1666666666667,119.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.2696456086287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.2696456086287"
+                    Point2="0,51.2696456086287"
+                    Point3="4,51.2696456086287" />
+                  <mssgle:LineSegment
+                    End="80.1666666666667,51.2696456086287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="80.1666666666667,51.2696456086287"
+                    Point2="84.1666666666667,51.2696456086287"
+                    Point3="84.1666666666667,55.2696456086287" />
+                  <mssgle:LineSegment
+                    End="84.1666666666667,119.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="358,438">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="235,-25"
+              Start="0,0"
+              End="227.5,-25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113.5,0"
+                    Point2="117.5,0"
+                    Point3="117.5,-4" />
+                  <mssgle:LineSegment
+                    End="117.5,-21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117.5,-21"
+                    Point2="117.5,-25"
+                    Point3="121.5,-25" />
+                  <mssgle:LineSegment
+                    End="227.5,-25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="103.25865234375,1,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="350,543">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,-29"
+              Start="0,0"
+              End="71.5,-29">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="35.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.5,0"
+                    Point2="39.5,0"
+                    Point3="39.5,-4" />
+                  <mssgle:LineSegment
+                    End="39.5,-25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.5,-25"
+                    Point2="39.5,-29"
+                    Point3="43.5,-29" />
+                  <mssgle:LineSegment
+                    End="71.5,-29" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="25.25865234375,1,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="320,661">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.24134765625,25.87548828125,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="588.5,664">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.24134765625,24.87548828125,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="899,527">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.5,-68"
+              Start="0,0"
+              End="41.5,-60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-30"
+                    Point2="0,-34"
+                    Point3="4,-34" />
+                  <mssgle:LineSegment
+                    End="37.5,-34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="37.5,-34"
+                    Point2="41.5,-34"
+                    Point3="41.5,-38" />
+                  <mssgle:LineSegment
+                    End="41.5,-60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="6.50865234375,-29,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="1120,595">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121,-144"
+              Start="0,0"
+              End="121,-136.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-54.3529411764706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-54.3529411764706"
+                    Point2="0,-58.3529411764706"
+                    Point3="4,-58.3529411764706" />
+                  <mssgle:LineSegment
+                    End="117,-58.3529411764706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117,-58.3529411764706"
+                    Point2="121,-58.3529411764706"
+                    Point3="121,-62.3529411764706" />
+                  <mssgle:LineSegment
+                    End="121,-136.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="46.25865234375,-53.3529411764706,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="466,321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="279,0"
+              Start="0,0"
+              End="271.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="271.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="121.50865234375,5,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="287.5,341">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.5,76"
+              Start="0,0"
+              End="-25.5,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="-4,38" />
+                  <mssgle:LineSegment
+                    End="-21.5,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.5,38"
+                    Point2="-25.5,38"
+                    Point3="-25.5,42" />
+                  <mssgle:LineSegment
+                    End="-25.5,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="262,459">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.5,63"
+              Start="0,0"
+              End="-20.5,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="-4,31.5" />
+                  <mssgle:LineSegment
+                    End="-16.5,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.5,31.5"
+                    Point2="-20.5,31.5"
+                    Point3="-20.5,35.5" />
+                  <mssgle:LineSegment
+                    End="-20.5,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="254.5,564">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.5,55"
+              Start="0,0"
+              End="67.5,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="63.5,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.5,27.5"
+                    Point2="67.5,27.5"
+                    Point3="67.5,31.5" />
+                  <mssgle:LineSegment
+                    End="67.5,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="394,641.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124,0"
+              Start="0,0"
+              End="116.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="116.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="202,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43,38"
+              Start="0,0"
+              End="43,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="39,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39,19"
+                    Point2="43,19"
+                    Point3="43,23" />
+                  <mssgle:LineSegment
+                    End="43,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="587.5,622">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="281.5,-53"
+              Start="0,0"
+              End="281.5,-45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-27.5316455696203" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-27.5316455696203"
+                    Point2="0,-31.5316455696203"
+                    Point3="4,-31.5316455696203" />
+                  <mssgle:LineSegment
+                    End="277.5,-31.5316455696203" />
+                  <mssgle:CubicBezierSegment
+                    Point1="277.5,-31.5316455696203"
+                    Point2="281.5,-31.5316455696203"
+                    Point3="281.5,-35.5316455696203" />
+                  <mssgle:LineSegment
+                    End="281.5,-45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="929,569">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="133,26"
+              Start="0,0"
+              End="133,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.99553724682458" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.99553724682458"
+                    Point2="0,12.9955372468246"
+                    Point3="4,12.9955372468246" />
+                  <mssgle:LineSegment
+                    End="129,12.9955372468246" />
+                  <mssgle:CubicBezierSegment
+                    Point1="129,12.9955372468246"
+                    Point2="133,12.9955372468246"
+                    Point3="133,16.9955372468246" />
+                  <mssgle:LineSegment
+                    End="133,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="#2"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="45,39"
+          Id="0a7c932d-f277-4bf4-92f1-c030bb1fb0d3"
+          TopLeft="64,19" />
+        <NodeLayout
+          Size="273,42"
+          Id="Package\Truncate Student Terms Hermes Staging"
+          TopLeft="809,659" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="1000,616">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-54.5,43"
+              Start="0,0"
+              End="-54.5,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-50.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-50.5,0"
+                    Point2="-54.5,0"
+                    Point3="-54.5,4" />
+                  <mssgle:LineSegment
+                    End="-54.5,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Load Student Terms Staging"
+          TopLeft="866,728" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="945.5,701">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28,27"
+              Start="0,0"
+              End="28,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.5"
+                    Point2="0,13.5"
+                    Point3="4,13.5" />
+                  <mssgle:LineSegment
+                    End="24,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24,13.5"
+                    Point2="28,13.5"
+                    Point3="28,17.5" />
+                  <mssgle:LineSegment
+                    End="28,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy Majors to Herps">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Copy Majors to Herps\ADO NET Source"
+          TopLeft="264,218" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Copy Majors to Herps\ADO NET Destination"
+          TopLeft="341,437" />
+        <EdgeLayout
+          Id="Package\Copy Majors to Herps.Paths[ADO NET Source Output]"
+          TopLeft="344,260">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.5,177"
+              Start="0,0"
+              End="87.5,169.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,84.5"
+                    Point2="0,88.5"
+                    Point3="4,88.5" />
+                  <mssgle:LineSegment
+                    End="83.5,88.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.5,88.5"
+                    Point2="87.5,88.5"
+                    Point3="87.5,92.5" />
+                  <mssgle:LineSegment
+                    End="87.5,169.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Majors to Herps\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Majors to Herps\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DTF Hermes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\DTF Hermes\ADO NET Source"
+          TopLeft="172,210" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DTF Hermes\ADO NET Destination"
+          TopLeft="195,417" />
+        <EdgeLayout
+          Id="Package\DTF Hermes.Paths[ADO NET Source Output]"
+          TopLeft="252,252">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.5,165"
+              Start="0,0"
+              End="33.5,157.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,78.5"
+                    Point2="0,82.5"
+                    Point3="4,82.5" />
+                  <mssgle:LineSegment
+                    End="29.5,82.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.5,82.5"
+                    Point2="33.5,82.5"
+                    Point3="33.5,86.5" />
+                  <mssgle:LineSegment
+                    End="33.5,157.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DTF Hermes\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DTF Hermes\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DTF Sandbox">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\DTF Sandbox\ADO NET Source"
+          TopLeft="152,210" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DTF Sandbox\ADO NET Destination"
+          TopLeft="248,438" />
+        <EdgeLayout
+          Id="Package\DTF Sandbox.Paths[ADO NET Source Output]"
+          TopLeft="232,252">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="106.5,186"
+              Start="0,0"
+              End="106.5,178.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,89" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,89"
+                    Point2="0,93"
+                    Point3="4,93" />
+                  <mssgle:LineSegment
+                    End="102.5,93" />
+                  <mssgle:CubicBezierSegment
+                    Point1="102.5,93"
+                    Point2="106.5,93"
+                    Point3="106.5,97" />
+                  <mssgle:LineSegment
+                    End="106.5,178.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DTF Sandbox\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DTF Sandbox\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Student Terms Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Load Student Terms Staging\ADO NET Source"
+          TopLeft="182,148" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Load Student Terms Staging\ADO NET Destination"
+          TopLeft="318,353" />
+        <EdgeLayout
+          Id="Package\Load Student Terms Staging.Paths[ADO NET Source Output]"
+          TopLeft="262,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146.5,163"
+              Start="0,0"
+              End="146.5,155.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,77.5"
+                    Point2="0,81.5"
+                    Point3="4,81.5" />
+                  <mssgle:LineSegment
+                    End="142.5,81.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="142.5,81.5"
+                    Point2="146.5,81.5"
+                    Point3="146.5,85.5" />
+                  <mssgle:LineSegment
+                    End="146.5,155.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Student Terms Staging\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Student Terms Staging\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

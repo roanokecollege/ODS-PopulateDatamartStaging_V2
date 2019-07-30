@@ -1,0 +1,752 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/19/2018 10:56:28 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{88B5768F-703B-40FA-BDAA-23B4D26579F0}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.7462.6"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateGPA"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{592AC794-7D7C-4D9F-AAB9-5030433272A6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B5BCE66B-C5C4-4AC1-9310-9069D56A60DA}"
+      DTS:ObjectName="HERMES.Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.Staging1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{AFF23FA7-B926-43E4-B1E9-07022FC603FD}"
+      DTS:ObjectName="Hermes.Staging1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateGPA-{AFF23FA7-B926-43E4-B1E9-07022FC603FD}Hermes.Staging1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0578B9AE-57CF-46CC-8AAF-D784A356537D}"
+      DTS:ObjectName="ods.ODS_Reporting">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{C5E6EE1E-6E6E-48CD-963C-E6570BDA033A}"
+      DTS:ObjectName="ODS.ODS_Reporting1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Integrated Security=True;Application Name=SSIS-PopulateGPA-{C5E6EE1E-6E6E-48CD-963C-E6570BDA033A}ODS.ODS_Reporting1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sandbox.Staging1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{D8AFCF40-A811-4416-8914-0913215C070A}"
+      DTS:ObjectName="sandbox.Staging1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateGPA-{D8AFCF40-A811-4416-8914-0913215C070A}sandbox.Staging1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\cum_gpa"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{134AB415-8764-4CB2-A921-DC7D5B781C1A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="cum_gpa"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0578B9AE-57CF-46CC-8AAF-D784A356537D}"
+          SQLTask:SqlStatementSource="INSERT INTO Hermes.STAGING.dbo.cum_gpa&#xA;SELECT     rcid, cum_gpa&#xA;FROM         dbo.view_cum_gpa&#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{7E2FFF4E-60C8-4F2E-9D91-E26319EB645F}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DM_GPA_DATA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HERMES.Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[HERMES.Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RCID]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="RCID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RCID]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[RCID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CUM_GPA]"
+                      cachedDataType="numeric"
+                      cachedName="CUM_GPA"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUM_GPA]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[CUM_GPA]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MID_TERM_GPA]"
+                      cachedDataType="numeric"
+                      cachedName="MID_TERM_GPA"
+                      cachedPrecision="8"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MID_TERM_GPA]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[MID_TERM_GPA]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TERM_GPA]"
+                      cachedDataType="numeric"
+                      cachedName="TERM_GPA"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERM_GPA]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[TERM_GPA]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TERM]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="TERM"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERM]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[TERM]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RCID]"
+                      dataType="wstr"
+                      length="7"
+                      name="RCID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUM_GPA]"
+                      dataType="numeric"
+                      name="CUM_GPA"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MID_TERM_GPA]"
+                      dataType="numeric"
+                      name="MID_TERM_GPA"
+                      precision="8"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERM_GPA]"
+                      dataType="numeric"
+                      name="TERM_GPA"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERM]"
+                      dataType="wstr"
+                      length="10"
+                      name="TERM" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\view_students_gpa_history"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="view_students_gpa_history"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."view_student_history_term_gpa"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\view_students_gpa_history.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[RCID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[RCID]"
+                      length="7"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[RCID]"
+                      name="RCID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[CUM_GPA]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[CUM_GPA]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[CUM_GPA]"
+                      name="CUM_GPA"
+                      precision="10"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[MID_TERM_GPA]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[MID_TERM_GPA]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[MID_TERM_GPA]"
+                      name="MID_TERM_GPA"
+                      precision="8"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[TERM_GPA]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[TERM_GPA]"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[TERM_GPA]"
+                      name="TERM_GPA"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[TERM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[TERM]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].Columns[TERM]"
+                      name="TERM"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[RCID]"
+                      dataType="wstr"
+                      length="7"
+                      name="RCID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[CUM_GPA]"
+                      dataType="numeric"
+                      name="CUM_GPA"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[MID_TERM_GPA]"
+                      dataType="numeric"
+                      name="MID_TERM_GPA"
+                      precision="8"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[TERM_GPA]"
+                      dataType="numeric"
+                      name="TERM_GPA"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output].ExternalColumns[TERM]"
+                      dataType="wstr"
+                      length="10"
+                      name="TERM" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[RCID]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[RCID]"
+                      name="RCID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[CUM_GPA]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[CUM_GPA]"
+                      name="CUM_GPA"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[MID_TERM_GPA]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[MID_TERM_GPA]"
+                      name="MID_TERM_GPA"
+                      precision="8"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[TERM_GPA]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[TERM_GPA]"
+                      name="TERM_GPA"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[TERM]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[TERM]"
+                      name="TERM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Data Flow Task\view_students_gpa_history.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E5AE5551-0744-4D71-A32A-E83295D77A71}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0578B9AE-57CF-46CC-8AAF-D784A356537D}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_GPA_DATA&#xA;SELECT     RCID, CUM_GPA, MID_TERM_GPA, TERM_GPA, TERM, TERM_NOTES, GETDATE() AS updated_at&#xA;FROM         dbo.view_student_history_term_gpa&#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\term_gpa"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0C0DF037-1941-4DDC-942A-B4B3FDDE01BD}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="term_gpa"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0578B9AE-57CF-46CC-8AAF-D784A356537D}"
+          SQLTask:SqlStatementSource="INSERT INTO Hermes.STAGING.dbo.term_gpa&#xA;SELECT     rcid,term,gpa,term_notes, mid_term_gpa&#xA;FROM         dbo.view_term_gpa&#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate hermes"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7AAD8810-8C9D-4354-BB7F-2BD30886D4C6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate hermes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0578B9AE-57CF-46CC-8AAF-D784A356537D}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM Hermes.STAGING.dbo.DM_GPA_DATA;&#xA;DELETE FROM Hermes.STAGING.dbo.term_gpa;&#xA;DELETE FROM Hermes.STAGING.dbo.cum_gpa;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8A5F966B-3F46-4774-937A-35386EEABB0C}"
+      DTS:From="Package\truncate hermes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{01AAE110-DB04-4A6D-AE5A-8719CD81E624}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\term_gpa" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{148025C6-9B5A-49FF-8BD9-DAB474BA63C2}"
+      DTS:From="Package\term_gpa"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\cum_gpa" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="124,42"
+          Id="Package\cum_gpa"
+          TopLeft="267.777777777778,406.666666666667" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Data Flow Task"
+          TopLeft="731,417" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="254.444444444444,196.777777777778" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\term_gpa"
+          TopLeft="430,290" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\truncate hermes"
+          TopLeft="254.444444444444,59.7777777777778" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="335.194444444444,101.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,95"
+              Start="0,0"
+              End="0,87.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,87.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="336.944444444444,238.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="156.055555555556,51.2222222222222"
+              Start="0,0"
+              End="156.055555555556,43.7222222222222">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6111111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.6111111111111"
+                    Point2="0,25.6111111111111"
+                    Point3="4,25.6111111111111" />
+                  <mssgle:LineSegment
+                    End="152.055555555556,25.6111111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="152.055555555556,25.6111111111111"
+                    Point2="156.055555555556,25.6111111111111"
+                    Point3="156.055555555556,29.6111111111111" />
+                  <mssgle:LineSegment
+                    End="156.055555555556,43.7222222222222" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="493,332">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-163.222222222222,74.6666666666667"
+              Start="0,0"
+              End="-163.222222222222,67.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.3333333333333"
+                    Point2="0,37.3333333333333"
+                    Point3="-4,37.3333333333333" />
+                  <mssgle:LineSegment
+                    End="-159.222222222222,37.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-159.222222222222,37.3333333333333"
+                    Point2="-163.222222222222,37.3333333333333"
+                    Point3="-163.222222222222,41.3333333333333" />
+                  <mssgle:LineSegment
+                    End="-163.222222222222,67.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="420,287" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Data Flow Task\view_students_gpa_history"
+          TopLeft="231.5,59.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="336,101.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="170.5,185.5"
+              Start="0,0"
+              End="170.5,178">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,88.75"
+                    Point2="0,92.75"
+                    Point3="4,92.75" />
+                  <mssgle:LineSegment
+                    End="166.5,92.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="166.5,92.75"
+                    Point2="170.5,92.75"
+                    Point3="170.5,96.75" />
+                  <mssgle:LineSegment
+                    End="170.5,178" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\view_students_gpa_history">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

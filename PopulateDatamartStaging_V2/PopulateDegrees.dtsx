@@ -1,0 +1,281 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/25/2014 12:52:04 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{1EFFCAC3-B809-472B-A70B-495789D4C142}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateDegrees"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{E9951E30-670A-4A0E-BAC9-C3CAEE4CD112}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MAIL CONNECTION]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{66ABA7C1-9923-4E84-8938-4FFADD31971B}"
+      DTS:ObjectName="MAIL CONNECTION">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=receive.roanoke.edu;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1BC077AF-B594-4B35-8014-5711D1A64F0C}"
+      DTS:ObjectName="ods.ODS_Reporting">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Table DM_DEGREE_INFORMATION"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8f65012b-4ad8-4bcb-872e-22b6e36fe398}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Table DM_DEGREE_INFORMATION"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1BC077AF-B594-4B35-8014-5711D1A64F0C}"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.DBO.DM_DEGREE_INFORMATION;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Table DM_DEGREE_INFORMATION Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{64fa07da-0d31-457e-8fd2-2d1f71bc994c}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Table DM_DEGREE_INFORMATION Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{66ABA7C1-9923-4E84-8938-4FFADD31971B}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Dregees ODS Datamart Task: Clear Table DM_DEGREE_INFORMATION Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clear Staging table DM_DEGREE_INFORMATION in package PopulateDegrees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted beginning at step PopulateDegrees.  &#xA;Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Instructor Degree Data to table DM_DEGREE_INFORMATION"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{199A7AF2-50B5-4663-B18B-92CC3848D58D}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Instructor Degree Data to table DM_DEGREE_INFORMATION"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1BC077AF-B594-4B35-8014-5711D1A64F0C}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_DEGREE_INFORMATION&#xA;&#x9;&#x9;&#xA;SELECT     cred.ACAD_PERSON_ID AS RCID, CASE (len(rtrim(INST_CEEB))) WHEN 4 THEN '00' + INST_CEEB WHEN 5 THEN '0' + INST_CEEB ELSE INST_CEEB END AS CEEB, &#xA;                      cred.ACAD_DEGREE AS DEGREE, cred.ACAD_DEGREE_DATE AS DEGREEDATE,&#xA;                          (SELECT     ACAD_MAJORS&#xA;                            FROM          dbo.ODS_ACAD_CRED_MAJORS&#xA;                            WHERE      (ACAD_CREDENTIALS_ID = cred.ACAD_CREDENTIALS_ID) AND (POS = 1)) AS MAJOR1,&#xA;                          (SELECT     ACAD_MAJORS&#xA;                            FROM          dbo.ODS_ACAD_CRED_MAJORS AS ODS_ACAD_CRED_MAJORS_2&#xA;                            WHERE      (ACAD_CREDENTIALS_ID = cred.ACAD_CREDENTIALS_ID) AND (POS = 2)) AS MAJOR2,&#xA;                          (SELECT     ACAD_MAJORS&#xA;                            FROM          dbo.ODS_ACAD_CRED_MAJORS AS ODS_ACAD_CRED_MAJORS_1&#xA;                            WHERE      (ACAD_CREDENTIALS_ID = cred.ACAD_CREDENTIALS_ID) AND (POS = 3)) AS MAJOR3, cred.ACAD_CREDENTIALS_ID AS DATATELID, GETDATE() &#xA;                      AS ImportDate, GETDATE() AS updated_at&#xA;FROM         dbo.ODS_ACAD_CREDENTIALS AS cred INNER JOIN&#xA;                      dbo.R_INSTITUTIONS ON cred.ACAD_INSTITUTIONS_ID = dbo.R_INSTITUTIONS.INSTITUTIONS_ID&#xA;WHERE     (cred.ACAD_PERSON_ID IN&#xA;                          (SELECT DISTINCT dbo.ODS_COURSE_SEC_FACULTY.CSF_FACULTY&#xA;                            FROM          dbo.ODS_COURSE_SEC_FACULTY INNER JOIN&#xA;                                                   dbo.ODS_COURSE_SECTIONS ON &#xA;                                                   dbo.ODS_COURSE_SEC_FACULTY.CSF_COURSE_SECTION = dbo.ODS_COURSE_SECTIONS.COURSE_SECTIONS_ID&#xA;                            WHERE      (dbo.ODS_COURSE_SECTIONS.SEC_TERM IN&#xA;                                                       (SELECT     term&#xA;                                                         FROM          dbo.FN_DATAMART_GET_TERMS() AS FN_DATAMART_GET_TERMS_1))))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Instructor Degree Data to table DM_DEGREE_INFORMATION Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{324ad500-4813-465f-800c-b81afcb099da}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Instructor Degree Data to table DM_DEGREE_INFORMATION Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{66ABA7C1-9923-4E84-8938-4FFADD31971B}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Dregees ODS Datamart Task: Move Instructor Degree Data to DM_DEGREE_INFORMATION Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Move Instructor Degree Data to Staging table DM_DEGREE_INFORMATION in package PopulateDegrees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted beginning at step PopulateDegrees.  &#xA;Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{682F683C-7A80-4CF5-8C9B-AEE1C0718E77}"
+      DTS:From="Package\Clear Staging Table DM_DEGREE_INFORMATION"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Move Instructor Degree Data to table DM_DEGREE_INFORMATION" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{59E8B8E0-8C09-4408-B520-A2E20D56F3F1}"
+      DTS:From="Package\Clear Staging Table DM_DEGREE_INFORMATION"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Clear Staging Table DM_DEGREE_INFORMATION Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{CA410D13-A857-44F7-951F-12F73592A91A}"
+      DTS:From="Package\Move Instructor Degree Data to table DM_DEGREE_INFORMATION"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Move Instructor Degree Data to table DM_DEGREE_INFORMATION Failed"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="312,42"
+          Id="Package\Clear Staging Table DM_DEGREE_INFORMATION"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="343,42"
+          Id="Package\Clear Staging Table DM_DEGREE_INFORMATION Failed"
+          TopLeft="339,115" />
+        <NodeLayout
+          Size="397,42"
+          Id="Package\Move Instructor Degree Data to table DM_DEGREE_INFORMATION"
+          TopLeft="89,208" />
+        <NodeLayout
+          Size="428,42"
+          Id="Package\Move Instructor Degree Data to table DM_DEGREE_INFORMATION Failed"
+          TopLeft="162,305" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="216,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="71.5,106"
+              Start="0,0"
+              End="71.5,98.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49"
+                    Point2="0,53"
+                    Point3="4,53" />
+                  <mssgle:LineSegment
+                    End="67.5,53" />
+                  <mssgle:CubicBezierSegment
+                    Point1="67.5,53"
+                    Point2="71.5,53"
+                    Point3="71.5,57" />
+                  <mssgle:LineSegment
+                    End="71.5,98.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="372,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="138.5,34"
+              Start="0,0"
+              End="138.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="134.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="134.5,0"
+                    Point2="138.5,0"
+                    Point3="138.5,4" />
+                  <mssgle:LineSegment
+                    End="138.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="124.25865234375,-13.7490234375,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="287.5,250">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="88.5,55"
+              Start="0,0"
+              End="88.5,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="84.5,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="84.5,27.5"
+                    Point2="88.5,27.5"
+                    Point3="88.5,31.5" />
+                  <mssgle:LineSegment
+                    End="88.5,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="30.00865234375,32.5,28.4826953125,7.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

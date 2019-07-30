@@ -1,0 +1,2109 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/23/2014 11:55:56 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{C2F11439-FDD1-463A-B002-A5FA1669F030}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.7462.6"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateRegistrations"
+  DTS:PackageType="5"
+  DTS:VersionBuild="138"
+  DTS:VersionGUID="{2A59AB37-7301-49E6-86C8-A81CFADD8938}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.DataMart]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0E103379-1F82-4136-B83B-431819C95FDB}"
+      DTS:ObjectName="HERMES.DataMart">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.DataMart1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{11134916-93F6-4C6F-9A7B-236699C8F534}"
+      DTS:ObjectName="Hermes.DataMart1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{11134916-93F6-4C6F-9A7B-236699C8F534}Hermes.DataMart1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.DataMart1 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{F3B1963D-B2D9-4346-845D-198B3E7EAC64}"
+      DTS:ObjectName="Hermes.DataMart1 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{F3B1963D-B2D9-4346-845D-198B3E7EAC64}Hermes.DataMart1 1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0CB66A18-5F1E-4B76-AA2C-D6A48CBBB783}"
+      DTS:ObjectName="HERMES.Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.Staging1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{01C809E0-5A6E-4668-91D6-904E3F259169}"
+      DTS:ObjectName="Hermes.Staging1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{01C809E0-5A6E-4668-91D6-904E3F259169}Hermes.Staging1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Hermes.Staging1 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{3BA286A0-D2AC-4360-B28F-C9629DEA2D98}"
+      DTS:ObjectName="Hermes.Staging1 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{3BA286A0-D2AC-4360-B28F-C9629DEA2D98}Hermes.Staging1 1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Mail Connection]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+      DTS:ObjectName="Mail Connection">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=receive.roanoke.edu;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+      DTS:ObjectName="ods.ODS_Reporting">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{8215FB04-EF86-4405-8FBB-77B838AA068A}"
+      DTS:ObjectName="ODS.ODS_Reporting1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{8215FB04-EF86-4405-8FBB-77B838AA068A}ODS.ODS_Reporting1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting1 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{39FA4DC8-40F6-4E1D-BFD2-380FDC7C730D}"
+      DTS:ObjectName="ODS.ODS_Reporting1 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{39FA4DC8-40F6-4E1D-BFD2-380FDC7C730D}ODS.ODS_Reporting1 1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sandbox.DataMart]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{2D1C15C8-EC39-44D5-B95A-EA8527A1CE9C}"
+      DTS:ObjectName="sandbox.DataMart">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{2D1C15C8-EC39-44D5-B95A-EA8527A1CE9C}sandbox.DataMart;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sandbox.DataMart1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1D2DC8D9-780B-474C-929E-36421A90455D}"
+      DTS:ObjectName="sandbox.DataMart1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sandbox.Staging1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{3815A889-AD84-4812-88E8-A48F558852F9}"
+      DTS:ObjectName="sandbox.Staging1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{3815A889-AD84-4812-88E8-A48F558852F9}sandbox.Staging1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\build grades data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8F22EE54-49E0-4578-9CEA-597E380082C7}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="build grades data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\build grades data\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"r_grades_data"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\build grades data\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[key_RegId]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="key_RegId"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[key_RegId]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[key_RegId]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[gpa_value]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="gpa_value"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[gpa_value]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[gpa_value]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[grade]"
+                      cachedDataType="numeric"
+                      cachedName="grade"
+                      cachedPrecision="8"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[grade]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[grade]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[credits]"
+                      cachedDataType="numeric"
+                      cachedName="credits"
+                      cachedPrecision="9"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[credits]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[credits]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[mid_term_grade]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="mid_term_grade"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[mid_term_grade]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[mid_term_grade]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[term_gpa]"
+                      cachedDataType="numeric"
+                      cachedName="term_gpa"
+                      cachedPrecision="8"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[term_gpa]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[term_gpa]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[cum_gpa]"
+                      cachedDataType="numeric"
+                      cachedName="cum_gpa"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[cum_gpa]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[cum_gpa]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[permission]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="permission"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[permission]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[permission]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[est_grad_date]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="est_grad_date"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[est_grad_date]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[est_grad_date]" />
+                    <inputColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[live_campus]"
+                      cachedDataType="i4"
+                      cachedName="live_campus"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[live_campus]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[live_campus]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[key_RegId]"
+                      dataType="wstr"
+                      length="10"
+                      name="key_RegId" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[gpa_value]"
+                      dataType="wstr"
+                      length="3"
+                      name="gpa_value" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[grade]"
+                      dataType="numeric"
+                      name="grade"
+                      precision="8"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[credits]"
+                      dataType="numeric"
+                      name="credits"
+                      precision="9"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[mid_term_grade]"
+                      dataType="wstr"
+                      length="3"
+                      name="mid_term_grade" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[term_gpa]"
+                      dataType="numeric"
+                      name="term_gpa"
+                      precision="8"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[cum_gpa]"
+                      dataType="numeric"
+                      name="cum_gpa"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[permission]"
+                      dataType="wstr"
+                      length="2"
+                      name="permission" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[est_grad_date]"
+                      dataType="wstr"
+                      length="5"
+                      name="est_grad_date" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[live_campus]"
+                      dataType="i4"
+                      name="live_campus" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\build grades data\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\build grades data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\build grades data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\build grades data\ADO NET Source"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT     TOP (100) PERCENT SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, SPT_STUDENT_ACAD_CRED.STC_GRADE AS gpa_value, 
+                      SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade, SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, R_GRADES.GRD_GRADE AS mid_term_grade, 
+                      R_STUDENTS.X_MID_GPA AS term_gpa, R_STUDENTS_CC.X_STU_CUM_GPA AS cum_gpa, 'NA' AS permission, R_STU_MISC3_L.STU_MISC3 AS est_grad_date, 
+                      COALESCE (current_students_on_campus_view.LiveCampus, 0) AS live_campus
+FROM         R_STU_MISC3_L RIGHT OUTER JOIN
+                      R_STUDENTS_CC RIGHT OUTER JOIN
+                      R_STUDENTS ON R_STUDENTS_CC.STUCC_ID = R_STUDENTS.STUDENTS_ID ON R_STU_MISC3_L.STUDENTS_ID = R_STUDENTS.STUDENTS_ID RIGHT OUTER JOIN
+                      SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN
+                      current_students_on_campus_view ON SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = current_students_on_campus_view.RMAS_PERSON_ID ON 
+                      R_STUDENTS.STUDENTS_ID = SPT_STUDENT_ACAD_CRED.STC_PERSON_ID LEFT OUTER JOIN
+                      R_STUDENT_COURSE_SEC LEFT OUTER JOIN
+                      R_GRADES ON R_STUDENT_COURSE_SEC.SCS_MID_TERM_GRADE1 = R_GRADES.GRADES_ID RIGHT OUTER JOIN
+                      SPT_STUDENT_COURSE_SEC ON R_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID = SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID ON 
+                      SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID
+GROUP BY SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID, SPT_STUDENT_ACAD_CRED.STC_GRADE, SPT_STUDENT_ACAD_CRED.GRADE_VALUE, 
+                      SPT_STUDENT_ACAD_CRED.STC_CRED, R_GRADES.GRD_GRADE, R_STUDENTS.X_MID_GPA, R_STU_MISC3_L.STU_MISC3, 
+                      COALESCE (current_students_on_campus_view.LiveCampus, 0), R_STU_MISC3_L.POS, R_STUDENTS_CC.X_STU_CUM_GPA
+HAVING      (R_STU_MISC3_L.POS = 1)
+ORDER BY key_RegId</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\build grades data\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[key_RegId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[key_RegId]"
+                      length="10"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[key_RegId]"
+                      name="key_RegId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[gpa_value]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[gpa_value]"
+                      length="3"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[gpa_value]"
+                      name="gpa_value"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[grade]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[grade]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[grade]"
+                      name="grade"
+                      precision="8"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[credits]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[credits]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[credits]"
+                      name="credits"
+                      precision="9"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[mid_term_grade]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[mid_term_grade]"
+                      length="3"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[mid_term_grade]"
+                      name="mid_term_grade"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[term_gpa]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[term_gpa]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[term_gpa]"
+                      name="term_gpa"
+                      precision="8"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[cum_gpa]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[cum_gpa]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[cum_gpa]"
+                      name="cum_gpa"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[permission]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[permission]"
+                      length="2"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[permission]"
+                      name="permission"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[est_grad_date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[est_grad_date]"
+                      length="5"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[est_grad_date]"
+                      name="est_grad_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[live_campus]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[live_campus]"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[live_campus]"
+                      name="live_campus"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[key_RegId]"
+                      dataType="wstr"
+                      length="10"
+                      name="key_RegId" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[gpa_value]"
+                      dataType="wstr"
+                      length="3"
+                      name="gpa_value" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[grade]"
+                      dataType="numeric"
+                      name="grade"
+                      precision="8"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[credits]"
+                      dataType="numeric"
+                      name="credits"
+                      precision="9"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[mid_term_grade]"
+                      dataType="wstr"
+                      length="3"
+                      name="mid_term_grade" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[term_gpa]"
+                      dataType="numeric"
+                      name="term_gpa"
+                      precision="8"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[cum_gpa]"
+                      dataType="numeric"
+                      name="cum_gpa"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[permission]"
+                      dataType="wstr"
+                      length="2"
+                      name="permission" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[est_grad_date]"
+                      dataType="wstr"
+                      length="5"
+                      name="est_grad_date" />
+                    <externalMetadataColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[live_campus]"
+                      dataType="i4"
+                      name="live_campus" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[key_RegId]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[key_RegId]"
+                      name="key_RegId" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[gpa_value]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[gpa_value]"
+                      name="gpa_value" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[grade]"
+                      dataType="numeric"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[grade]"
+                      name="grade"
+                      precision="8"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[credits]"
+                      dataType="numeric"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[credits]"
+                      name="credits"
+                      precision="9"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[mid_term_grade]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[mid_term_grade]"
+                      name="mid_term_grade" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[term_gpa]"
+                      dataType="numeric"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[term_gpa]"
+                      name="term_gpa"
+                      precision="8"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[cum_gpa]"
+                      dataType="numeric"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[cum_gpa]"
+                      name="cum_gpa"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[permission]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[permission]"
+                      name="permission" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[est_grad_date]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[est_grad_date]"
+                      name="est_grad_date" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[live_campus]"
+                      dataType="i4"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[live_campus]"
+                      name="live_campus" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\build grades data.Paths[ADO NET Source Output]"
+              endId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Majors"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{311ccc2f-1884-470a-bf4c-1ac01d7c54c6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Majors"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.DBO.DM_MAJORS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Parent Access"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0747B36E-3946-4B68-AC27-C34FDC1F5BAF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Parent Access"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.DBO.DM_Parent_Access;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Table DM_Registrations"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f080084f-7cf7-4d99-8477-4f63de1dfba2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Table DM_Registrations"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.DBO.DM_REGISTRATIONS;&#xA;&#xA;DELETE FROM HERMES.STAGING.DBO.dm_grades;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Table DM_REGISTRATIONS Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{b076ec22-1b5f-4229-81f0-ca1357dafbaf}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Table DM_REGISTRATIONS Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopRegs ODS Datamart Task: Clear Table DM_REGISTRATIONS Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clear Staging table DM_REGISTRATIONS in package PopulateRegistrations of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted beginning at step PopulateRegistrations.  &#xA;Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Student Terms"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{fd562e6c-a425-4232-bd8f-5e8345fa006e}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Student Terms"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.DBO.DM_STUDENT_TERMS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy Majors to Herps Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{2764e26d-4858-4fbe-bffb-15332a56d904}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Majors to Herps Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg -Copy Majors to Hermes"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The Copy Majors to Hermes Task failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DTF Hermes Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{1e62f3b0-beb7-4fee-ab19-b2596fd92e3f}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DTF Hermes Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg - DTF Hermes"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The DTF Hermes Data Flow Task failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Majors to Staging Hermes"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{01EF1065-BE67-45DE-8825-85B363BDB1FE}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Majors to Staging Hermes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_MAJORS&#xA;&#xA;SELECT     MAJORS_ID, MAJORS_ADDDATE, MAJORS_ADDOPR, MAJORS_CHGOPR, MAJ_ACTIVE_FLAG, MAJ_CIP, MAJ_DESC, MAJ_DIVISION, ODS_REFRESH_TIMESTAMP, GETDATE() as updated_at&#xA;                     &#xA;FROM         dbo.R_MAJORS&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Parent Access to Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{970997CF-5E41-46CA-96E5-0A8D1BC1B012}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Parent Access to Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_Parent_Access&#xA;&#xA;SELECT     XSPA_STUDENT, XSPA_PARENT, XSPA_ACCESS_FLAG, ODS_REFRESH_TIMESTAMP, FIRST_NAME, LAST_NAME, GETDATE() AS updated_at&#xA;FROM         dbo.view_parent_access&#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Registration Assignment Data to Staging  Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{e466d82a-9002-4bf4-9d76-290bf9568a02}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Registration Assignment Data to Staging  Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopRegs ODS Datamart Task: Move Registration Data to Staging table DM_REGISTRATIONS Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Move Registration Data to Staging table DM_REGISTRATIONS in package PopulateRegistrations of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted beginning at step PopulateRegistrations.  &#xA;Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Registration Data to Staging Table DM_Registrations"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9d1a3453-c0bb-47a0-8c32-05ef9ca2e752}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Registration Data to Staging Table DM_Registrations"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO Hermes.Staging.dbo.DM_REGISTRATIONS&#xA;SELECT     TOP (100) PERCENT dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, &#xA;                      dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION AS fkey_courseId, dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID AS RCID, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS AS fkey_RegStatus, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE AS letter_grade, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade_value, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, &#xA;                      dbo.R_GRADES.GRD_GRADE AS mid_term_grade, GETDATE() AS updated_at&#xA;FROM         dbo.current_students_on_campus_view RIGHT OUTER JOIN&#xA;                      dbo.SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN&#xA;                      dbo.view_student_notes ON dbo.SPT_STUDENT_ACAD_CRED.STC_TERM = dbo.view_student_notes.STTN_TERM AND &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.view_student_notes.STTN_STUDENT ON &#xA;                      dbo.current_students_on_campus_view.RMAS_PERSON_ID = dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID LEFT OUTER JOIN&#xA;                      dbo.view_R_STU_MISC3_L RIGHT OUTER JOIN&#xA;                      dbo.R_STUDENTS ON dbo.view_R_STU_MISC3_L.STUDENTS_ID = dbo.R_STUDENTS.STUDENTS_ID ON &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.R_STUDENTS.STUDENTS_ID LEFT OUTER JOIN&#xA;                      dbo.R_STUDENT_COURSE_SEC INNER JOIN&#xA;                      dbo.R_GRADES ON dbo.R_STUDENT_COURSE_SEC.SCS_MID_TERM_GRADE1 = dbo.R_GRADES.GRADES_ID RIGHT OUTER JOIN&#xA;                      dbo.SPT_STUDENT_COURSE_SEC ON &#xA;                      dbo.R_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID ON &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID&#xA;GROUP BY dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID, dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED, dbo.R_GRADES.GRD_GRADE&#xA;HAVING      (dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS &lt;&gt; 'C')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Student Terms to Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7C8C4F93-8DAA-4F16-B029-79F581D3103F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Student Terms to Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_STUDENT_TERMS&#xA;&#xA;SELECT     ID, RCID, FirstTerm, LastTerm, GETDATE() AS updated_at&#xA;FROM         dbo.student_terms_view&#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\populate dm grades"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{386CAA25-679B-4306-9D06-E330296579AA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="populate dm grades"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="INSERT INTO hermes.STAGING.dbo.dm_grades&#xA;SELECT     TOP (100) PERCENT key_RegId, gpa_value, grade, credits, mid_term_grade, term_gpa, cum_gpa, permission, est_grad_date, live_campus&#xA;FROM         dbo.view_r_grades_data&#xA;GROUP BY key_RegId, gpa_value, grade, credits, mid_term_grade, term_gpa, cum_gpa, permission, est_grad_date, live_campus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\populate person_source"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B12B32EC-AA30-48A4-88C7-A27689F6CAB3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="populate person_source"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="INSERT INTO SANDBOX.STAGING.dbo.person_source&#xA;SELECT &#xA;&#x9;rcid, position, source_id, source_description&#xA;&#xA;FROM ODS_Reporting.dbo.view_person_source&#xA;     &#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{B8834D28-C71F-4F42-BEC7-57CA888CFED9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Registrations Good"
+          SendMailTask:MessageSource="Registrations ran correctly. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SSIS Failure"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{3d301f87-aa2b-4d30-865d-19892d0cd066}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SSIS Failure"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Registrations Success"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="Populate Registrations in ODS hashad an error. Please check ODS SSIS package called PopulateRegistrations.dtsx. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate dm_est_graddate_living_on_campus"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F62BA882-6AFE-4B17-AFD3-628B508611C7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate dm_est_graddate_living_on_campus"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="DELETE FROM SANDBOX.STAGING.DBO.dm_est_graddate_living_on_campus;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate grades information"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A72A37E8-06F0-47EC-B980-8A940435DF45}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate grades information"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="truncate table r_grades_data;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Herps Majors Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{eff1578f-0552-44a3-bd32-05c2ec874b59}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Herps Majors Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="PopReg - Truncate Herps Majors"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The Truncate Herps Majors Task failed in ODS Populate Regisrtations , please review it. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate person_sources"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3AB853AC-7542-4AA5-8A94-5744A01DE6E2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate person_sources"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="DELETE FROM sandbox.STAGING.dbo.person_source;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\update dm_grad_date_living_campus"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E82F2A9B-10F2-47C7-82A3-F997D20F34B9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="update dm_grad_date_living_campus"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="INSERT INTO SANDBOX.STAGING.dbo.dm_est_graddate_living_on_campus&#xA;&#xA;SELECT &#xA;&#x9;rcid, est_grad_date, live_campus&#xA;&#xA;FROM ODS_Reporting.dbo.view_est_grad_date&#xA;     &#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F3AA4B39-656F-427F-A3A3-D50681E0D662}"
+      DTS:From="Package\Clear Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Clear Staging Table DM_REGISTRATIONS Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6824284E-E8AB-4CC7-8D90-34258FC2630A}"
+      DTS:From="Package\Clear Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\truncate grades information" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{27B042D5-CCB8-4270-8990-017C0F0AA2C9}"
+      DTS:From="Package\Move Majors to Staging Hermes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Clear Student Terms" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{39FF5267-2D4A-4C0D-B2D2-3954C1582DF1}"
+      DTS:From="Package\Clear Student Terms"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Move Student Terms to Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{4111E8C2-B0D5-4A28-A772-EFC1DBF1E762}"
+      DTS:From="Package\Move Student Terms to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Send Mail Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{285AFCAF-0F98-4EE1-BCFC-B8A2D57A7D7D}"
+      DTS:From="Package\Move Student Terms to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\SSIS Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{49D20308-2159-4A6C-86C9-D16AF1EEDBE7}"
+      DTS:From="Package\populate dm grades"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Clear Staging Parent Access" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E734F0A-6E10-4A11-A297-EF4A3CB28401}"
+      DTS:From="Package\truncate grades information"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\build grades data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{D7E378E4-0CF0-4E89-9923-B1E517DBA6BD}"
+      DTS:From="Package\build grades data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\Move Registration Data to Staging Table DM_Registrations" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{B9F919E1-A934-4B29-B9BB-7FD6823C3EDD}"
+      DTS:From="Package\Move Student Terms to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\truncate dm_est_graddate_living_on_campus" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
+      DTS:CreationName=""
+      DTS:DTSID="{758B1A0E-620C-4A66-8C70-1A900EB7F385}"
+      DTS:From="Package\truncate dm_est_graddate_living_on_campus"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 18"
+      DTS:To="Package\update dm_grad_date_living_campus" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{80644E7A-2E13-4137-AA2E-6C1E522CC64C}"
+      DTS:From="Package\update dm_grad_date_living_campus"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\truncate person_sources" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{AF68A283-263C-4253-AA7C-07A6AF047721}"
+      DTS:From="Package\Move Registration Data to Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Move Registration Assignment Data to Staging  Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{F3F04584-94FC-4415-962B-1683A8D39E43}"
+      DTS:From="Package\truncate person_sources"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\populate person_source" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{464D25BF-61C2-4453-9BD6-326C57388916}"
+      DTS:From="Package\Move Registration Data to Staging Table DM_Registrations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\populate dm grades" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{CF89670D-00F7-4363-B5B6-6942370D9D94}"
+      DTS:From="Package\Clear Staging Parent Access"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Move Parent Access to Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{B042E990-4A97-4E6F-BE64-4B8E4CF82FAB}"
+      DTS:From="Package\Move Parent Access to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\DTF Hermes Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{BAB65099-1DB8-4425-97D6-0F3DB085CBA8}"
+      DTS:From="Package\Move Parent Access to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Clear Staging Majors" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{A697ECBA-86B5-4132-9D05-BAFEC95D8A59}"
+      DTS:From="Package\Clear Staging Majors"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Move Majors to Staging Hermes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{90928DD2-FC09-4122-B8E0-614E1B2890B1}"
+      DTS:From="Package\Clear Staging Majors"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Truncate Herps Majors Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{2A890A74-9847-41F9-B290-D8BAA9346D29}"
+      DTS:From="Package\Move Majors to Staging Hermes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Copy Majors to Herps Failed"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\build grades data"
+          TopLeft="534,110" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Clear Staging Majors"
+          TopLeft="170,410" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Clear Staging Parent Access"
+          TopLeft="158,233" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\Clear Staging Table DM_Registrations"
+          TopLeft="124,45" />
+        <NodeLayout
+          Size="308,42"
+          Id="Package\Clear Staging Table DM_REGISTRATIONS Failed"
+          TopLeft="672,44" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Clear Student Terms"
+          TopLeft="158,581" />
+        <NodeLayout
+          Size="164,67"
+          Id="Package\Copy Majors to Herps Failed"
+          TopLeft="521,484" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\DTF Hermes Failed"
+          TopLeft="667,287" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Move Majors to Staging Hermes"
+          TopLeft="110,503" />
+        <NodeLayout
+          Size="343,42"
+          Id="Package\Move Parent Access to Staging"
+          TopLeft="97,310" />
+        <NodeLayout
+          Size="186,70"
+          Id="Package\Move Registration Assignment Data to Staging  Failed"
+          TopLeft="739,157" />
+        <NodeLayout
+          Size="357,42"
+          Id="Package\Move Registration Data to Staging Table DM_Registrations"
+          TopLeft="87,162" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Move Student Terms to Staging"
+          TopLeft="113,665" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\populate dm grades"
+          TopLeft="476,233" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\populate person_source"
+          TopLeft="477.5,1037.5" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Send Mail Task"
+          TopLeft="105,742" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\SSIS Failure"
+          TopLeft="554,696" />
+        <NodeLayout
+          Size="295,42"
+          Id="Package\truncate dm_est_graddate_living_on_campus"
+          TopLeft="332,756" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\truncate grades information"
+          TopLeft="205,110" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Truncate Herps Majors Failed"
+          TopLeft="599,403" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\truncate person_sources"
+          TopLeft="677.5,947.5" />
+        <NodeLayout
+          Size="257,42"
+          Id="Package\update dm_grad_date_living_campus"
+          TopLeft="725,823.75" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="382,62.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="290,0"
+              Start="0,0"
+              End="282.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="282.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="126.00865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="253,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58,23"
+              Start="0,0"
+              End="58,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.5"
+                    Point2="0,11.5"
+                    Point3="4,11.5" />
+                  <mssgle:LineSegment
+                    End="54,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="54,11.5"
+                    Point2="58,11.5"
+                    Point3="58,15.5" />
+                  <mssgle:LineSegment
+                    End="58,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="225.5,545">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26,36"
+              Start="0,0"
+              End="26,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="22,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22,18"
+                    Point2="26,18"
+                    Point3="26,22" />
+                  <mssgle:LineSegment
+                    End="26,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="246.5,623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-51,42"
+              Start="0,0"
+              End="-51,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="-4,21" />
+                  <mssgle:LineSegment
+                    End="-47,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-47,21"
+                    Point2="-51,21"
+                    Point3="-51,25" />
+                  <mssgle:LineSegment
+                    End="-51,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="228,707">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-47,35"
+              Start="0,0"
+              End="-47,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="-4,17.5" />
+                  <mssgle:LineSegment
+                    End="-43,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-43,17.5"
+                    Point2="-47,17.5"
+                    Point3="-47,21.5" />
+                  <mssgle:LineSegment
+                    End="-47,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="343,686">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="211,31"
+              Start="0,0"
+              End="203.5,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="101.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="101.5,0"
+                    Point2="105.5,0"
+                    Point3="105.5,4" />
+                  <mssgle:LineSegment
+                    End="105.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="105.5,27"
+                    Point2="105.5,31"
+                    Point3="109.5,31" />
+                  <mssgle:LineSegment
+                    End="203.5,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="91.25865234375,-13.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="476,254">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-106,0"
+              Start="0,0"
+              End="-98.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-98.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="417,128.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="117,0"
+              Start="0,0"
+              End="109.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="109.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="534,136.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-90,40.6666666666667"
+              Start="0,0"
+              End="-82.5,40.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-41,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-41,0"
+                    Point2="-45,0"
+                    Point3="-45,4" />
+                  <mssgle:LineSegment
+                    End="-45,36.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-45,36.6666666666667"
+                    Point2="-45,40.6666666666667"
+                    Point3="-49,40.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-82.5,40.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="265,707">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="214.5,49"
+              Start="0,0"
+              End="214.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.8031088082902" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.8031088082902"
+                    Point2="0,19.8031088082902"
+                    Point3="4,19.8031088082902" />
+                  <mssgle:LineSegment
+                    End="210.5,19.8031088082902" />
+                  <mssgle:CubicBezierSegment
+                    Point1="210.5,19.8031088082902"
+                    Point2="214.5,19.8031088082902"
+                    Point3="214.5,23.8031088082902" />
+                  <mssgle:LineSegment
+                    End="214.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 18]"
+          TopLeft="479.5,798">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="374,25.75"
+              Start="0,0"
+              End="374,18.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.875"
+                    Point2="0,12.875"
+                    Point3="4,12.875" />
+                  <mssgle:LineSegment
+                    End="370,12.875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="370,12.875"
+                    Point2="374,12.875"
+                    Point3="374,16.875" />
+                  <mssgle:LineSegment
+                    End="374,18.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="853.5,865.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77.5,81.75"
+              Start="0,0"
+              End="-77.5,74.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.875"
+                    Point2="0,40.875"
+                    Point3="-4,40.875" />
+                  <mssgle:LineSegment
+                    End="-73.5,40.875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-73.5,40.875"
+                    Point2="-77.5,40.875"
+                    Point3="-77.5,44.875" />
+                  <mssgle:LineSegment
+                    End="-77.5,74.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="444,183">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="295,9"
+              Start="0,0"
+              End="287.5,9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="143.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="143.5,0"
+                    Point2="147.5,0"
+                    Point3="147.5,4" />
+                  <mssgle:LineSegment
+                    End="147.5,5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="147.5,5"
+                    Point2="147.5,9"
+                    Point3="151.5,9" />
+                  <mssgle:LineSegment
+                    End="287.5,9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="132.25865234375,-15.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="776,989.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-201.5,48"
+              Start="0,0"
+              End="-201.5,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="-4,24" />
+                  <mssgle:LineSegment
+                    End="-197.5,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-197.5,24"
+                    Point2="-201.5,24"
+                    Point3="-201.5,28" />
+                  <mssgle:LineSegment
+                    End="-201.5,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="265.5,204">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="298,29"
+              Start="0,0"
+              End="298,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="294,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="294,14.5"
+                    Point2="298,14.5"
+                    Point3="298,18.5" />
+                  <mssgle:LineSegment
+                    End="298,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="266.25,275">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="440,331">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="227,-23"
+              Start="0,0"
+              End="219.5,-23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="109.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="109.5,0"
+                    Point2="113.5,0"
+                    Point3="113.5,-4" />
+                  <mssgle:LineSegment
+                    End="113.5,-19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113.5,-19"
+                    Point2="113.5,-23"
+                    Point3="117.5,-23" />
+                  <mssgle:LineSegment
+                    End="219.5,-23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="99.25865234375,1,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="268.5,352">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,58"
+              Start="0,0"
+              End="-9.5,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="-4,29" />
+                  <mssgle:LineSegment
+                    End="-5.5,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,29"
+                    Point2="-9.5,29"
+                    Point3="-9.5,33" />
+                  <mssgle:LineSegment
+                    End="-9.5,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="259,452">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33.5,51"
+              Start="0,0"
+              End="-33.5,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="-4,25.5" />
+                  <mssgle:LineSegment
+                    End="-29.5,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.5,25.5"
+                    Point2="-33.5,25.5"
+                    Point3="-33.5,29.5" />
+                  <mssgle:LineSegment
+                    End="-33.5,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="348,427.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="251,0"
+              Start="0,0"
+              End="243.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="243.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="107.50865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="341,520.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="180,0"
+              Start="0,0"
+              End="172.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="172.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="72.00865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Pulls All Registration data from ODS. Gabrielson 8/2017"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="301,39"
+          Id="0a7c932d-f277-4bf4-92f1-c030bb1fb0d3"
+          TopLeft="65,3" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\build grades data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\build grades data\ADO NET Source"
+          TopLeft="302,116" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\build grades data\ADO NET Destination"
+          TopLeft="414,245" />
+        <EdgeLayout
+          Id="Package\build grades data.Paths[ADO NET Source Output]"
+          TopLeft="382,158">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122.5,87"
+              Start="0,0"
+              End="122.5,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.5"
+                    Point2="0,43.5"
+                    Point3="4,43.5" />
+                  <mssgle:LineSegment
+                    End="118.5,43.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="118.5,43.5"
+                    Point2="122.5,43.5"
+                    Point3="122.5,47.5" />
+                  <mssgle:LineSegment
+                    End="122.5,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\build grades data\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\build grades data\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
