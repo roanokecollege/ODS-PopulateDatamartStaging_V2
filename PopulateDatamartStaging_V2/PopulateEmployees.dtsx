@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{76AE2E17-25EF-4B8D-9430-1875645D6226}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.7462.6"
+  DTS:LastModifiedProductVersion="11.0.7493.4"
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateEmployees"
   DTS:PackageType="5"
-  DTS:VersionBuild="156"
-  DTS:VersionGUID="{658B2005-22C3-4BC4-BAE1-427AE33768DA}">
+  DTS:VersionBuild="184"
+  DTS:VersionGUID="{79E3E12B-95B2-4C8B-B00A-39500A74FA09}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -43,7 +43,7 @@
       DTS:ObjectName="HERMES.Staging">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-PopulateEmployees-{92D67BEA-13F1-4C18-8F8E-7E268CD4D12E}HERMES.Staging;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -77,7 +77,27 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{642D4B03-B371-44D3-B287-DB8B86D8947A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLFetchCount">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT        COUNT(RCID) AS ProcessedCount
+FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81290248-1199-42A0-9C13-F838DD850CF5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ViewCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Add Contract Staff"
@@ -88,7 +108,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -105,7 +125,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -127,7 +147,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -144,7 +164,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -161,12 +181,13 @@
       DTS:refId="Package\Add Retirees"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{B972B036-2EAF-4FBC-BC6C-7D334685826B}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -183,7 +204,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -205,7 +226,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -222,7 +243,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -244,7 +265,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff &amp; Helpdesk"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -261,7 +282,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -283,7 +304,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -301,7 +322,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -319,7 +340,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up contract staff Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -341,7 +362,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up David Gring Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -358,7 +379,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP David Gring Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -375,13 +396,12 @@
       DTS:refId="Package\Clean up department failed"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Send Mail Task"
-      DTS:Disabled="True"
       DTS:DTSID="{4f243801-1d52-4716-b72e-05ea77c5a51d}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up department failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -403,7 +423,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="clean up departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -420,7 +440,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Jonathan Lee Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -442,7 +462,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Jonathan Lee Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -460,7 +480,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Ramona Moore Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -477,7 +497,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Ramona Moore Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -499,7 +519,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Live Staging Table DM_Employees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -533,7 +553,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table FacStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -555,7 +575,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_Employees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -569,25 +589,6 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Clear Vacation Sick Table"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
-      DTS:DTSID="{56292468-A523-4030-89AA-C8B42FB1DB62}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Clear Vacation Sick Table"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{7D1A89B4-2E4B-4232-BE8E-7889DD9EBC1A}"
-          SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="TRUNCATE table Person_Vacation_Sick_Leave;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\Dan Cohan Clean Up"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -596,7 +597,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Dan Cohan Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -921,561 +922,6 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Employee Vacation and Sick Time Into Hermes"
-      DTS:CreationName="SSIS.Pipeline.3"
-      DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
-      DTS:DTSID="{2124E4D7-BF60-46DD-8279-C250392B5469}"
-      DTS:ExecutableType="SSIS.Pipeline.3"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Employee Vacation and Sick Time Into Hermes"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination"
-              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
-              name="ADO NET Destination"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"Person_Vacation_Sick_Leave"</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[HERMES.DataMart1]"
-                  connectionManagerRefId="Package.ConnectionManagers[HERMES.DataMart1]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input]"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="ADO NET Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[PLA_HRP_ID]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="PLA_HRP_ID"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PLA_HRP_ID]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_HRP_ID]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[RCID]"
-                      dataType="wstr"
-                      length="50"
-                      name="RCID" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[type]"
-                      dataType="wstr"
-                      length="50"
-                      name="type" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[accural_hrs]"
-                      dataType="wstr"
-                      length="50"
-                      name="accural_hrs" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[accural_limit]"
-                      dataType="wstr"
-                      length="50"
-                      name="accural_limit" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[balance]"
-                      dataType="wstr"
-                      length="50"
-                      name="balance" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[startdate]"
-                      dataType="dbTimeStamp"
-                      name="startdate" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PLA_HRP_ID]"
-                      dataType="wstr"
-                      length="50"
-                      name="PLA_HRP_ID" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="ADO NET Destination Error Output"
-                  synchronousInputId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source"
-              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
-              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
-              name="ADO NET Source"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement used by the component to extract data."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">30</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
-                  name="AllowImplicitStringConversion">true</property>
-                <property
-                  dataType="System.String"
-                  description="The Source database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">[dbo].[R_LEAVE_ACCRUAL_VIEW]</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the mode to retrieve external column information"
-                  name="AccessMode"
-                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">0</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
-                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output]"
-                  name="ADO NET Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERLVACC_ID]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERLVACC_ID]"
-                      length="10"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERLVACC_ID]"
-                      name="PERLVACC_ID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_ACCRUAL_HOURS]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_ACCRUAL_HOURS]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_ACCRUAL_HOURS]"
-                      name="PLA_ACCRUAL_HOURS"
-                      precision="10"
-                      scale="4"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_ACCRUAL_LIMIT]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_ACCRUAL_LIMIT]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_ACCRUAL_LIMIT]"
-                      name="PLA_ACCRUAL_LIMIT"
-                      precision="9"
-                      scale="2"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[CURRENT_LEAVE_BALANCE]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CURRENT_LEAVE_BALANCE]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[CURRENT_LEAVE_BALANCE]"
-                      name="CURRENT_LEAVE_BALANCE"
-                      precision="10"
-                      scale="2"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_END_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_END_DATE]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_END_DATE]"
-                      name="PLA_END_DATE"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LEAVE_CODE_DESC]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LEAVE_CODE_DESC]"
-                      length="30"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LEAVE_CODE_DESC]"
-                      name="LEAVE_CODE_DESC"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LEAVE_PLAN_TYPE]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LEAVE_PLAN_TYPE]"
-                      length="30"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LEAVE_PLAN_TYPE]"
-                      name="LEAVE_PLAN_TYPE"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LEAVE_PLAN_TYPE_DESC]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LEAVE_PLAN_TYPE_DESC]"
-                      length="32"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[LEAVE_PLAN_TYPE_DESC]"
-                      name="LEAVE_PLAN_TYPE_DESC"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSON_LEAVE_ALLOWED_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSON_LEAVE_ALLOWED_DATE]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSON_LEAVE_ALLOWED_DATE]"
-                      name="PERSON_LEAVE_ALLOWED_DATE"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSON_LEAVE_PLAN_END_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSON_LEAVE_PLAN_END_DATE]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSON_LEAVE_PLAN_END_DATE]"
-                      name="PERSON_LEAVE_PLAN_END_DATE"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSON_LEAVE_PLAN_START_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSON_LEAVE_PLAN_START_DATE]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSON_LEAVE_PLAN_START_DATE]"
-                      name="PERSON_LEAVE_PLAN_START_DATE"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_HRP_ID]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_HRP_ID]"
-                      length="10"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_HRP_ID]"
-                      name="PLA_HRP_ID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_LPN_ID]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_LPN_ID]"
-                      length="4"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_LPN_ID]"
-                      name="PLA_LPN_ID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_MOVR_ACCRUAL_HOURS]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_MOVR_ACCRUAL_HOURS]"
-                      length="3"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_MOVR_ACCRUAL_HOURS]"
-                      name="PLA_MOVR_ACCRUAL_HOURS"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_MOVR_ACCRUAL_LIMIT]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_MOVR_ACCRUAL_LIMIT]"
-                      length="3"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_MOVR_ACCRUAL_LIMIT]"
-                      name="PLA_MOVR_ACCRUAL_LIMIT"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_START_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_START_DATE]"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].Columns[PLA_START_DATE]"
-                      name="PLA_START_DATE"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERLVACC_ID]"
-                      dataType="wstr"
-                      length="10"
-                      name="PERLVACC_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_ACCRUAL_HOURS]"
-                      dataType="numeric"
-                      name="PLA_ACCRUAL_HOURS"
-                      precision="10"
-                      scale="4" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_ACCRUAL_LIMIT]"
-                      dataType="numeric"
-                      name="PLA_ACCRUAL_LIMIT"
-                      precision="9"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CURRENT_LEAVE_BALANCE]"
-                      dataType="numeric"
-                      name="CURRENT_LEAVE_BALANCE"
-                      precision="10"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_END_DATE]"
-                      dataType="dbTimeStamp"
-                      name="PLA_END_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LEAVE_CODE_DESC]"
-                      dataType="wstr"
-                      length="30"
-                      name="LEAVE_CODE_DESC" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LEAVE_PLAN_TYPE]"
-                      dataType="wstr"
-                      length="30"
-                      name="LEAVE_PLAN_TYPE" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LEAVE_PLAN_TYPE_DESC]"
-                      dataType="wstr"
-                      length="32"
-                      name="LEAVE_PLAN_TYPE_DESC" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSON_LEAVE_ALLOWED_DATE]"
-                      dataType="dbTimeStamp"
-                      name="PERSON_LEAVE_ALLOWED_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSON_LEAVE_PLAN_END_DATE]"
-                      dataType="dbTimeStamp"
-                      name="PERSON_LEAVE_PLAN_END_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSON_LEAVE_PLAN_START_DATE]"
-                      dataType="dbTimeStamp"
-                      name="PERSON_LEAVE_PLAN_START_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_HRP_ID]"
-                      dataType="wstr"
-                      length="10"
-                      name="PLA_HRP_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_LPN_ID]"
-                      dataType="wstr"
-                      length="4"
-                      name="PLA_LPN_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_MOVR_ACCRUAL_HOURS]"
-                      dataType="wstr"
-                      length="3"
-                      name="PLA_MOVR_ACCRUAL_HOURS" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_MOVR_ACCRUAL_LIMIT]"
-                      dataType="wstr"
-                      length="3"
-                      name="PLA_MOVR_ACCRUAL_LIMIT" />
-                    <externalMetadataColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PLA_START_DATE]"
-                      dataType="dbTimeStamp"
-                      name="PLA_START_DATE" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output]"
-                  isErrorOut="true"
-                  name="ADO NET Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERLVACC_ID]"
-                      dataType="wstr"
-                      length="10"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERLVACC_ID]"
-                      name="PERLVACC_ID" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_ACCRUAL_HOURS]"
-                      dataType="numeric"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_ACCRUAL_HOURS]"
-                      name="PLA_ACCRUAL_HOURS"
-                      precision="10"
-                      scale="4" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_ACCRUAL_LIMIT]"
-                      dataType="numeric"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_ACCRUAL_LIMIT]"
-                      name="PLA_ACCRUAL_LIMIT"
-                      precision="9"
-                      scale="2" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CURRENT_LEAVE_BALANCE]"
-                      dataType="numeric"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CURRENT_LEAVE_BALANCE]"
-                      name="CURRENT_LEAVE_BALANCE"
-                      precision="10"
-                      scale="2" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_END_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_END_DATE]"
-                      name="PLA_END_DATE" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LEAVE_CODE_DESC]"
-                      dataType="wstr"
-                      length="30"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LEAVE_CODE_DESC]"
-                      name="LEAVE_CODE_DESC" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LEAVE_PLAN_TYPE]"
-                      dataType="wstr"
-                      length="30"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LEAVE_PLAN_TYPE]"
-                      name="LEAVE_PLAN_TYPE" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LEAVE_PLAN_TYPE_DESC]"
-                      dataType="wstr"
-                      length="32"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LEAVE_PLAN_TYPE_DESC]"
-                      name="LEAVE_PLAN_TYPE_DESC" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSON_LEAVE_ALLOWED_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSON_LEAVE_ALLOWED_DATE]"
-                      name="PERSON_LEAVE_ALLOWED_DATE" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSON_LEAVE_PLAN_END_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSON_LEAVE_PLAN_END_DATE]"
-                      name="PERSON_LEAVE_PLAN_END_DATE" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSON_LEAVE_PLAN_START_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSON_LEAVE_PLAN_START_DATE]"
-                      name="PERSON_LEAVE_PLAN_START_DATE" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_HRP_ID]"
-                      dataType="wstr"
-                      length="10"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_HRP_ID]"
-                      name="PLA_HRP_ID" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_LPN_ID]"
-                      dataType="wstr"
-                      length="4"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_LPN_ID]"
-                      name="PLA_LPN_ID" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_MOVR_ACCRUAL_HOURS]"
-                      dataType="wstr"
-                      length="3"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_MOVR_ACCRUAL_HOURS]"
-                      name="PLA_MOVR_ACCRUAL_HOURS" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_MOVR_ACCRUAL_LIMIT]"
-                      dataType="wstr"
-                      length="3"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_MOVR_ACCRUAL_LIMIT]"
-                      name="PLA_MOVR_ACCRUAL_LIMIT" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_START_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PLA_START_DATE]"
-                      name="PLA_START_DATE" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Employee Vacation and Sick Time Into Hermes.Paths[ADO NET Source Output]"
-              endId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination.Inputs[ADO NET Destination Input]"
-              name="ADO NET Source Output"
-              startId="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source.Outputs[ADO NET Source Output]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\Execute SQL Task"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Truncate R PHONE GROUP DATA"
@@ -1493,6 +939,23 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\insert data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F578E2AE-227E-4FF8-8B98-302D1175349A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="insert data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="8">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.employment_end_date&#xA;SELECT     TOP (100) PERCENT rcid, employment_end_date&#xA;FROM         ODS_Reporting.dbo.view_employment_end_date&#xA;&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Kate Smith Clean Up"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -1501,7 +964,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Kate Smith Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1518,26 +981,25 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_Employees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_Employees&#xA;&#xA;select DISTINCT ODS_Staging.dbo.facStaff.RCID, &#xA;&#x9;&#x9;FIRST_NAME as First,&#xA;&#x9;&#x9;LAST_NAME as Last,&#xA;&#x9;&#x9;Middle_Name as Middle,&#xA;&#x9; &#xA;&#x9;&#x9;COALESCE(COALESCE(PERSON_MAIL_LABEL, R_PERSON.PREFERRED_NAME), dbo.FN_DATAMART_FULL_NAME(ODS_Staging.dbo.facStaff.rcid)) AS FullName, &#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryPosition = 1) &#xA;&#x9;&#x9;as Title,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;order by pos) &#xA;&#x9;&#x9;&#x9; as Title2,&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;and POSITION_TITLE not in (SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;order by pos)&#xA;&#x9;&#x9;&#x9;) &#xA;&#x9;&#x9;&#x9; as Title3,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;(SELECT top 1 DEPARTMENT_DESC FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition = 1)  &#xA;&#x9;&#x9; as Department,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPT_BUILDINGS.BLDG_DESC&#xA;&#x9;&#x9;FROM SPT_BUILDINGS&#xA;&#x9;&#x9;WHERE SPT_BUILDINGS.BUILDINGS_ID = HRP_PRI_CAMPUS_BUILDING)  as Building,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_OFFICE as Room,&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_EXTENSION as Extension,&#xA;&#x9;&#x9;NULL as Extension1,&#xA;&#x9;&#x9;CampusEmail as Email,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select dbo.fn_DATAMART_SPOUSE_NAME (R_PERSON.ID)) as Spouse,&#xA;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;R_PERSON.NICKNAME as Nickname,&#xA;&#xA;X_PER_PREF_NAME AS Preferred_Name, &#xA;&#xA;&#x9;&#x9;PREFIX as Prefix,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPOUSE.Nickname&#xA;&#x9;&#x9;FROM R_PERSON Spouse&#xA;&#x9;&#x9;WHERE Spouse.ID = R_PERSON.SPOUSE) as SpouseNickname,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and PERSTAT_STATUS = 'FTR' --and primaryposition = 1&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;WHEN 0 then 'P'&#xA;&#x9;&#x9;ELSE 'F' &#xA;&#x9;&#x9;END as Status,&#xA;&#x9;&#xA;&#x9;&#x9;Username,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE GENDER WHEN 'M' THEN 'Male' WHEN 'F' THEN 'Female' ELSE NULL END AS Gender, &#xA;&#x9;&#x9;address.ADDRESS_LINE1 as HomeAddress,&#xA;&#x9;&#x9;address.ADDRESS_LINE2 as HomeAddress2,&#xA;&#x9;&#x9;address.CITY as HomeCity,&#xA;&#x9;&#x9;address.STATE as HomeState,&#xA;&#x9;&#x9;address.ZIP as HomeZip,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;address.ADDRESS_PHONES as HomePhone,&#xA;        &#x9;&#xA;&#x9;&#x9;Faculty,&#xA;&#x9;&#x9;Staff,&#xA;&#x9;&#x9;Retiree,&#xA;&#x9;&#x9;case (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and POSITION_TITLE LIKE 'Chair%')&#xA;&#x9;&#x9;&#x9;WHEN 0 THEN 'N'&#xA;&#x9;&#x9;&#x9;ELSE 'Y'&#xA;&#x9;&#x9;END  as DeptChair,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9;&#x9;FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = ODS_Staging.dbo.facStaff.RCID and primaryPosition = 1 and deptSec = 1&#xA;&#x9;&#x9;&#x9;&#x9;and substring(perpos_position_id,1,5) &lt;&gt; '25011' AND substring(perpos_position_id, 1,5) &lt;&gt;'30030') as&#xA;&#x9;&#x9;&#x9;  Sec1Dept,&#xA;&#xA;&#xA;--- secretary for multiple depts currently not stored in the data in a way that it can be derived&#xA;--hardcoded.&#xA;&#x9;&#x9;&#x9; CASE ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;&#x9; WHEN '0042195' THEN 'Religion/Philosophy'&#xA;&#x9;&#x9;&#x9; WHEN '0085395' THEN 'Business Admin. &amp; Economics'&#xA;&#x9;&#x9;&#x9; WHEN '0957897' THEN 'Health and Human Performance'&#xA;&#x9;&#x9;&#x9; WHEN '0224154' THEN 'Psychology'&#xA;&#x9;&#x9;&#x9; WHEN '0048527' THEN 'Environmental Studies'&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9; END as Sec2Dept,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select TOP 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9; from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;AND POSITION_CLASS = 'FAC' &#xA;&#x9;&#x9;AND PERPOS_DEPT &lt;&gt; (SELECT top 1 PERPOS_DEPT FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition=1) &#xA;&#x9;&#x9;)  as AdditionalDepartment,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case PRIVACY_FLAG&#xA;&#x9;&#x9;WHEN 'N' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeDirectory,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NA' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9; WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'        &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeAddress,&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NP' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'    &#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhone,&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NS' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeSpouse,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'       &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;&#x9;&#x9;WHEN 'NM' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NX' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhoto,&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;GETDATE() as ImportDate,&#xA;&#xA;(select top 1 PositionClass from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as EmployeeClass, &#xA;&#x9;&#x9;Supervisor as Supervisor, &#xA;(select top 1 BuildingID from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as BuildingID,&#xA;(select top 1 Cell from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as CellPhone,&#xA;(select top 1 Work from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as WorkPhone,&#xA;(select top 1 Home from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as HomePhoneNumber&#xA;&#xA;&#xA;&#x9;&#x9;FROM ODS_Staging.dbo.facStaff INNER JOIN R_PERSON&#xA;&#x9;&#x9;ON ODS_Staging.dbo.facStaff.RCID = R_PERSON.ID LEFT OUTER JOIN dbo.R_DATAMART_CAMPUS_EMAIL_VIEW&#xA;&#x9;&#x9;on ODS_Staging.dbo.facStaff.RCID = dbo.R_DATAMART_CAMPUS_EMAIL_VIEW.ID &#xA;&#x9;&#x9;LEFT OUTER JOIN ODS_HRPER on ODS_Staging.dbo.facStaff.RCID = ODS_HRPER.HRPER_ID  &#xA;&#x9;&#x9;LEFT OUTER JOIN dbo.R_DATAMART_PERSON_ADDRESSES_VIEW address&#xA;&#x9;&#x9;on R_Person.PREFERRED_ADDRESS = address.ADDRESS_ID and r_person.id = address.rcid&#xA;&#x9;&#x9;LEFT OUTER JOIN R_PER_MAIL_LABEL_L ON R_PERSON.ID = R_PER_MAIL_LABEL_L.ID AND R_PER_MAIL_LABEL_L.POS = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_Employees&#xA;&#xA;select DISTINCT ODS_Staging.dbo.facStaff.RCID, &#xA;&#x9;&#x9;FIRST_NAME as First,&#xA;&#x9;&#x9;LAST_NAME as Last,&#xA;&#x9;&#x9;Middle_Name as Middle,&#xA;&#x9; &#xA;&#x9;&#x9;COALESCE(COALESCE(PERSON_MAIL_LABEL, R_PERSON.PREFERRED_NAME), dbo.FN_DATAMART_FULL_NAME(ODS_Staging.dbo.facStaff.rcid)) AS FullName, &#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryPosition = 1) &#xA;&#x9;&#x9;as Title,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;order by pos) &#xA;&#x9;&#x9;&#x9; as Title2,&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;and POSITION_TITLE not in (SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;order by pos)&#xA;&#x9;&#x9;&#x9;) &#xA;&#x9;&#x9;&#x9; as Title3,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;(SELECT top 1 DEPARTMENT_DESC FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition = 1)  &#xA;&#x9;&#x9; as Department,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPT_BUILDINGS.BLDG_DESC&#xA;&#x9;&#x9;FROM SPT_BUILDINGS&#xA;&#x9;&#x9;WHERE SPT_BUILDINGS.BUILDINGS_ID = HRP_PRI_CAMPUS_BUILDING)  as Building,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_OFFICE as Room,&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_EXTENSION as Extension,&#xA;&#x9;&#x9;NULL as Extension1,&#xA;&#x9;&#x9;CampusEmail as Email,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select dbo.fn_DATAMART_SPOUSE_NAME (R_PERSON.ID)) as Spouse,&#xA;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;R_PERSON.NICKNAME as Nickname,&#xA;&#xA;X_PER_PREF_NAME AS Preferred_Name, &#xA;&#xA;&#x9;&#x9;PREFIX as Prefix,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPOUSE.Nickname&#xA;&#x9;&#x9;FROM R_PERSON Spouse&#xA;&#x9;&#x9;WHERE Spouse.ID = R_PERSON.SPOUSE) as SpouseNickname,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and PERSTAT_STATUS = 'FTR' --and primaryposition = 1&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;WHEN 0 then 'P'&#xA;&#x9;&#x9;ELSE 'F' &#xA;&#x9;&#x9;END as Status,&#xA;&#x9;&#xA;&#x9;&#x9;Username,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE GENDER WHEN 'M' THEN 'Male' WHEN 'F' THEN 'Female' ELSE NULL END AS Gender, &#xA;&#x9;&#x9;address.ADDRESS_LINE1 as HomeAddress,&#xA;&#x9;&#x9;address.ADDRESS_LINE2 as HomeAddress2,&#xA;&#x9;&#x9;address.CITY as HomeCity,&#xA;&#x9;&#x9;address.STATE as HomeState,&#xA;&#x9;&#x9;address.ZIP as HomeZip,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;address.ADDRESS_PHONES as HomePhone,&#xA;        &#x9;&#xA;&#x9;&#x9;Faculty,&#xA;&#x9;&#x9;Staff,&#xA;&#x9;&#x9;Retiree,&#xA;&#x9;&#x9;case (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and POSITION_TITLE LIKE 'Chair%')&#xA;&#x9;&#x9;&#x9;WHEN 0 THEN 'N'&#xA;&#x9;&#x9;&#x9;ELSE 'Y'&#xA;&#x9;&#x9;END  as DeptChair,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9;&#x9;FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = ODS_Staging.dbo.facStaff.RCID and primaryPosition = 1 and deptSec = 1&#xA;&#x9;&#x9;&#x9;&#x9;and substring(perpos_position_id,1,5) &lt;&gt; '25011' AND substring(perpos_position_id, 1,5) &lt;&gt;'30030') as&#xA;&#x9;&#x9;&#x9;  Sec1Dept,&#xA;&#xA;&#xA;--- secretary for multiple depts currently not stored in the data in a way that it can be derived hardcoded this field is used for directory sorting via department&#xA;&#xA;&#x9;&#x9;&#x9; CASE ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;&#x9; WHEN '0042195' THEN 'Religion/Philosophy'&#xA;&#x9;&#x9;&#x9; WHEN '1251679' THEN 'Business Admin. &amp; Economics'&#xA;&#x9;&#x9;&#x9; WHEN '0957897' THEN 'Health and Human Performance'&#xA;&#x9;&#x9;&#x9; WHEN '0224154' THEN 'Psychology'&#xA;&#x9;&#x9;&#x9; WHEN '0048527' THEN 'Environmental Studies'&#xA;&#x9;&#x9;&#x9; WHEN '1235053' THEN 'Dining Services'&#xA; &#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9; END as Sec2Dept,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select TOP 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9; from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;AND POSITION_CLASS = 'FAC' &#xA;&#x9;&#x9;AND PERPOS_DEPT &lt;&gt; (SELECT top 1 PERPOS_DEPT FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition=1) &#xA;&#x9;&#x9;)  as AdditionalDepartment,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case PRIVACY_FLAG&#xA;&#x9;&#x9;WHEN 'N' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeDirectory,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NA' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9; WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'        &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeAddress,&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NP' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'    &#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhone,&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NS' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeSpouse,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'       &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;&#x9;&#x9;WHEN 'NM' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NX' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhoto,&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;GETDATE() as ImportDate,&#xA;&#xA;(select top 1 PositionClass from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as EmployeeClass, &#xA;&#x9;&#x9;Supervisor as Supervisor, &#xA;(select top 1 BuildingID from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as BuildingID,&#xA;(select top 1 Cell from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as CellPhone,&#xA;(select top 1 Work from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as WorkPhone,&#xA;(select top 1 Home from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as HomePhoneNumber&#xA;&#xA;&#xA;&#x9;&#x9;FROM ODS_Staging.dbo.facStaff INNER JOIN R_PERSON&#xA;&#x9;&#x9;ON ODS_Staging.dbo.facStaff.RCID = R_PERSON.ID LEFT OUTER JOIN dbo.R_DATAMART_CAMPUS_EMAIL_VIEW&#xA;&#x9;&#x9;on ODS_Staging.dbo.facStaff.RCID = dbo.R_DATAMART_CAMPUS_EMAIL_VIEW.ID &#xA;&#x9;&#x9;LEFT OUTER JOIN ODS_HRPER on ODS_Staging.dbo.facStaff.RCID = ODS_HRPER.HRPER_ID  &#xA;&#x9;&#x9;LEFT OUTER JOIN dbo.R_DATAMART_PERSON_ADDRESSES_VIEW address&#xA;&#x9;&#x9;on R_Person.PREFERRED_ADDRESS = address.ADDRESS_ID and r_person.id = address.rcid&#xA;&#x9;&#x9;LEFT OUTER JOIN R_PER_MAIL_LABEL_L ON R_PERSON.ID = R_PER_MAIL_LABEL_L.ID AND R_PER_MAIL_LABEL_L.POS = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Populate DM_Employees Failed"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Send Mail Task"
-      DTS:Disabled="True"
       DTS:DTSID="{235cdc6b-98b1-48b9-a7ce-c1c42e17d5b8}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_Employees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="15">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1559,7 +1021,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Supervisor RCID"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1577,7 +1039,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Username &amp; Email"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1594,7 +1056,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Username &amp; Email Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="16">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1608,6 +1070,23 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\truncate employee end date"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F9B8308F-B4DB-43F5-A3C9-62B7B42A19E9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate employee end date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="8">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="DELETE FROM hermes.staging.dbo.employment_end_date;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\v staff name"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -1616,7 +1095,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="v staff name"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1851,19 +1330,19 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 32]"
       DTS:CreationName=""
-      DTS:DTSID="{9C524C62-F610-4936-A3C8-86F4A8B5E967}"
+      DTS:DTSID="{71DE293E-0C82-4672-AB95-3F6C43508240}"
       DTS:From="Package\Populate DM_Employees"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 32"
-      DTS:To="Package\Clear Vacation Sick Table" />
+      DTS:To="Package\truncate employee end date" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 33]"
       DTS:CreationName=""
-      DTS:DTSID="{47176F74-4496-41BA-B5FD-C27571511F3E}"
-      DTS:From="Package\Clear Vacation Sick Table"
+      DTS:DTSID="{30B0B6F3-A4A0-4B04-9A47-4E31DA8439CD}"
+      DTS:From="Package\truncate employee end date"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 33"
-      DTS:To="Package\Employee Vacation and Sick Time Into Hermes" />
+      DTS:To="Package\insert data" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 34]"
       DTS:CreationName=""
@@ -1976,154 +1455,154 @@
         <NodeLayout
           Size="167,42"
           Id="Package\Add Contract Staff"
-          TopLeft="865,327" />
+          TopLeft="1080,482" />
         <NodeLayout
           Size="155,42"
           Id="Package\Add Contract Staff Failed"
-          TopLeft="937,491" />
+          TopLeft="1152,646" />
         <NodeLayout
           Size="136,42"
           Id="Package\Add Faculty"
-          TopLeft="93,329" />
+          TopLeft="308,484" />
         <NodeLayout
           Size="167,42"
           Id="Package\Add Faculty Failed"
-          TopLeft="78,492" />
+          TopLeft="293,647" />
         <NodeLayout
           Size="141,42"
           Id="Package\Add Retirees"
-          TopLeft="465,351" />
+          TopLeft="680,506" />
         <NodeLayout
           Size="171,42"
           Id="Package\Add Retirees Failed"
-          TopLeft="543,409" />
+          TopLeft="758,564" />
         <NodeLayout
           Size="124,42"
           Id="Package\Add Staff"
-          TopLeft="259,342" />
+          TopLeft="474,497" />
         <NodeLayout
           Size="155,42"
           Id="Package\Add Staff Failed"
-          TopLeft="342,399" />
+          TopLeft="557,554" />
         <NodeLayout
           Size="134,71"
           Id="Package\Add VStaff &amp; JStaff &amp; Helpdesk"
-          TopLeft="652,298" />
+          TopLeft="867,453" />
         <NodeLayout
           Size="161,42"
           Id="Package\Add VStaff &amp; JStaff Failed"
-          TopLeft="747,411" />
+          TopLeft="962,566" />
         <NodeLayout
           Size="153,64"
           Id="Package\Clean up Contract Departments"
-          TopLeft="1055,888" />
+          TopLeft="1270,1043" />
         <NodeLayout
           Size="190,42"
           Id="Package\Clean up Contract Staff"
-          TopLeft="1154,759" />
+          TopLeft="1369,914" />
         <NodeLayout
           Size="255,42"
           Id="Package\Clean up contract staff Record Failed"
-          TopLeft="1267,845" />
+          TopLeft="1482,1000" />
         <NodeLayout
           Size="217,42"
           Id="Package\Clean up David Gring Record"
-          TopLeft="631,697" />
+          TopLeft="846,852" />
         <NodeLayout
           Size="249,42"
           Id="Package\Clean UP David Gring Record Failed"
-          TopLeft="928,696" />
+          TopLeft="1143,851" />
         <NodeLayout
           Size="209,42"
           Id="Package\Clean up department failed"
-          TopLeft="68,923" />
+          TopLeft="283,1078" />
         <NodeLayout
           Size="183,42"
           Id="Package\clean up departments"
-          TopLeft="153,818" />
+          TopLeft="368,973" />
         <NodeLayout
           Size="220,42"
           Id="Package\Clean UP Jonathan Lee Failed"
-          TopLeft="775,895" />
+          TopLeft="990,1050" />
         <NodeLayout
           Size="224,42"
           Id="Package\Clean up Jonathan Lee Record"
-          TopLeft="767,822" />
+          TopLeft="982,977" />
         <NodeLayout
           Size="192,74"
           Id="Package\Clean up Ramona Moore Record"
-          TopLeft="513,800" />
+          TopLeft="728,955" />
         <NodeLayout
           Size="192,57"
           Id="Package\Clean UP Ramona Moore Record Failed"
-          TopLeft="510,882" />
+          TopLeft="725,1037" />
         <NodeLayout
           Size="270,42"
           Id="Package\Clear Live Staging Table DM_Employees"
-          TopLeft="308,629" />
+          TopLeft="523,784" />
         <NodeLayout
           Size="636,42"
           Id="Package\Clear ODS Staging Table facstaff"
-          TopLeft="97,226" />
+          TopLeft="312,381" />
         <NodeLayout
           Size="299,42"
           Id="Package\Clear ODS Staging Table FacStaff Failed"
-          TopLeft="813,234" />
+          TopLeft="1028,389" />
         <NodeLayout
           Size="278,42"
           Id="Package\Clear Staging Table DM_Employees Failed"
-          TopLeft="810,634" />
-        <NodeLayout
-          Size="200,42"
-          Id="Package\Clear Vacation Sick Table"
-          TopLeft="308,953" />
+          TopLeft="1025,789" />
         <NodeLayout
           Size="178,42"
           Id="Package\Dan Cohan Clean Up"
-          TopLeft="582,1020" />
+          TopLeft="797,1175" />
         <NodeLayout
           Size="153,42"
           Id="Package\Data Flow Task"
-          TopLeft="193,119" />
-        <NodeLayout
-          Size="301,42"
-          Id="Package\Employee Vacation and Sick Time Into Hermes"
-          TopLeft="177,1055" />
+          TopLeft="408,274" />
         <NodeLayout
           Size="165,42"
           Id="Package\Execute SQL Task"
-          TopLeft="92,0" />
+          TopLeft="307,155" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\insert data"
+          TopLeft="519,1158" />
         <NodeLayout
           Size="178,42"
           Id="Package\Kate Smith Clean Up"
-          TopLeft="821,1024" />
+          TopLeft="1036,1179" />
         <NodeLayout
-          Size="197,42"
+          Size="195,42"
           Id="Package\Populate DM_Employees"
-          TopLeft="315,706" />
+          TopLeft="530,861" />
         <NodeLayout
           Size="228,42"
           Id="Package\Populate DM_Employees Failed"
-          TopLeft="67,689" />
+          TopLeft="282,844" />
         <NodeLayout
           Size="202,42"
           Id="Package\Populate Supervisor RCID"
-          TopLeft="97,589" />
+          TopLeft="312,744" />
         <NodeLayout
           Size="212,42"
           Id="Package\Populate Username &amp; Email"
-          TopLeft="258,526" />
+          TopLeft="473,681" />
         <NodeLayout
           Size="243,42"
           Id="Package\Populate Username &amp; Email Failed"
-          TopLeft="660,524" />
+          TopLeft="875,679" />
+        <NodeLayout
+          Size="130,62"
+          Id="Package\truncate employee end date"
+          TopLeft="546,1032" />
         <NodeLayout
           Size="140,42"
           Id="Package\v staff name"
-          TopLeft="1054,1027" />
+          TopLeft="1269,1182" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="226.6,268">
+          TopLeft="441.6,423">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2157,7 +1636,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="310.333333333333,268">
+          TopLeft="525.333333333333,423">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2191,30 +1670,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="382,748">
+          TopLeft="596.333333333333,903">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-137.5,70"
+              EndConnector="-136.833333333333,70"
               Start="0,0"
-              End="-137.5,62.5">
+              End="-136.833333333333,62.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.3383685800604" />
+                    End="0,24.3418107833164" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.3383685800604"
-                    Point2="0,28.3383685800604"
-                    Point3="-4,28.3383685800604" />
+                    Point1="0,24.3418107833164"
+                    Point2="0,28.3418107833164"
+                    Point3="-4,28.3418107833164" />
                   <mssgle:LineSegment
-                    End="-133.5,28.3383685800604" />
+                    End="-132.833333333333,28.3418107833164" />
                   <mssgle:CubicBezierSegment
-                    Point1="-133.5,28.3383685800604"
-                    Point2="-137.5,28.3383685800604"
-                    Point3="-137.5,32.3383685800604" />
+                    Point1="-132.833333333333,28.3418107833164"
+                    Point2="-136.833333333333,28.3418107833164"
+                    Point3="-136.833333333333,32.3418107833164" />
                   <mssgle:LineSegment
-                    End="-137.5,62.5" />
+                    End="-136.833333333333,62.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2225,30 +1704,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="445,748">
+          TopLeft="658.666666666667,903">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="164,52"
+              EndConnector="165.333333333333,52"
               Start="0,0"
-              End="164,44.5">
+              End="165.333333333333,44.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.0513595166163" />
+                    End="0,17.0539165818922" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.0513595166163"
-                    Point2="0,21.0513595166163"
-                    Point3="4,21.0513595166163" />
+                    Point1="0,17.0539165818922"
+                    Point2="0,21.0539165818922"
+                    Point3="4,21.0539165818922" />
                   <mssgle:LineSegment
-                    End="160,21.0513595166163" />
+                    End="161.333333333333,21.0539165818922" />
                   <mssgle:CubicBezierSegment
-                    Point1="160,21.0513595166163"
-                    Point2="164,21.0513595166163"
-                    Point3="164,25.0513595166163" />
+                    Point1="161.333333333333,21.0539165818922"
+                    Point2="165.333333333333,21.0539165818922"
+                    Point3="165.333333333333,25.0539165818922" />
                   <mssgle:LineSegment
-                    End="164,44.5" />
+                    End="165.333333333333,44.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2259,18 +1738,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="512,719.666666666667">
+          TopLeft="725,874.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="119,0"
+              EndConnector="121,0"
               Start="0,0"
-              End="111.5,0">
+              End="113.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="111.5,0" />
+                    End="113.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2281,7 +1760,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="733,247">
+          TopLeft="948,402">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2317,7 +1796,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="470,546">
+          TopLeft="685,701">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2341,7 +1820,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 15]"
-          TopLeft="578,652.5">
+          TopLeft="793,807.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2365,13 +1844,13 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 16]"
-          TopLeft="350.5,748">
+          TopLeft="565.166666666667,903">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-169.5,-17"
+              EndConnector="-169.166666666667,-17"
               Start="0,0"
-              End="-169.5,-9.5">
+              End="-169.166666666667,-9.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2382,26 +1861,26 @@
                     Point2="0,22.5"
                     Point3="-4,22.5" />
                   <mssgle:LineSegment
-                    End="-165.5,22.5" />
+                    End="-165.166666666667,22.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-165.5,22.5"
-                    Point2="-169.5,22.5"
-                    Point3="-169.5,18.5" />
+                    Point1="-165.166666666667,22.5"
+                    Point2="-169.166666666667,22.5"
+                    Point3="-169.166666666667,18.5" />
                   <mssgle:LineSegment
-                    End="-169.5,-9.5" />
+                    End="-169.166666666667,-9.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-98.99134765625,27.5,30.4826953125,9.7490234375"
+              BoundingBox="-99.8246809895833,27.5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 17]"
-          TopLeft="244.5,860">
+          TopLeft="459.5,1015">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2437,7 +1916,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 18]"
-          TopLeft="705,837">
+          TopLeft="920,992">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2473,7 +1952,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 19]"
-          TopLeft="848,717.5">
+          TopLeft="1063,872.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2497,7 +1976,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="477.8,268">
+          TopLeft="692.8,423">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2531,7 +2010,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 20]"
-          TopLeft="740,369">
+          TopLeft="955,524">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2567,7 +2046,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 21]"
-          TopLeft="606,372">
+          TopLeft="821,527">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2597,7 +2076,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 22]"
-          TopLeft="383,363">
+          TopLeft="598,518">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2627,7 +2106,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 23]"
-          TopLeft="139.666666666667,371">
+          TopLeft="354.666666666667,526">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2663,7 +2142,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 24]"
-          TopLeft="624.333333333333,268">
+          TopLeft="839.333333333333,423">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2697,7 +2176,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 25]"
-          TopLeft="948.5,369">
+          TopLeft="1163.5,524">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2733,7 +2212,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 26]"
-          TopLeft="922,369">
+          TopLeft="1137,524">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2767,30 +2246,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 27]"
-          TopLeft="512,732.666666666667">
+          TopLeft="725,887.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="642,47.3333333333334"
+              EndConnector="644,47.3333333333334"
               Start="0,0"
-              End="634.5,47.3333333333334">
+              End="636.5,47.3333333333334">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="266.935779816514,0" />
+                    End="267.779816513762,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="266.935779816514,0"
-                    Point2="270.935779816514,0"
-                    Point3="270.935779816514,4" />
+                    Point1="267.779816513762,0"
+                    Point2="271.779816513762,0"
+                    Point3="271.779816513762,4" />
                   <mssgle:LineSegment
-                    End="270.935779816514,43.3333333333334" />
+                    End="271.779816513762,43.3333333333334" />
                   <mssgle:CubicBezierSegment
-                    Point1="270.935779816514,43.3333333333334"
-                    Point2="270.935779816514,47.3333333333334"
-                    Point3="274.935779816514,47.3333333333334" />
+                    Point1="271.779816513762,43.3333333333334"
+                    Point2="271.779816513762,47.3333333333334"
+                    Point3="275.779816513762,47.3333333333334" />
                   <mssgle:LineSegment
-                    End="634.5,47.3333333333334" />
+                    End="636.5,47.3333333333334" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2801,7 +2280,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 28]"
-          TopLeft="1249,801">
+          TopLeft="1464,956">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2837,30 +2316,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 29]"
-          TopLeft="476.5,748">
+          TopLeft="689.833333333333,903">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="402.5,74"
+              EndConnector="404.166666666667,74"
               Start="0,0"
-              End="402.5,66.5">
+              End="404.166666666667,66.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.6044776119403" />
+                    End="0,15.6155778894472" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.6044776119403"
-                    Point2="0,19.6044776119403"
-                    Point3="4,19.6044776119403" />
+                    Point1="0,15.6155778894472"
+                    Point2="0,19.6155778894472"
+                    Point3="4,19.6155778894472" />
                   <mssgle:LineSegment
-                    End="398.5,19.6044776119403" />
+                    End="400.166666666667,19.6155778894472" />
                   <mssgle:CubicBezierSegment
-                    Point1="398.5,19.6044776119403"
-                    Point2="402.5,19.6044776119403"
-                    Point3="402.5,23.6044776119403" />
+                    Point1="400.166666666667,19.6155778894472"
+                    Point2="404.166666666667,19.6155778894472"
+                    Point3="404.166666666667,23.6155778894472" />
                   <mssgle:LineSegment
-                    End="402.5,66.5" />
+                    End="404.166666666667,66.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2871,7 +2350,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="519.666666666667,268">
+          TopLeft="734.666666666667,423">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2905,7 +2384,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 30]"
-          TopLeft="882,864">
+          TopLeft="1097,1019">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2929,7 +2408,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 31]"
-          TopLeft="1218.66666666667,801">
+          TopLeft="1433.66666666667,956">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2963,18 +2442,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 32]"
-          TopLeft="410.75,748">
+          TopLeft="627.5,903">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,205"
+              EndConnector="-16.5,129"
               Start="0,0"
-              End="0,197.5">
+              End="-16.5,121.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,197.5" />
+                    End="0,60.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.5"
+                    Point2="0,64.5"
+                    Point3="-4,64.5" />
+                  <mssgle:LineSegment
+                    End="-12.5,64.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.5,64.5"
+                    Point2="-16.5,64.5"
+                    Point3="-16.5,68.5" />
+                  <mssgle:LineSegment
+                    End="-16.5,121.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2985,30 +2476,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 33]"
-          TopLeft="408,995">
+          TopLeft="611,1094">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-80.5,60"
+              EndConnector="-27.5,64"
               Start="0,0"
-              End="-80.5,52.5">
+              End="-27.5,56.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
+                    End="0,28" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="-4,32" />
                   <mssgle:LineSegment
-                    End="-76.5,30" />
+                    End="-23.5,32" />
                   <mssgle:CubicBezierSegment
-                    Point1="-76.5,30"
-                    Point2="-80.5,30"
-                    Point3="-80.5,34" />
+                    Point1="-23.5,32"
+                    Point2="-27.5,32"
+                    Point3="-27.5,36" />
                   <mssgle:LineSegment
-                    End="-80.5,52.5" />
+                    End="-27.5,56.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3019,7 +2510,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 34]"
-          TopLeft="299,606.5">
+          TopLeft="514,761.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3047,7 +2538,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 35]"
-          TopLeft="174.5,42">
+          TopLeft="389.5,197">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3081,7 +2572,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 36]"
-          TopLeft="269.5,161">
+          TopLeft="484.5,316">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3115,7 +2606,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 37]"
-          TopLeft="609,874">
+          TopLeft="824,1029">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3149,7 +2640,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 38]"
-          TopLeft="760,1043">
+          TopLeft="975,1198">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3171,7 +2662,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 39]"
-          TopLeft="999,1046.5">
+          TopLeft="1214,1201.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3193,7 +2684,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="182.333333333333,371">
+          TopLeft="397.333333333333,526">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3227,7 +2718,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="321,384">
+          TopLeft="536,539">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3261,7 +2752,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="535.5,393">
+          TopLeft="750.5,548">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3295,7 +2786,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="698,369">
+          TopLeft="913,524">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3329,7 +2820,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="258,547">
+          TopLeft="473,702">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3357,30 +2848,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="399.333333333333,671">
+          TopLeft="658,826">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="14.1666666666667,35"
+              EndConnector="-30.5,35"
               Start="0,0"
-              End="14.1666666666667,27.5">
+              End="-30.5,27.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.1237113402062" />
+                    End="0,13.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.1237113402062"
-                    Point2="0,14.1237113402062"
-                    Point3="4,14.1237113402062" />
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="-4,17.5" />
                   <mssgle:LineSegment
-                    End="10.1666666666667,14.1237113402062" />
+                    End="-26.5,17.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="10.1666666666667,14.1237113402062"
-                    Point2="14.1666666666667,14.1237113402062"
-                    Point3="14.1666666666667,18.1237113402062" />
+                    Point1="-26.5,17.5"
+                    Point2="-30.5,17.5"
+                    Point3="-30.5,21.5" />
                   <mssgle:LineSegment
-                    End="14.1666666666667,27.5" />
+                    End="-30.5,27.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3396,7 +2887,7 @@
     design-time-name="Package\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="181,42"
           Id="Package\Data Flow Task\ADO NET Destination"
@@ -3424,7 +2915,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3440,74 +2933,6 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Flow Task\ADO NET Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Employee Vacation and Sick Time Into Hermes">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination"
-          TopLeft="451,364" />
-        <NodeLayout
-          Size="160,42"
-          Id="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source"
-          TopLeft="147,220" />
-        <EdgeLayout
-          Id="Package\Employee Vacation and Sick Time Into Hermes.Paths[ADO NET Source Output]"
-          TopLeft="227,262">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="314.5,102"
-              Start="0,0"
-              End="314.5,94.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,47"
-                    Point2="0,51"
-                    Point3="4,51" />
-                  <mssgle:LineSegment
-                    End="310.5,51" />
-                  <mssgle:CubicBezierSegment
-                    Point1="310.5,51"
-                    Point2="314.5,51"
-                    Point3="314.5,55" />
-                  <mssgle:LineSegment
-                    End="314.5,94.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Employee Vacation and Sick Time Into Hermes\ADO NET Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

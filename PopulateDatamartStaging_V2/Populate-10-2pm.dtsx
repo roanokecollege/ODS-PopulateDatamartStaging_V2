@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{914D7183-8C08-4258-AC66-AECCEEE77B5B}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:ObjectName="Populate-10-2pm"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{BA022891-97CC-4EC1-89CF-E1BF6AE59C45}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{FAE69245-1FB6-44CB-833F-81A21BD7F637}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -282,7 +282,7 @@
           Text="These packages populate staging tables on Hermes.Staging. We are testing these to run at 1030am and 230pm. "
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="581,39"
+          Size="581,56"
           Id="91a9457e-8dab-4d36-aee0-5d510e05abe3"
           TopLeft="511,98" />
       </GraphLayout>

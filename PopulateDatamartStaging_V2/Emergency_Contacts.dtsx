@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{36B6D268-9B7E-409E-BADC-212033889C33}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="11.0.7462.6"
   DTS:LocaleID="1033"
   DTS:ObjectName="Emergency_Contacts"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{0B6D78B2-8F6E-4165-8154-B2415B332660}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{1DE17074-3FB8-4C8A-8AE4-205BA5F4B794}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -46,8 +46,37 @@
           DTS:ConnectionString="Data Source=sandbox;Initial Catalog=staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{FC78A89F-7970-4C5B-9AA1-4A340DA2D4EA}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=receive.roanoke.edu;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8F350316-BF4F-4273-B141-AE455D6059F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLFetchCount">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT COUNT(PERSON_EMER_ID) AS ProcessedCount FROM dbo.view_person_emer_contacts</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{92F8FDEA-9A06-48DA-8544-D5702F4C0E6C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ViewCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Merge into Hermes"
@@ -58,7 +87,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Merge into Hermes"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -76,13 +105,56 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Merge into SandBox"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{AFAE0C3E-BA7B-4108-B893-CD85A7798158}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="&#xA;INSERT INTO SANDBOX.STAGING.dbo.DM_emergency_contacts&#xA;&#xA;SELECT &#xA;&#x9;PERSON_EMER_ID, POS, EMER_CONTACT_ADDRESS, EMER_CONTACT_DATE, EMER_DAYTIME_PHONE, EMER_EMERGENCY_CONTACT_FLAG, EMER_EVENING_PHONE, EMER_MISSING_CONTACT_FLAG, EMER_NAME, &#xA;                         EMER_OTHER_PHONE, EMER_RELATIONSHIP, date&#xA;&#xA;FROM ODS_Reporting.dbo.view_person_emer_contacts  &#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pre-Check Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{84bd10bd-2a8b-4dba-864c-730d0ec8a497}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pre-Check Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AFAE0C3E-BA7B-4108-B893-CD85A7798158}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQLFetchCount"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ViewCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{10af5b9f-ff35-48a9-8180-338221f9cef8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{FC78A89F-7970-4C5B-9AA1-4A340DA2D4EA}"
+          SendMailTask:From="gabrielson@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Alumni SSIS Failed"
+          SendMailTask:MessageSource="Pre-Check Data failed, check PopulateAlumni SSIS and look for view_alumni_person_details and also R_PERSON as a possible break in the data. &#xA;" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -94,7 +166,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Hermes table"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -112,7 +184,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Sandbox table"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -147,6 +219,26 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Truncate Hermes table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{BAB1ADD0-2AD6-45AC-BFE7-0EC16F727612}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::ViewCount] &lt;= 8000"
+      DTS:From="Package\Pre-Check Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Send Mail Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{468E3B9D-FC40-49EC-ABD8-ED54B804C516}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::ViewCount] &gt;= 8000"
+      DTS:From="Package\Pre-Check Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Truncate Sandbox table" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -159,29 +251,29 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Merge into Hermes"
-          TopLeft="748,586" />
+          TopLeft="748,650" />
         <NodeLayout
           Size="175,42"
           Id="Package\Merge into SandBox"
-          TopLeft="537,254" />
+          TopLeft="537,318" />
         <NodeLayout
           Size="188,42"
           Id="Package\Truncate Hermes table"
-          TopLeft="665,428" />
+          TopLeft="665,492" />
         <NodeLayout
           Size="193,42"
           Id="Package\Truncate Sandbox table"
-          TopLeft="454,96" />
+          TopLeft="454,160" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="550.5,138">
+          TopLeft="550.5,202">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="74,116"
               Start="0,0"
               End="74,108.5">
@@ -212,10 +304,10 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="759,470">
+          TopLeft="759,534">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="74.5,116"
               Start="0,0"
               End="74.5,108.5">
@@ -246,10 +338,10 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="624.5,296">
+          TopLeft="624.5,360">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="134.5,132"
               Start="0,0"
               End="134.5,124.5">
@@ -276,6 +368,86 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Pre-Check Data"
+          TopLeft="359,0" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Send Mail Task"
+          TopLeft="161,119" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="435,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-199,77"
+              Start="0,0"
+              End="-199,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="-4,38.5" />
+                  <mssgle:LineSegment
+                    End="-195,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-195,38.5"
+                    Point2="-199,38.5"
+                    Point3="-199,42.5" />
+                  <mssgle:LineSegment
+                    End="-199,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-107.5,43.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="459,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="91.5,118"
+              Start="0,0"
+              End="91.5,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.9375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.9375"
+                    Point2="0,47.9375"
+                    Point3="4,47.9375" />
+                  <mssgle:LineSegment
+                    End="87.5,47.9375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.5,47.9375"
+                    Point2="91.5,47.9375"
+                    Point3="91.5,51.9375" />
+                  <mssgle:LineSegment
+                    End="91.5,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="37.75,52.9375,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

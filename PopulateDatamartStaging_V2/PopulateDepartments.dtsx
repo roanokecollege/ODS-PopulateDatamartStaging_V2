@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="9/15/2014 10:10:24 AM"
+  DTS:CreationDate="8/7/2019 8:34:01 AM"
   DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="ODS"
-  DTS:CreatorName="ACADEMIC\webserv"
-  DTS:DTSID="{D82BF59E-E378-4DFE-AAB8-DBAE00E1F583}"
+  DTS:CreatorName="ACADEMIC\it_gabrielson"
+  DTS:DTSID="{AC5534C4-1D44-479B-B752-1665B68D8A39}"
   DTS:ExecutableType="SSIS.Package.3"
   DTS:LastModifiedProductVersion="11.0.7462.6"
   DTS:LocaleID="1033"
-  DTS:ObjectName="PopulateCourses_Instructors"
+  DTS:ObjectName="PopulateDepartments"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{18CDFD34-8ED0-41E9-846B-441C0CF07226}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{41EA7C40-8FDE-4985-918A-E829A65F7F9F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{031B07E5-7602-4326-8252-4365042C8209}"
-      DTS:ObjectName="ods.ODS_Reporting">
+      DTS:DTSID="{8D345C9F-D5B3-45DA-9B9E-EE2ACF863E4D}"
+      DTS:ObjectName="ODS.ODS_Reporting1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-PopulateDepartments-{8D345C9F-D5B3-45DA-9B9E-EE2ACF863E4D}ODS.ODS_Reporting1;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
       DTS:CreationName="SMTP"
-      DTS:DTSID="{D5756DCA-4138-4033-B326-76620BCEC161}"
+      DTS:DTSID="{5975E6B0-BD25-4EB6-B792-B7A344DA7B6E}"
       DTS:ObjectName="SMTP Connection Manager">
       <DTS:ObjectData>
         <SmtpConnectionManager
@@ -40,16 +40,16 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{4D21531A-5535-4033-AD10-70E51B16ED63}"
+      DTS:DTSID="{72389258-C828-443F-9A53-22C44D316A0B}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQLFetchCount">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT COUNT(COURSE_SEC_FACULTY_ID) AS ProcessedCount FROM dbo.ODS_COURSE_SEC_FACULTY</DTS:VariableValue>
+        DTS:DataType="8">SELECT        COUNT(DEPTS_ID) AS ProcessedCount FROM            dbo.R_DEPTS</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{97AC51C6-5861-4AA3-960D-908E08A4D31F}"
+      DTS:DTSID="{30D6D799-F46F-49B8-BE40-88E7B53F525E}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ViewCount">
@@ -59,86 +59,68 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Clear Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
+      DTS:refId="Package\#1"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Send Mail Task"
-      DTS:DTSID="{5E62353E-34B3-4A10-A4E5-8C77FC51DA62}"
+      DTS:DTSID="{D02021F9-CC3E-436D-8E4E-9219C679382C}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Clear Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
+      DTS:ObjectName="#1"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
-          SendMailTask:SMTPServer="{D5756DCA-4138-4033-B326-76620BCEC161}"
-          SendMailTask:From="noreply@roanoke.edu"
-          SendMailTask:To="datamart@roanoke.edu"
-          SendMailTask:CC="gabrielson@roanoke.edu"
-          SendMailTask:Subject="ODS task: Clear Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
-          SendMailTask:MessageSource="ODS Task: Clear Datamart Staging Table DM_COURSE_INSTRUCTORS in package PopulateCourses_Instructors has failed.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          SendMailTask:SMTPServer="{5975E6B0-BD25-4EB6-B792-B7A344DA7B6E}"
+          SendMailTask:From="datamart@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS- Populate Departments Error"
+          SendMailTask:MessageSource="Error #1 - Tuncate Departments has had an error in ODS. Please troubleshoot. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Clear Staging Table DM_COURSE_INSTRUCTORS"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{9EB72555-5693-4167-9325-369D7BB31441}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Clear Staging Table DM_COURSE_INSTRUCTORS"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{031B07E5-7602-4326-8252-4365042C8209}"
-          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.dbo.DM_COURSE_INSTRUCTORS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Populate Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
+      DTS:refId="Package\#2"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Send Mail Task"
-      DTS:DTSID="{1680edfb-8041-44df-9517-8e7f6dd45fcd}"
+      DTS:DTSID="{66278dd2-6d11-4ab6-955e-54a6c534a463}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Populate Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
+      DTS:ObjectName="#2"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
-          SendMailTask:SMTPServer="{D5756DCA-4138-4033-B326-76620BCEC161}"
-          SendMailTask:From="noreply@roanoke.edu"
-          SendMailTask:To="datamart@roanoke.edu"
-          SendMailTask:CC="gabrielson@roanoke.edu"
-          SendMailTask:Subject="ODS task: Populate Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
-          SendMailTask:MessageSource="ODS Task: Populate Datamart Staging Table DM_COURSE_INSTRUCTORS in package PopulateCourses_Instructors has failed.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          SendMailTask:SMTPServer="{5975E6B0-BD25-4EB6-B792-B7A344DA7B6E}"
+          SendMailTask:From="datamart@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS- Populate Departments Error"
+          SendMailTask:MessageSource="Error #2 - Insert Departments has had an error in ODS. Please troubleshoot. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Populate Staging Table DM_COURSE_INSTRUCTORS Data"
+      DTS:refId="Package\Insert Departments"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{2EB388EB-62C1-4A50-8738-8F7F1041ED29}"
+      DTS:DTSID="{2daa734e-65b7-498e-9539-4548b4c26d0f}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Populate Staging Table DM_COURSE_INSTRUCTORS Data"
+      DTS:ObjectName="Insert Departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{031B07E5-7602-4326-8252-4365042C8209}"
-          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_COURSE_INSTRUCTORS&#xA;&#xA;--SELECT CSF_COURSE_SECTION, &#xA;--&#x9;CSF_FACULTY, &#xA;--&#x9;CURRENT_TIMESTAMP&#xA;&#xA;SELECT     dbo.ODS_COURSE_SEC_FACULTY.CSF_COURSE_SECTION, dbo.ODS_COURSE_SEC_FACULTY.CSF_FACULTY, CURRENT_TIMESTAMP AS Import_Date, &#xA;                      dbo.ODS_COURSE_SEC_FACULTY.CSF_FACULTY_LOAD, GETDATE() AS updated_at&#xA;FROM         dbo.ODS_COURSE_SEC_FACULTY INNER JOIN&#xA;                      ODS_Staging.dbo.coursesCore ON dbo.ODS_COURSE_SEC_FACULTY.CSF_COURSE_SECTION = ODS_Staging.dbo.coursesCore.CourseKey;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{8D345C9F-D5B3-45DA-9B9E-EE2ACF863E4D}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO Hermes.STAGING.dbo.dm_departments&#xA; ( dept_id, dept_description )&#xA;SELECT      depts_id, depts_desc&#xA;FROM         dbo.R_DEPTS &#xA;Where Depts_Active_Flag = 'A'&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Pre-Check Data"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{a1f405a4-a68e-4b51-b6d4-7dd37d463454}"
+      DTS:DTSID="{f57ef97b-57a0-438b-97be-a8922425d8b2}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Pre-Check Data"
@@ -147,7 +129,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{031B07E5-7602-4326-8252-4365042C8209}"
+          SQLTask:Connection="{8D345C9F-D5B3-45DA-9B9E-EE2ACF863E4D}"
           SQLTask:SqlStmtSourceType="Variable"
           SQLTask:SqlStatementSource="User::SQLFetchCount"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
@@ -161,12 +143,12 @@
       DTS:refId="Package\Send Mail Task 1"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Send Mail Task"
-      DTS:DTSID="{db4bb04c-c958-482f-a358-6495a837b3dc}"
+      DTS:DTSID="{27d9aa0d-3dce-4d68-a53f-137df41d8318}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Send Mail Task 1"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -177,40 +159,58 @@
           SendMailTask:MessageSource="The pre-check has stopped the Populate Registrations SSIS package. CHeck the registrations table data. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Departments"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e0f6c887-9a66-413f-9d76-097b0a59c228}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Departments"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8D345C9F-D5B3-45DA-9B9E-EE2ACF863E4D}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM Hermes.STAGING.dbo.dm_departments;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{700CC13C-724A-4E36-BFEE-FE1FD8399393}"
-      DTS:From="Package\Clear Staging Table DM_COURSE_INSTRUCTORS"
+      DTS:DTSID="{002afef6-4825-4fa1-b8c8-17a64b99a6cb}"
+      DTS:From="Package\Truncate Departments"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Populate Staging Table DM_COURSE_INSTRUCTORS Data" />
+      DTS:To="Package\Insert Departments" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{E7C3E108-DB5F-43D2-9245-C1DCCA201C0E}"
-      DTS:From="Package\Clear Staging Table DM_COURSE_INSTRUCTORS"
+      DTS:DTSID="{6364D3D6-D9D6-42B2-B5E4-26868AD50896}"
+      DTS:From="Package\Truncate Departments"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Clear Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
+      DTS:To="Package\#1"
       DTS:Value="1" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{5FFFBD22-E40E-46B5-8EA1-29B795A4BA1B}"
-      DTS:From="Package\Populate Staging Table DM_COURSE_INSTRUCTORS Data"
+      DTS:DTSID="{25C4F1AC-AA6A-4015-AD23-12A33671728B}"
+      DTS:From="Package\Insert Departments"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Populate Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
+      DTS:To="Package\#2"
       DTS:Value="1" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{35D81D20-6BF9-48C4-BC3D-01B3171C1BB4}"
+      DTS:DTSID="{E4F8089F-882A-4279-BECC-4222919AB254}"
       DTS:EvalOp="1"
-      DTS:Expression="@[User::ViewCount] &lt;= 38000"
+      DTS:Expression="@[User::ViewCount] &lt;= 100"
       DTS:From="Package\Pre-Check Data"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
@@ -218,13 +218,13 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
-      DTS:DTSID="{6FF66928-6BB7-4776-BE0C-94E81946F305}"
+      DTS:DTSID="{48B40D1B-1767-48D9-8616-56953E77AD93}"
       DTS:EvalOp="1"
-      DTS:Expression="@[User::ViewCount] &gt;= 38000"
+      DTS:Expression="@[User::ViewCount] &gt;= 100"
       DTS:From="Package\Pre-Check Data"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
-      DTS:To="Package\Clear Staging Table DM_COURSE_INSTRUCTORS" />
+      DTS:To="Package\Truncate Departments" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -237,49 +237,49 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="388,42"
-          Id="Package\Clear Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
-          TopLeft="533,191" />
+          Size="95,42"
+          Id="Package\#1"
+          TopLeft="507,266" />
         <NodeLayout
-          Size="312,42"
-          Id="Package\Clear Staging Table DM_COURSE_INSTRUCTORS"
-          TopLeft="205,138" />
+          Size="95,42"
+          Id="Package\#2"
+          TopLeft="509,419" />
         <NodeLayout
-          Size="405,42"
-          Id="Package\Populate Datamart Staging Table DM_COURSE_INSTRUCTORS failed"
-          TopLeft="502,379" />
+          Size="173,42"
+          Id="Package\Insert Departments"
+          TopLeft="178,362" />
         <NodeLayout
-          Size="354,42"
-          Id="Package\Populate Staging Table DM_COURSE_INSTRUCTORS Data"
-          TopLeft="215,304" />
+          Size="187,42"
+          Id="Package\Truncate Departments"
+          TopLeft="149,235" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="361,180">
+          TopLeft="242.5,277">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="31,124"
+              StartConnector="{x:Null}"
+              EndConnector="22,85"
               Start="0,0"
-              End="31,116.5">
+              End="22,77.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58" />
+                    End="0,38.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,58"
-                    Point2="0,62"
-                    Point3="4,62" />
+                    Point1="0,38.5"
+                    Point2="0,42.5"
+                    Point3="4,42.5" />
                   <mssgle:LineSegment
-                    End="27,62" />
+                    End="18,42.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="27,62"
-                    Point2="31,62"
-                    Point3="31,66" />
+                    Point1="18,42.5"
+                    Point2="22,42.5"
+                    Point3="22,46.5" />
                   <mssgle:LineSegment
-                    End="31,116.5" />
+                    End="22,77.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -290,147 +290,160 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="517,159">
+          TopLeft="336,256">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="210,32"
+              StartConnector="{x:Null}"
+              EndConnector="171,31"
               Start="0,0"
-              End="210,24.5">
+              End="163.5,31">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="206,0" />
+                    End="81.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="206,0"
-                    Point2="210,0"
-                    Point3="210,4" />
+                    Point1="81.5,0"
+                    Point2="85.5,0"
+                    Point3="85.5,4" />
                   <mssgle:LineSegment
-                    End="210,24.5" />
+                    End="85.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="85.5,27"
+                    Point2="85.5,31"
+                    Point3="89.5,31" />
+                  <mssgle:LineSegment
+                    End="163.5,31" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="195.75865234375,-13.7490234375,30.4826953125,9.7490234375"
+              BoundingBox="70.25865234375,-15.7490234375,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="392,346">
+          TopLeft="351,383">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="312.5,33"
+              StartConnector="{x:Null}"
+              EndConnector="158,57"
               Start="0,0"
-              End="312.5,25.5">
+              End="150.5,57">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.5" />
+                    End="75,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.5"
-                    Point2="0,16.5"
-                    Point3="4,16.5" />
+                    Point1="75,0"
+                    Point2="79,0"
+                    Point3="79,4" />
                   <mssgle:LineSegment
-                    End="308.5,16.5" />
+                    End="79,53" />
                   <mssgle:CubicBezierSegment
-                    Point1="308.5,16.5"
-                    Point2="312.5,16.5"
-                    Point3="312.5,20.5" />
+                    Point1="79,53"
+                    Point2="79,57"
+                    Point3="83,57" />
                   <mssgle:LineSegment
-                    End="312.5,25.5" />
+                    End="150.5,57" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="142.00865234375,21.5,30.4826953125,9.7490234375"
+              BoundingBox="63.75865234375,-15.7490234375,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="This package pulls from R_DEPTS and helps populate Datamart.&#xA;JSG 08-2019"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="176,88"
+          Id="b66944e4-7c75-4fff-ac0a-fef8b350aef8"
+          TopLeft="485,78" />
         <NodeLayout
           Size="152,42"
           Id="Package\Pre-Check Data"
-          TopLeft="236,0" />
+          TopLeft="287,30" />
         <NodeLayout
           Size="159,42"
           Id="Package\Send Mail Task 1"
-          TopLeft="26,72" />
+          TopLeft="49,125" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="312,42">
+          TopLeft="363,72">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-206.5,30"
+              StartConnector="{x:Null}"
+              EndConnector="-234.5,53"
               Start="0,0"
-              End="-206.5,22.5">
+              End="-234.5,45.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11" />
+                    End="0,22.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11"
-                    Point2="0,15"
-                    Point3="-4,15" />
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="-4,26.5" />
                   <mssgle:LineSegment
-                    End="-202.5,15" />
+                    End="-230.5,26.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-202.5,15"
-                    Point2="-206.5,15"
-                    Point3="-206.5,19" />
+                    Point1="-230.5,26.5"
+                    Point2="-234.5,26.5"
+                    Point3="-234.5,30.5" />
                   <mssgle:LineSegment
-                    End="-206.5,22.5" />
+                    End="-234.5,45.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-111.25,20,16,16"
+              BoundingBox="-125.25,31.5,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="336,42">
+          TopLeft="387,72">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="25,96"
+              StartConnector="{x:Null}"
+              EndConnector="-144.5,163"
               Start="0,0"
-              End="25,88.5">
+              End="-144.5,155.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35" />
+                    End="0,62.21875" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35"
-                    Point2="0,39"
-                    Point3="4,39" />
+                    Point1="0,62.21875"
+                    Point2="0,66.21875"
+                    Point3="-4,66.21875" />
                   <mssgle:LineSegment
-                    End="21,39" />
+                    End="-140.5,66.21875" />
                   <mssgle:CubicBezierSegment
-                    Point1="21,39"
-                    Point2="25,39"
-                    Point3="25,43" />
+                    Point1="-140.5,66.21875"
+                    Point2="-144.5,66.21875"
+                    Point3="-144.5,70.21875" />
                   <mssgle:LineSegment
-                    End="25,88.5" />
+                    End="-144.5,155.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="4.5,44,16,16"
+              BoundingBox="-80.25,71.21875,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

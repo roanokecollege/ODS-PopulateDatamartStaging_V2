@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateRegistrations"
   DTS:PackageType="5"
-  DTS:VersionBuild="138"
-  DTS:VersionGUID="{2A59AB37-7301-49E6-86C8-A81CFADD8938}">
+  DTS:VersionBuild="156"
+  DTS:VersionGUID="{8A2BFDC4-F59E-4DEB-BA9F-F2BB60513F6A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -123,7 +123,7 @@
       DTS:ObjectName="sandbox.DataMart">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{2D1C15C8-EC39-44D5-B95A-EA8527A1CE9C}sandbox.DataMart;" />
+          DTS:ConnectionString="Data Source=sandbox.roanoke.edu;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{2D1C15C8-EC39-44D5-B95A-EA8527A1CE9C}sandbox.DataMart;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -133,7 +133,7 @@
       DTS:ObjectName="sandbox.DataMart1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=sandbox.roanoke.edu;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -143,11 +143,30 @@
       DTS:ObjectName="sandbox.Staging1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=sandbox;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{3815A889-AD84-4812-88E8-A48F558852F9}sandbox.Staging1;" />
+          DTS:ConnectionString="Data Source=sandbox.roanoke.edu;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{3815A889-AD84-4812-88E8-A48F558852F9}sandbox.Staging1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{62C85E1E-C3D3-412F-B1F5-5994ED103B98}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLFetchCount">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT        COUNT(ID) AS ProcessedCount FROM            dbo.R_PERSON</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D017DC7C-5013-4AB2-A5B8-4C2CDC5726E3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ViewCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\build grades data"
@@ -704,7 +723,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Majors"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -759,7 +778,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_REGISTRATIONS Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -781,7 +800,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Student Terms"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -799,7 +818,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Copy Majors to Herps Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -821,7 +840,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="DTF Hermes Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -843,7 +862,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Majors to Staging Hermes"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -879,7 +898,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Registration Assignment Data to Staging  Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -907,7 +926,7 @@ ORDER BY key_RegId</property>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="INSERT INTO Hermes.Staging.dbo.DM_REGISTRATIONS&#xA;SELECT     TOP (100) PERCENT dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, &#xA;                      dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION AS fkey_courseId, dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID AS RCID, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS AS fkey_RegStatus, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE AS letter_grade, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade_value, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, &#xA;                      dbo.R_GRADES.GRD_GRADE AS mid_term_grade, GETDATE() AS updated_at&#xA;FROM         dbo.current_students_on_campus_view RIGHT OUTER JOIN&#xA;                      dbo.SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN&#xA;                      dbo.view_student_notes ON dbo.SPT_STUDENT_ACAD_CRED.STC_TERM = dbo.view_student_notes.STTN_TERM AND &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.view_student_notes.STTN_STUDENT ON &#xA;                      dbo.current_students_on_campus_view.RMAS_PERSON_ID = dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID LEFT OUTER JOIN&#xA;                      dbo.view_R_STU_MISC3_L RIGHT OUTER JOIN&#xA;                      dbo.R_STUDENTS ON dbo.view_R_STU_MISC3_L.STUDENTS_ID = dbo.R_STUDENTS.STUDENTS_ID ON &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.R_STUDENTS.STUDENTS_ID LEFT OUTER JOIN&#xA;                      dbo.R_STUDENT_COURSE_SEC INNER JOIN&#xA;                      dbo.R_GRADES ON dbo.R_STUDENT_COURSE_SEC.SCS_MID_TERM_GRADE1 = dbo.R_GRADES.GRADES_ID RIGHT OUTER JOIN&#xA;                      dbo.SPT_STUDENT_COURSE_SEC ON &#xA;                      dbo.R_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID ON &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID&#xA;GROUP BY dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID, dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE, &#xA;                      dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED, dbo.R_GRADES.GRD_GRADE&#xA;HAVING      (dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS &lt;&gt; 'C')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO Hermes.Staging.dbo.DM_REGISTRATIONS&#xA;SELECT        TOP (100) PERCENT dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION AS fkey_courseId, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID AS RCID, dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS AS fkey_RegStatus, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE AS letter_grade, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade_value, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, dbo.R_GRADES.GRD_GRADE AS mid_term_grade, &#xA;                         dbo.R_STUDENT_COURSE_SEC.SCS_PASS_AUDIT AS pass_fail_audit, GETDATE() AS updated_at&#xA;FROM            dbo.current_students_on_campus_view RIGHT OUTER JOIN&#xA;                         dbo.SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN&#xA;                         dbo.view_student_notes ON dbo.SPT_STUDENT_ACAD_CRED.STC_TERM = dbo.view_student_notes.STTN_TERM AND &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.view_student_notes.STTN_STUDENT ON &#xA;                         dbo.current_students_on_campus_view.RMAS_PERSON_ID = dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID LEFT OUTER JOIN&#xA;                         dbo.view_R_STU_MISC3_L RIGHT OUTER JOIN&#xA;                         dbo.R_STUDENTS ON dbo.view_R_STU_MISC3_L.STUDENTS_ID = dbo.R_STUDENTS.STUDENTS_ID ON dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.R_STUDENTS.STUDENTS_ID LEFT OUTER JOIN&#xA;                         dbo.R_STUDENT_COURSE_SEC INNER JOIN&#xA;                         dbo.R_GRADES ON dbo.R_STUDENT_COURSE_SEC.SCS_MID_TERM_GRADE1 = dbo.R_GRADES.GRADES_ID RIGHT OUTER JOIN&#xA;                         dbo.SPT_STUDENT_COURSE_SEC ON dbo.R_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID ON &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID&#xA;GROUP BY dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION, dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE, dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED, &#xA;                         dbo.R_GRADES.GRD_GRADE, dbo.R_STUDENT_COURSE_SEC.SCS_PASS_AUDIT&#xA;HAVING        (dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS &lt;&gt; 'C')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -919,7 +938,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Student Terms to Staging"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -955,12 +974,35 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="populate person_source"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.person_source&#xA;SELECT &#xA;&#x9;rcid, position, source_id, source_description&#xA;&#xA;FROM ODS_Reporting.dbo.view_person_source&#xA;     &#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pre-Check Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EFD2F3C2-95F2-4B82-8AB9-2116F7138AE7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pre-Check Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
-          SQLTask:SqlStatementSource="INSERT INTO SANDBOX.STAGING.dbo.person_source&#xA;SELECT &#xA;&#x9;rcid, position, source_id, source_description&#xA;&#xA;FROM ODS_Reporting.dbo.view_person_source&#xA;     &#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQLFetchCount"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ViewCount" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -985,6 +1027,26 @@ ORDER BY key_RegId</property>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Send Mail Task 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{96C4E6F1-FC15-4E34-91D4-829E988B1430}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task 1"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F6DC45F2-6E60-46A0-88F3-8D0865C21BCC}"
+          SendMailTask:From="gabrielson@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Registrations SSIS error"
+          SendMailTask:MessageSource="The pre-check has stopped the Populate Registrations SSIS package. CHeck the registrations table data. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\SSIS Failure"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Send Mail Task"
@@ -993,7 +1055,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="SSIS Failure"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1015,7 +1077,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate dm_est_graddate_living_on_campus"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1071,12 +1133,12 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate person_sources"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
-          SQLTask:SqlStatementSource="DELETE FROM sandbox.STAGING.dbo.person_source;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DELETE FROM hermes.STAGING.dbo.person_source;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1088,7 +1150,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="update dm_grad_date_living_campus"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1214,6 +1276,26 @@ ORDER BY key_RegId</property>
       DTS:ObjectName="Constraint 20"
       DTS:To="Package\populate person_source" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{749D04F1-E5F6-4981-B675-304FDAB2850E}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::ViewCount] &lt;= 700000"
+      DTS:From="Package\Pre-Check Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 21"
+      DTS:To="Package\Send Mail Task 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{47F2B332-01AC-4FAB-A070-5BF9B7B0DB4D}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::ViewCount] &gt;= 700000"
+      DTS:From="Package\Pre-Check Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 22"
+      DTS:To="Package\Clear Staging Table DM_Registrations" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
       DTS:DTSID="{464D25BF-61C2-4453-9BD6-326C57388916}"
@@ -1288,94 +1370,102 @@ ORDER BY key_RegId</property>
         <NodeLayout
           Size="163,42"
           Id="Package\build grades data"
-          TopLeft="534,110" />
+          TopLeft="534,250" />
         <NodeLayout
           Size="178,42"
           Id="Package\Clear Staging Majors"
-          TopLeft="170,410" />
+          TopLeft="170,550" />
         <NodeLayout
           Size="212,42"
           Id="Package\Clear Staging Parent Access"
-          TopLeft="158,233" />
+          TopLeft="158,373" />
         <NodeLayout
           Size="258,42"
           Id="Package\Clear Staging Table DM_Registrations"
-          TopLeft="124,45" />
+          TopLeft="124,185" />
         <NodeLayout
           Size="308,42"
           Id="Package\Clear Staging Table DM_REGISTRATIONS Failed"
-          TopLeft="672,44" />
+          TopLeft="672,184" />
         <NodeLayout
           Size="177,42"
           Id="Package\Clear Student Terms"
-          TopLeft="158,581" />
+          TopLeft="158,721" />
         <NodeLayout
           Size="164,67"
           Id="Package\Copy Majors to Herps Failed"
-          TopLeft="521,484" />
+          TopLeft="521,624" />
         <NodeLayout
           Size="147,42"
           Id="Package\DTF Hermes Failed"
-          TopLeft="667,287" />
+          TopLeft="660,444" />
         <NodeLayout
           Size="231,42"
           Id="Package\Move Majors to Staging Hermes"
-          TopLeft="110,503" />
+          TopLeft="110,643" />
         <NodeLayout
           Size="343,42"
           Id="Package\Move Parent Access to Staging"
-          TopLeft="97,310" />
+          TopLeft="97,450" />
         <NodeLayout
           Size="186,70"
           Id="Package\Move Registration Assignment Data to Staging  Failed"
-          TopLeft="739,157" />
+          TopLeft="739,297" />
         <NodeLayout
           Size="357,42"
           Id="Package\Move Registration Data to Staging Table DM_Registrations"
-          TopLeft="87,162" />
+          TopLeft="87,302" />
         <NodeLayout
           Size="230,42"
           Id="Package\Move Student Terms to Staging"
-          TopLeft="113,665" />
+          TopLeft="113,805" />
         <NodeLayout
           Size="175,42"
           Id="Package\populate dm grades"
-          TopLeft="476,233" />
+          TopLeft="476,373" />
         <NodeLayout
           Size="194,42"
           Id="Package\populate person_source"
-          TopLeft="477.5,1037.5" />
+          TopLeft="477.5,1177.5" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Pre-Check Data"
+          TopLeft="160,20" />
         <NodeLayout
           Size="152,42"
           Id="Package\Send Mail Task"
-          TopLeft="105,742" />
+          TopLeft="105,882" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Send Mail Task 1"
+          TopLeft="32,107" />
         <NodeLayout
           Size="138,42"
           Id="Package\SSIS Failure"
-          TopLeft="554,696" />
+          TopLeft="554,836" />
         <NodeLayout
           Size="295,42"
           Id="Package\truncate dm_est_graddate_living_on_campus"
-          TopLeft="332,756" />
+          TopLeft="332,896" />
         <NodeLayout
           Size="212,42"
           Id="Package\truncate grades information"
-          TopLeft="205,110" />
+          TopLeft="205,250" />
         <NodeLayout
           Size="219,42"
           Id="Package\Truncate Herps Majors Failed"
-          TopLeft="599,403" />
+          TopLeft="599,543" />
         <NodeLayout
           Size="197,42"
           Id="Package\truncate person_sources"
-          TopLeft="677.5,947.5" />
+          TopLeft="677.5,1087.5" />
         <NodeLayout
           Size="257,42"
           Id="Package\update dm_grad_date_living_campus"
-          TopLeft="725,823.75" />
+          TopLeft="725,963.75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="382,62.6666666666667">
+          TopLeft="382,202.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1399,7 +1489,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="253,87">
+          TopLeft="253,227">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1433,7 +1523,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="225.5,545">
+          TopLeft="225.5,685">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1467,7 +1557,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="246.5,623">
+          TopLeft="246.5,763">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1501,7 +1591,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="228,707">
+          TopLeft="228,847">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1535,7 +1625,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="343,686">
+          TopLeft="343,826">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1571,7 +1661,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="476,254">
+          TopLeft="476,394">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1593,7 +1683,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 15]"
-          TopLeft="417,128.166666666667">
+          TopLeft="417,268.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1615,7 +1705,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 16]"
-          TopLeft="534,136.666666666667">
+          TopLeft="534,276.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1649,7 +1739,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 17]"
-          TopLeft="265,707">
+          TopLeft="265,847">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1683,7 +1773,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 18]"
-          TopLeft="479.5,798">
+          TopLeft="479.5,938">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1717,7 +1807,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 19]"
-          TopLeft="853.5,865.75">
+          TopLeft="853.5,1005.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1751,7 +1841,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="444,183">
+          TopLeft="444,323">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1787,7 +1877,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 20]"
-          TopLeft="776,989.5">
+          TopLeft="776,1129.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1820,8 +1910,68 @@ ORDER BY key_RegId</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="212,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-100.5,45"
+              Start="0,0"
+              End="-100.5,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.28125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.28125"
+                    Point2="0,18.28125"
+                    Point3="-4,18.28125" />
+                  <mssgle:LineSegment
+                    End="-96.5,18.28125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-96.5,18.28125"
+                    Point2="-100.5,18.28125"
+                    Point3="-100.5,22.28125" />
+                  <mssgle:LineSegment
+                    End="-100.5,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-58.25,23.28125,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 22]"
+          TopLeft="256.5,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,123"
+              Start="0,0"
+              End="0,115.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,115.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,49.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="265.5,204">
+          TopLeft="265.5,344">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1855,7 +2005,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="266.25,275">
+          TopLeft="266.25,415">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1877,43 +2027,31 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="440,331">
+          TopLeft="440,468">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="227,-23"
+              EndConnector="220,0"
               Start="0,0"
-              End="219.5,-23">
+              End="212.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="109.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="109.5,0"
-                    Point2="113.5,0"
-                    Point3="113.5,-4" />
-                  <mssgle:LineSegment
-                    End="113.5,-19" />
-                  <mssgle:CubicBezierSegment
-                    Point1="113.5,-19"
-                    Point2="113.5,-23"
-                    Point3="117.5,-23" />
-                  <mssgle:LineSegment
-                    End="219.5,-23" />
+                    End="212.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="99.25865234375,1,30.4826953125,9.7490234375"
+              BoundingBox="91.00865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="268.5,352">
+          TopLeft="268.5,492">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1947,7 +2085,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="259,452">
+          TopLeft="259,592">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1981,7 +2119,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="348,427.5">
+          TopLeft="348,567.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2005,7 +2143,7 @@ ORDER BY key_RegId</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="341,520.75">
+          TopLeft="341,660.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2031,9 +2169,9 @@ ORDER BY key_RegId</property>
           Text="Pulls All Registration data from ODS. Gabrielson 8/2017"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="301,39"
+          Size="301,56"
           Id="0a7c932d-f277-4bf4-92f1-c030bb1fb0d3"
-          TopLeft="65,3" />
+          TopLeft="410,57" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

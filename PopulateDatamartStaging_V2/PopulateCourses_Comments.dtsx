@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{11DAA3D3-81C6-406D-AD07-9C78B49BF767}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="11.0.7462.6"
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateCourses_Comments"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{D4523B2B-F49D-481B-B3F5-F3AAAEECDA7A}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{8B65D2F7-F67D-470C-AA1F-46350E0D089D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,6 +39,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
       DTS:CreationName="SMTP"
+      DTS:Description="New Connection 8-2019"
       DTS:DTSID="{7BF3B81C-61B2-4882-9B53-B3F7B201F591}"
       DTS:ObjectName="SMTP Connection Manager">
       <DTS:ObjectData>
@@ -187,13 +188,13 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Staging to Sandbox Staging"
+      DTS:refId="Package\Staging to Hermes Staging"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{1e4c155f-a743-47b6-b932-16981d541f5b}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Staging to Sandbox Staging"
+      DTS:ObjectName="Staging to Hermes Staging"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -213,7 +214,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Clear Datamart staging table DM_COURSES_COMMENTS has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -234,7 +235,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task clear ODS staging table courseComments failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -255,7 +256,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate ACR_Printed Comments failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -276,7 +277,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate course list set in courseComments failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -297,7 +298,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate Datamart staging table DM_COURSES_COMMENTS has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -318,7 +319,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate SEC_Comments failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -339,7 +340,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate SEC_PRINTED_COMMENTS failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -463,7 +464,7 @@
       DTS:From="Package\Push from Reporting to Staging"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 16"
-      DTS:To="Package\Staging to Sandbox Staging" />
+      DTS:To="Package\Staging to Hermes Staging" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -578,8 +579,8 @@
           Id="Package\Push from Reporting to Staging"
           TopLeft="450,729" />
         <NodeLayout
-          Size="211,42"
-          Id="Package\Staging to Sandbox Staging"
+          Size="205,42"
+          Id="Package\Staging to Hermes Staging"
           TopLeft="755,701" />
         <NodeLayout
           Size="421,42"
@@ -705,7 +706,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="4.00865234375,5,28.4826953125,7.7490234375"
+              BoundingBox="4.00865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -729,7 +730,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="21.00865234375,5,28.4826953125,7.7490234375"
+              BoundingBox="21.00865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -753,7 +754,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="12.50865234375,5,28.4826953125,7.7490234375"
+              BoundingBox="12.50865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1037,7 +1038,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="32.00865234375,5,28.4826953125,7.7490234375"
+              BoundingBox="32.00865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1061,7 +1062,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="10.50865234375,5,28.4826953125,7.7490234375"
+              BoundingBox="10.50865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1085,7 +1086,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="16.50865234375,5,28.4826953125,7.7490234375"
+              BoundingBox="16.50865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1109,7 +1110,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="45.50865234375,5,28.4826953125,7.7490234375"
+              BoundingBox="45.50865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1117,7 +1118,7 @@
           Text="Changed Function on SQL to pull pre-req's from R_COURSES | X_CRS_PRINTED_TEXT_ALL&#xA;table. jsg 10/2017"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="474,53"
+          Size="474,72"
           Id="06f39711-218f-422d-9479-0a367f77520f"
           TopLeft="762,240" />
       </GraphLayout>

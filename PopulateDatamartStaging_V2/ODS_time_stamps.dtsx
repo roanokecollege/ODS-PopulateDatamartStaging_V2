@@ -11,11 +11,21 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ODS_time_stamps"
   DTS:PackageType="5"
-  DTS:VersionBuild="76"
-  DTS:VersionGUID="{23677C89-7831-4BD3-829D-C608E52E02AB}">
+  DTS:VersionBuild="92"
+  DTS:VersionGUID="{B853FD01-3D10-4493-89B0-2DE7DE6FF857}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[hermes.ITOperations]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EFDFABDE-915C-4FC1-8646-4261D6D1EE26}"
+      DTS:ObjectName="hermes.ITOperations">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=hermes;Initial Catalog=ITOperations;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
       DTS:CreationName="OLEDB"
@@ -108,6 +118,23 @@
           SQLTask:Connection="{B0A15B10-DC4D-4CAC-BF4C-6A43A6ECFCEC}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.ODS_DATES_DATA&#xA; ( ID,file_updated_date,R_BUILDINGS,R_STUDENTS,R_VIEW_PERSON_BASIC,R_X_CSS_SQL,ODS_ACAD_CRED_MAJORS,ODS_ACAD_CREDENTIALS,&#xA;ODS_COURSE_SEC_FACULTY,ODS_COURSE_SECTIONS,ODS_COURSES,ODS_HRPER,ODS_PERSON,ODS_PERSON_SOURCES,ODS_ROOM_ASSIGNMENTS,ODS_ROOMS,&#xA;ODS_STUDENT_ADVISEMENT,R_ACAD_PRGM_MAJORS_L,R_ACAD_REQMTS,R_ADDRESS,R_BLDG_ADDRESS_L,R_CAMPUS_ORG_MEMBERS,R_CAMPUS_ORGS,R_CMPM_AFFILIATION,R_CMPM_ROLES,R_CRS_SEC_MEETING_L,R_DATAMART_PERSON_PHONES,R_HRP_ALL_POSITION_L,R_INSTITUTIONS,R_LEAVPLAN,R_PER_PEOPLE_EMAIL,R_PER_PHONE,R_PER_PSEASON,R_PERLEAVE,R_PERLVACC,R_PERPOS_VIEW,R_PERSON,R_RESTRICTIONS,R_SEC_CONTACT,R_STPR_MINOR_LIST,R_STTN_TERM_NOTES,R_STU_MISC2_L,R_STU_MISC3_L,&#xA;R_STU_MISC8_L,R_STUDENT_RESTRICTIONS,R_VALCODES,SEC_CURRENT_STATUS,SPT_PERPOS,SPT_PERSON,SPT_PERSTAT,SPT_POSITION,&#x9;SPT_STU_PROG_ADDNL_MAJORS,SPT_STUDENT_ACAD_CRED,SPT_STUDENT_ACAD_LEVELS,SPT_STUDENT_COURSE_SEC )&#xA;SELECT     ID,file_updated_date,R_BUILDINGS,R_STUDENTS,R_VIEW_PERSON_BASIC,R_X_CSS_SQL,ODS_ACAD_CRED_MAJORS,ODS_ACAD_CREDENTIALS,&#xA;ODS_COURSE_SEC_FACULTY,ODS_COURSE_SECTIONS,ODS_COURSES,ODS_HRPER,ODS_PERSON,ODS_PERSON_SOURCES,ODS_ROOM_ASSIGNMENTS,ODS_ROOMS,&#xA;ODS_STUDENT_ADVISEMENT,R_ACAD_PRGM_MAJORS_L,R_ACAD_REQMTS,R_ADDRESS,R_BLDG_ADDRESS_L,R_CAMPUS_ORG_MEMBERS,R_CAMPUS_ORGS,R_CMPM_AFFILIATION,R_CMPM_ROLES,R_CRS_SEC_MEETING_L,R_DATAMART_PERSON_PHONES,R_HRP_ALL_POSITION_L,R_INSTITUTIONS,R_LEAVPLAN,R_PER_PEOPLE_EMAIL,R_PER_PHONE,R_PER_PSEASON,R_PERLEAVE,R_PERLVACC,R_PERPOS_VIEW,R_PERSON,R_RESTRICTIONS,R_SEC_CONTACT,R_STPR_MINOR_LIST,R_STTN_TERM_NOTES,R_STU_MISC2_L,R_STU_MISC3_L,&#xA;R_STU_MISC8_L,R_STUDENT_RESTRICTIONS,R_VALCODES,SEC_CURRENT_STATUS,SPT_PERPOS,SPT_PERSON,SPT_PERSTAT,SPT_POSITION,&#x9;SPT_STU_PROG_ADDNL_MAJORS,SPT_STUDENT_ACAD_CRED,SPT_STUDENT_ACAD_LEVELS,SPT_STUDENT_COURSE_SEC&#xA;FROM         dbo.ODS_DATES_DATA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\insert into hermes it ops data_intergrity_check"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DC238A23-B17A-4462-822C-7B9275A64B12}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="insert into hermes it ops data_intergrity_check"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B0A15B10-DC4D-4CAC-BF4C-6A43A6ECFCEC}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.data_integrity_check_a&#xA;(SOURCE_TABLE, TARGET_TABLE, ROW_COUNT, IS_EMPTY_VALID_FLAG)&#xA;SELECT SOURCE_TABLE, TARGET_TABLE, ROW_COUNT, IS_EMPTY_VALID_FLAG&#xA;FROM dbo.view_data_integrity_check_a;&#xA;&#xA;INSERT INTO HERMES.STAGING.dbo.data_integrity_check_b&#xA;(SOURCE_TABLE, TARGET_TABLE, TARGET_ROW_COUNT, ASKROONEY_TABLE, ASKROONEY_ROW_COUNT)&#xA;SELECT SOURCE_TABLE, TARGET_TABLE, TARGET_ROW_COUNT, ASKROONEY_TABLE, ASKROONEY_ROW_COUNT FROM dbo.view_data_integrity_check_b;&#xA;&#xA;INSERT INTO HERMES.STAGING.dbo.data_integrity_check_c&#xA;(project, starttime, endtime, package, post_package_execution_status, runtime, rundate, as_of_date)&#xA;SELECT project, starttime, endtime, package, post_package_execution_status, runtime, rundate, as_of_date FROM dbo.view_data_integrity_check_c;&#xA;&#xA;INSERT INTO HERMES.STAGING.dbo.data_integrity_check_d&#xA;(SOURCE_TABLE, TARGET_TABLE, PK_FOR_COUNT, PK_ROW_COUNT)&#xA;SELECT SOURCE_TABLE, TARGET_TABLE, PK_FOR_COUNT, PK_ROW_COUNT FROM dbo.view_data_integrity_check_d;&#xA;&#xA;INSERT INTO HERMES.STAGING.dbo.data_integrity_check_e&#xA;(package, MAX_TIME, MIN_TIME, PERFORMANCE_RANGE_MINUTES, PERFORMANCE_RANGE_SECONDS) &#xA;SELECT package, MAX_TIME, MIN_TIME, PERFORMANCE_RANGE_MINUTES, PERFORMANCE_RANGE_SECONDS FROM dbo.view_data_integrity_check_e;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1103,6 +1130,23 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\truncate tables data_intergrity_check"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{027DD673-6AF0-4EF6-BAE5-8167E3CF4769}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate tables data_intergrity_check"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B0A15B10-DC4D-4CAC-BF4C-6A43A6ECFCEC}"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.dbo.data_integrity_check_a;&#xA;DELETE FROM HERMES.STAGING.dbo.data_integrity_check_b;&#xA;DELETE FROM HERMES.STAGING.dbo.data_integrity_check_c;&#xA;DELETE FROM HERMES.STAGING.dbo.data_integrity_check_d;&#xA;DELETE FROM HERMES.STAGING.dbo.data_integrity_check_e;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\VIEW PERSON BASIC INSERT"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -1563,6 +1607,14 @@
       DTS:ObjectName="Constraint 58"
       DTS:To="Package\R_X_CSS_SQL Insert" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 59]"
+      DTS:CreationName=""
+      DTS:DTSID="{C230AB23-8E43-49A7-8A93-710FCC26A39D}"
+      DTS:From="Package\INSERT HERMES STAGING ODS_DATES_DATA TABLE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 59"
+      DTS:To="Package\truncate tables data_intergrity_check" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
       DTS:CreationName=""
       DTS:DTSID="{7DBBA8F5-DAD6-4BDC-BB60-FA8686BA4241}"
@@ -1570,6 +1622,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
       DTS:To="Package\truncate ODS STAGING TABLE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 60]"
+      DTS:CreationName=""
+      DTS:DTSID="{9261FE5E-BB76-426D-B7E8-86131752C8D1}"
+      DTS:From="Package\truncate tables data_intergrity_check"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 60"
+      DTS:To="Package\insert into hermes it ops data_intergrity_check" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
       DTS:CreationName=""
@@ -3509,9 +3569,73 @@
           Text="THIS IS AN SSIS THAT PULLS IN THE MAX DATE ON TABLES THAT HAVE THE CURRENT &#xA;UPDATED TIMESTAMP. IT WILL BE USED IN THE NEW EXPORT MONITOR PROGRAM TO &#xA;KEEP TRACK OF TABLES AND WHEN THEY WERE LAST UPDATED. JSG 03/2018&#xA;&#xA;ODS_REPORTING.ODS_DATES_DATA&#xA;"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="468,106"
+          Size="468,152"
           Id="31a8fbdf-f611-43e3-b9dd-43b19a3bc2ba"
-          TopLeft="879,81" />
+          TopLeft="836,46" />
+        <NodeLayout
+          Size="254,42"
+          Id="Package\truncate tables data_intergrity_check"
+          TopLeft="1640,1118" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 59]"
+          TopLeft="1746.5,1068">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.5,50"
+              Start="0,0"
+              End="20.5,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="16.5,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.5,25"
+                    Point2="20.5,25"
+                    Point3="20.5,29" />
+                  <mssgle:LineSegment
+                    End="20.5,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="298,42"
+          Id="Package\insert into hermes it ops data_intergrity_check"
+          TopLeft="1613,1195" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 60]"
+          TopLeft="1764.5,1160">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
