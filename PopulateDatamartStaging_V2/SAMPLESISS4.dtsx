@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SAMPLESISS4"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{F79598B1-A481-4E18-9E03-ED335F8E90FC}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{8597A60B-0ABF-4E1B-8BD4-D0B16C7C3C10}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:Variables />
@@ -30,9 +30,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <AnnotationLayout
-          Text="Sample SSIS Package for GITHUB TESTING"
+          Text="Sample SSIS Package for  GITHUB TESTING"
           ParentId="Package"
-          Size="241,37"
+          Size="244,37"
           Id="61848934-c227-449d-b566-09aa32ff827b"
           TopLeft="359,160">
           <AnnotationLayout.FontInfo>
