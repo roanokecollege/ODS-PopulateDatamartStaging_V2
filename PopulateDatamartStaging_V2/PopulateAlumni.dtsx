@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="0"
   DTS:ObjectName="PopulateAlumni"
   DTS:PackageType="5"
-  DTS:VersionBuild="104"
-  DTS:VersionGUID="{CD194509-74C5-4A3E-A54E-5C04697562E5}">
+  DTS:VersionBuild="105"
+  DTS:VersionGUID="{6914EF62-ACDE-4AF5-AD86-9C3E73C6D7A4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -512,7 +512,7 @@ FROM            view_alumni_person_details</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{09B126F9-38C3-419D-8EBE-15AE19400C6D}"
-          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.[alumni].[person]&#xA;&#x9;( rcid, first_name, last_name, middle_name, maiden_name, nick_name, full_name, email_address, deceased, cell_phone, mailing_address_1, mailing_address_2, city, state, zip, country, class_year)&#xA;&#xA;SELECT    rcid, first_name, last_name, middle_name, maiden_name, nickname, full_name, email_address, deceased, cell_phone, mailing_address_1, mailing_address_2, city, state, zip, country, class_year&#xA;FROM         dbo.view_alumni_person_details;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.alumni.person&#xA;                         (rcid, first_name, last_name, middle_name, maiden_name, nick_name, full_name, email_address, deceased, mailing_address_1, mailing_address_2, city, state, zip, country, class_year)&#xA;SELECT        rcid, FIRST_NAME, LAST_NAME, MIDDLE_NAME, maiden_name, NICKNAME, full_name, email_address, deceased, mailing_address_1, mailing_address_2, CITY, STATE, ZIP, COUNTRY, class_year&#xA;FROM            view_alumni_person_details" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
