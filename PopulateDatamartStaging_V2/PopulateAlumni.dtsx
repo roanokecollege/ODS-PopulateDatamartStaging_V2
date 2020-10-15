@@ -7,13 +7,13 @@
   DTS:CreatorName="ACADEMIC\it_gabrielson"
   DTS:DTSID="{F3500EE5-0EBD-4D43-A486-B666AD15454F}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.7462.6"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="PopulateAlumni"
   DTS:PackageType="5"
-  DTS:VersionBuild="101"
-  DTS:VersionGUID="{FA7785CB-25FC-44E0-A43B-6978D6120D27}">
+  DTS:VersionBuild="102"
+  DTS:VersionGUID="{0644F99A-DD76-4C94-8C8C-EBE41A761632}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -105,7 +105,7 @@
           <components>
             <component
               refId="Package\inset record into log table\processed_table_information"
-              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              componentClassID="DTS.ManagedComponentWrapper.3"
               contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
               description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="processed_table_information"
@@ -117,7 +117,7 @@
                   description="The Destination database table name."
                   expressionType="Notify"
                   name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."processed_table_information"</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."processed_table_information"</property>
                 <property
                   dataType="System.Int32"
                   description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
@@ -218,7 +218,7 @@
             </component>
             <component
               refId="Package\inset record into log table\view_Person_RC_ALL_W_Building"
-              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              componentClassID="DTS.ManagedComponentWrapper.3"
               contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
               name="view_Person_RC_ALL_W_Building"
@@ -496,7 +496,7 @@ FROM            view_alumni_person_details</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{09B126F9-38C3-419D-8EBE-15AE19400C6D}"
-          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.[alumni].[person]&#xA;&#x9;( rcid, first_name, last_name, middle_name, maiden_name, nick_name, full_name, email_address, deceased, cell_phone, mailing_address_1, mailing_address_2, city, state, zip, country, class_year)&#xA;&#xA;SELECT    rcid, first_name, last_name, middle_name, maiden_name, nickname, full_name, email_address, deceased, cell_phone, mailing_address_1, mailing_address_2, city, state, zip, country, class_year&#xA;FROM         dbo.view_alumni_person_details;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.[alumni].[person]&#xA;&#x9;( rcid, first_name, last_name, middle_name, maiden_name, nick_name, full_name, email_address, deceased, mailing_address_1, mailing_address_2, city, state, zip, country, class_year)&#xA;&#xA;SELECT    rcid, first_name, last_name, middle_name, maiden_name, nickname, full_name, email_address, deceased, mailing_address_1, mailing_address_2, city, state, zip, country, class_year&#xA;FROM         dbo.view_alumni_person_details;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1166,6 +1166,10 @@ FROM            view_alumni_person_details</property>
           Id="Package\populate schools attended"
           TopLeft="752,536" />
         <NodeLayout
+          Size="162,42"
+          Id="Package\populate vocation"
+          TopLeft="738,197" />
+        <NodeLayout
           Size="152,42"
           Id="Package\Pre-Check Data"
           TopLeft="228,29" />
@@ -1225,6 +1229,10 @@ FROM            view_alumni_person_details</property>
           Size="183,42"
           Id="Package\Truncate Live relation"
           TopLeft="215,508" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\truncate vocations"
+          TopLeft="486,210" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="415,222">
@@ -1319,6 +1327,28 @@ FROM            view_alumni_person_details</property>
                     Point3="-18.5,-46.3333333333333" />
                   <mssgle:LineSegment
                     End="-0.5,-46.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="574.25,282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-30"
+              Start="0,0"
+              End="0,-22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-22.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1830,6 +1860,74 @@ FROM            view_alumni_person_details</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 26]"
+          TopLeft="668,231">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70,-13"
+              Start="0,0"
+              End="62.5,-13">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31,0"
+                    Point2="35,0"
+                    Point3="35,-4" />
+                  <mssgle:LineSegment
+                    End="35,-9" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35,-9"
+                    Point2="35,-13"
+                    Point3="39,-13" />
+                  <mssgle:LineSegment
+                    End="62.5,-13" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="819,239">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23.5,29"
+              Start="0,0"
+              End="23.5,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="19.5,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.5,14.5"
+                    Point2="23.5,14.5"
+                    Point3="23.5,18.5" />
+                  <mssgle:LineSegment
+                    End="23.5,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="407,387">
           <EdgeLayout.Curve>
@@ -2050,104 +2148,6 @@ FROM            view_alumni_person_details</property>
           Size="149,56"
           Id="5fc71872-eeb3-4138-9e5c-4df22b2910c0"
           TopLeft="378,144" />
-        <NodeLayout
-          Size="182,42"
-          Id="Package\truncate vocations"
-          TopLeft="486,210" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="574.25,282">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,-30"
-              Start="0,0"
-              End="0,-22.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-22.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="162,42"
-          Id="Package\populate vocation"
-          TopLeft="738,197" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 26]"
-          TopLeft="668,231">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="70,-13"
-              Start="0,0"
-              End="62.5,-13">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="31,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="31,0"
-                    Point2="35,0"
-                    Point3="35,-4" />
-                  <mssgle:LineSegment
-                    End="35,-9" />
-                  <mssgle:CubicBezierSegment
-                    Point1="35,-9"
-                    Point2="35,-13"
-                    Point3="39,-13" />
-                  <mssgle:LineSegment
-                    End="62.5,-13" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 27]"
-          TopLeft="819,239">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="23.5,29"
-              Start="0,0"
-              End="23.5,21.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.5"
-                    Point2="0,14.5"
-                    Point3="4,14.5" />
-                  <mssgle:LineSegment
-                    End="19.5,14.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="19.5,14.5"
-                    Point2="23.5,14.5"
-                    Point3="23.5,18.5" />
-                  <mssgle:LineSegment
-                    End="23.5,21.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
