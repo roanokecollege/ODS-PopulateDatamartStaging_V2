@@ -7,15 +7,25 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{1306853B-DF2B-4A72-B12D-ACBBCBDA4519}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateCourses_Meeting"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{466ACF2D-BF71-4229-BC8C-B50525E1C8C3}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{53D71812-56F6-47A4-8348-4D0D63BD59ED}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8B713265-C336-4FBB-A1A0-23CEE26554A8}"
+      DTS:ObjectName="HERMES.staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
       DTS:CreationName="OLEDB"
@@ -40,6 +50,22 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Clear course_meeting_times_by_days"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete everything from course_meeting_times_by_days, so we can easily overwrite"
+      DTS:DTSID="{3B496311-5DE2-4090-9E6D-763513312BED}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear course_meeting_times_by_days"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8B713265-C336-4FBB-A1A0-23CEE26554A8}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.course_meeting_times_by_days;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\CLEAR DM_COURSES_MEETING"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -57,6 +83,22 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Populate course_meeting_times_by_days"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Insert data into course_meeting_times_by_days"
+      DTS:DTSID="{07E18696-61F7-4D0C-B1C1-C06B55C872F8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate course_meeting_times_by_days"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{64E3C777-6DF1-45B4-91BB-1119AB427BDC}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.Staging.dbo.course_meeting_times_by_days&#xA;SELECT * FROM view_course_meeting_times_by_days&#xA;WHERE start_time IS NOT NULL AND end_time IS NOT NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Populate DM_COURSES_MEETINGS"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -65,12 +107,31 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_COURSES_MEETINGS"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{64E3C777-6DF1-45B4-91BB-1119AB427BDC}"
           SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_COURSES_MEETING&#xA;&#xA;SELECT CSM_COURSE_SECTION as CourseKey, &#xA;&#x9;(rtrim(CSM_BLDG) + ' ' + rtrim(CSM_ROOM)) as Classroom,&#x9;&#xA;&#x9;(SELECT dbo.FN_DATAMART_CLASS_TIME(CSM_COURSE_SECTION)) as ClassTime,&#xA;&#xA;&#x9;(SELECT dbo.FN_DATAMART_BLOCK_SCHEDULE(CSM_COURSE_SECTION)) as BLOCK,&#xA;&#xA;&#x9;CURRENT_TIMESTAMP as ImportDate&#xA;&#xA; FROM ODS_COURSE_SECTION_MTG INNER JOIN R_CRS_SEC_MEETING_L&#xA;&#x9;&#x9;ON ODS_COURSE_SECTION_MTG.COURSE_SEC_MEETING_ID = R_CRS_SEC_MEETING_L.SEC_MEETING&#xA;&#x9;&#x9;INNER JOIN ODS_STAGING.dbo.coursesCore ON CSM_COURSE_SECTION = ODS_STAGING.dbo.coursesCore.CourseKey&#xA;&#x9;WHERE R_CRS_SEC_MEETING_L.POS = 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{282E7027-D423-4729-898C-2FDA94ED9977}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{043DF31C-40AD-44B0-B51D-62F7C128877D}"
+          SendMailTask:From="datamart@roanoke.edu"
+          SendMailTask:To="chssmith@roanoke.edu;gabrielson@roanoke.edu;santoros@roanoke.edu"
+          SendMailTask:Subject="Course Meeting Time Import Failed!"
+          SendMailTask:MessageSource="The task: CourseMeetingTimes in package PopulateCourses_Meeting on ODS has failed and this package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -83,7 +144,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Clear Datamart staging table DM_COURSES_MEETING has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -105,7 +166,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate Datamart staging table DM_COURSES_MEETING has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -145,6 +206,32 @@
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Task Populate Datamart staging table DM_COURSES_MEETING has failed"
       DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{30B6831C-F8E1-47F1-9209-38A96CA352FA}"
+      DTS:From="Package\Clear course_meeting_times_by_days"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Populate course_meeting_times_by_days" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{F739F084-08B3-4D8D-ADAE-3AAF2102B2E1}"
+      DTS:From="Package\Clear course_meeting_times_by_days"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Send Mail Task"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{B5645FCF-387F-4272-95E7-FF09836F23FA}"
+      DTS:From="Package\Populate course_meeting_times_by_days"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Send Mail Task"
+      DTS:Value="1" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -157,7 +244,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="232,42"
           Id="Package\CLEAR DM_COURSES_MEETING"
@@ -280,6 +367,127 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="257,42"
+          Id="Package\Clear course_meeting_times_by_days"
+          TopLeft="1146,109" />
+        <NodeLayout
+          Size="273,42"
+          Id="Package\Populate course_meeting_times_by_days"
+          TopLeft="1141,269" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="1276,151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,118"
+              Start="0,0"
+              End="0,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Send Mail Task"
+          TopLeft="1638,156" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="1403,130">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="235,47"
+              Start="0,0"
+              End="227.5,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113.5,0"
+                    Point2="117.5,0"
+                    Point3="117.5,4" />
+                  <mssgle:LineSegment
+                    End="117.5,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117.5,43"
+                    Point2="117.5,47"
+                    Point3="121.5,47" />
+                  <mssgle:LineSegment
+                    End="227.5,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="102.25865234375,-15.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="1321.66666666667,269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="391.333333333333,-71"
+              Start="0,0"
+              End="391.333333333333,-63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-24.6482155863073" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-24.6482155863073"
+                    Point2="0,-28.6482155863073"
+                    Point3="4,-28.6482155863073" />
+                  <mssgle:LineSegment
+                    End="387.333333333333,-28.6482155863073" />
+                  <mssgle:CubicBezierSegment
+                    Point1="387.333333333333,-28.6482155863073"
+                    Point2="391.333333333333,-28.6482155863073"
+                    Point3="391.333333333333,-32.6482155863073" />
+                  <mssgle:LineSegment
+                    End="391.333333333333,-63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="180.425319010417,-23.6482155863073,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="This is the CourseMeetingTimes task&#xD;&#xA;--Scotty"
+          ParentId="Package"
+          Size="206,60"
+          Id="6c7304d0-796e-44b0-a9d2-c83f77b73d4b"
+          TopLeft="1297,163">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FFF1F1F1">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
