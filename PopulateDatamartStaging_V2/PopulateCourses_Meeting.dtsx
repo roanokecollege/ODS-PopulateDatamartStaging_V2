@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateCourses_Meeting"
   DTS:PackageType="5"
-  DTS:VersionBuild="24"
-  DTS:VersionGUID="{53D71812-56F6-47A4-8348-4D0D63BD59ED}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{EB921C35-B4DA-475D-8D18-9617FEE02344}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,12 @@
       DTS:ObjectName="HERMES.staging">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=HERMES;User ID=integration_user;Initial Catalog=Staging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAH2cHOOrgB0eEQpI3VpLmuwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB9UQDicmbuhvbdc6z/mHmCAAAAAASAAACgAAAAEAAAAA+h4URUVagpEhvJ90yfxT1YAAAAZRVimQN1Gyq8Cyhz7Jdy/3QVOCw3jsW8CoIAgJOa8ejDMBpRwiz2paoIiYdhzaqwkgF6dXOVAUfm9u7+qNRXvUCE+CEt0gJoCJur26Em44sBMNRhsycr5BQAAAAjhuslONyZ33e8CvGXdoNgLgF2tw</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -57,7 +62,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear course_meeting_times_by_days"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -74,7 +79,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="CLEAR DM_COURSES_MEETING"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -90,7 +95,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate course_meeting_times_by_days"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -107,7 +112,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_COURSES_MEETINGS"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -123,7 +128,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Send Mail Task"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -144,7 +149,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Clear Datamart staging table DM_COURSES_MEETING has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -166,7 +171,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate Datamart staging table DM_COURSES_MEETING has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -244,15 +249,27 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="257,42"
+          Id="Package\Clear course_meeting_times_by_days"
+          TopLeft="1146,109" />
         <NodeLayout
           Size="232,42"
           Id="Package\CLEAR DM_COURSES_MEETING"
           TopLeft="57,50" />
         <NodeLayout
+          Size="273,42"
+          Id="Package\Populate course_meeting_times_by_days"
+          TopLeft="1141,269" />
+        <NodeLayout
           Size="248,42"
           Id="Package\Populate DM_COURSES_MEETINGS"
           TopLeft="144,196" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Send Mail Task"
+          TopLeft="1638,156" />
         <NodeLayout
           Size="410,42"
           Id="Package\Task Clear Datamart staging table DM_COURSES_MEETING has failed"
@@ -266,7 +283,7 @@
           TopLeft="173,92">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="95,104"
               Start="0,0"
               End="95,96.5">
@@ -300,7 +317,7 @@
           TopLeft="289,71">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="86,53"
               Start="0,0"
               End="78.5,53">
@@ -336,7 +353,7 @@
           TopLeft="268,238">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="340.5,63"
               Start="0,0"
               End="340.5,55.5">
@@ -367,20 +384,12 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="257,42"
-          Id="Package\Clear course_meeting_times_by_days"
-          TopLeft="1146,109" />
-        <NodeLayout
-          Size="273,42"
-          Id="Package\Populate course_meeting_times_by_days"
-          TopLeft="1141,269" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="1276,151">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,118"
               Start="0,0"
               End="0,110.5">
@@ -397,16 +406,12 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Send Mail Task"
-          TopLeft="1638,156" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="1403,130">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="235,47"
               Start="0,0"
               End="227.5,47">
@@ -442,7 +447,7 @@
           TopLeft="1321.66666666667,269">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="391.333333333333,-71"
               Start="0,0"
               End="391.333333333333,-63.5">
@@ -474,9 +479,9 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="This is the CourseMeetingTimes task&#xD;&#xA;--Scotty"
+          Text="This is the CourseMeetingTimes task&#xA;--Scotty"
           ParentId="Package"
-          Size="206,60"
+          Size="206,51"
           Id="6c7304d0-796e-44b0-a9d2-c83f77b73d4b"
           TopLeft="1297,163">
           <AnnotationLayout.FontInfo>
