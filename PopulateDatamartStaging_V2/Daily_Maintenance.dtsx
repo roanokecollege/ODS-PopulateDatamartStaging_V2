@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\Webserv"
   DTS:DTSID="{493B9146-BF11-43E9-B6AA-46BE41569D95}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:ObjectName="Daily_Maintenance"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{7D179E43-35B8-41E3-9469-CB23C841B727}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{293072E2-39CA-4299-B20F-AFA384BCBD3F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -334,6 +334,7 @@
       DTS:refId="Package\Shrink ODS Xena Log"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{3BB9369C-8CFC-46E7-9F67-AD976D817913}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -526,6 +527,14 @@
           Id="Package\Shrink Database Task"
           TopLeft="200,214" />
         <NodeLayout
+          Size="204,42"
+          Id="Package\Shrink ODS Reporting Log"
+          TopLeft="392,8" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Shrink ODS Xena Log"
+          TopLeft="204,59" />
+        <NodeLayout
           Size="463,42"
           Id="Package\Update Statistics Task"
           TopLeft="194,368" />
@@ -577,6 +586,40 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="295,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,34"
+              Start="0,0"
+              End="12.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="8.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,17"
+                    Point2="12.5,17"
+                    Point3="12.5,21" />
+                  <mssgle:LineSegment
+                    End="12.5,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -805,14 +848,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Shrink ODS Reporting Log"
-          TopLeft="392,8" />
-        <NodeLayout
-          Size="182,42"
-          Id="Package\Shrink ODS Xena Log"
-          TopLeft="204,59" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
           TopLeft="392,29">
@@ -833,40 +868,6 @@
                     Point3="-97,4" />
                   <mssgle:LineSegment
                     End="-97,22.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="295,101">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="12.5,34"
-              Start="0,0"
-              End="12.5,26.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13"
-                    Point2="0,17"
-                    Point3="4,17" />
-                  <mssgle:LineSegment
-                    End="8.5,17" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8.5,17"
-                    Point2="12.5,17"
-                    Point3="12.5,21" />
-                  <mssgle:LineSegment
-                    End="12.5,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

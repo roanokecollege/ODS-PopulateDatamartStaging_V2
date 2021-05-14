@@ -1,0 +1,2930 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/17/2014 2:52:48 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{76AE2E17-25EF-4B8D-9430-1875645D6226}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateEmployees"
+  DTS:PackageType="5"
+  DTS:VersionBuild="204"
+  DTS:VersionGUID="{A397A40A-B78C-4D15-B4E7-A2C419AD2208}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.DataMart]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7D1A89B4-2E4B-4232-BE8E-7889DD9EBC1A}"
+      DTS:ObjectName="HERMES.DataMart">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.DataMart1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{1300A1DA-9B6B-4E64-8BA9-FDCA3709B7EA}"
+      DTS:ObjectName="HERMES.DataMart1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateEmployees-{1300A1DA-9B6B-4E64-8BA9-FDCA3709B7EA}HERMES.DataMart1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{92D67BEA-13F1-4C18-8F8E-7E268CD4D12E}"
+      DTS:ObjectName="HERMES.Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-PopulateEmployees-{92D67BEA-13F1-4C18-8F8E-7E268CD4D12E}HERMES.Staging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+      DTS:ObjectName="ods.ODS_Reporting">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=ODS_Reporting;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-PopulateEmployees-{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}ods.ODS_Reporting;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+      DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{0E6D849F-6779-4EDC-AF3D-69FC84B9624C}"
+      DTS:ObjectName="ODS.ODS_Reporting1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=receive.roanoke.edu;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{642D4B03-B371-44D3-B287-DB8B86D8947A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLFetchCount">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT        COUNT(RCID) AS ProcessedCount
+FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81290248-1199-42A0-9C13-F838DD850CF5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ViewCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Add Contract Staff"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{eee9e11d-df66-4e31-ad80-fc9205ca310c}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Contract Staff"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT RCID FROM dbo.R_DATAMART_CONTRACT_STAFF_LIST_VIEW) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA; UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','Y','N');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Contract Staff Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{8f86308f-b6ab-4b20-a92e-7d0c78e7b021}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Contract Staff Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Add Contract Staff Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Add Contract Staff Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Faculty"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CCF2B87F-76B2-4E36-AA7D-A9F90E8985C1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Faculty"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="MERGE INTO ODS_STAGING.dbo.facStaff as TARGET&#xA;USING (SELECT RCID FROM dbo.R_DataMart_Faculty_List_View) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Faculty = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'Y','N','N');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Faculty Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{eac8bd1e-17d8-4701-ba1c-c6a023f1dafb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Faculty Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Add Faculty Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Add Faculty Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Retirees"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B972B036-2EAF-4FBC-BC6C-7D334685826B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Retirees"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT RCID FROM dbo.R_DataMart_Retirees_List_View) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Retiree = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','N','Y');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Retirees Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{4c5e992b-4188-4631-bd31-bd0263d1ad76}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Retirees Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Add Retirees Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Add retirees Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Staff"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BB26102E-30A3-4C9F-8309-5534FBAF9AAD}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Staff"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT RCID FROM dbo.R_DataMart_Staff_List_View) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','Y','N');&#xA;&#xA;&#xA;MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT  '0839804' as RCID) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','Y','N');&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Staff Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{7ff17750-208c-42dc-801e-c7a67d2c1985}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Staff Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Add Staff Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Add Staff Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add VStaff &amp; JStaff &amp; Helpdesk"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{08714D21-996C-4136-BDEA-2F11A43D2F53}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add VStaff &amp; JStaff &amp; Helpdesk"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT '0053299' as RCID) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','Y','N');&#x9;&#xA;&#xA;&#xA;-- ADD JSTAFF&#xA;MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT '0277817 'as RCID) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','Y','N');&#x9;&#xA;&#xA;-- Add Helpdesk account&#xA;MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT '0224006' as RCID) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','N','N');&#x9;&#xA;&#xA;&#xA;--Add HelpdeskCoord&#xA;MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT '0921519' as RCID) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','N','N');&#x9;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;--Add JrAdmin&#xA;MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT '0851069' as RCID) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','N','N');&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add VStaff &amp; JStaff Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{59703140-ef56-4538-8263-8c30d5ae5aab}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add VStaff &amp; JStaff Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Add VStaff &amp; JStaff &amp; Helpdesk Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Add VStaff &amp; JStaff &amp; Helpdesk Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up Contract Departments"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72d0b7f5-c3d9-4c88-9e94-f57272c523cf}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up Contract Departments"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="--hard code clean up for Jenny Bradley - dept is not coded same as all others &#xA;UPDATE HERMES.STAGING.dbo.dm_Employees&#xA;set Department = 'Academic Grants'&#xA;WHERE rcid = '0000048';&#xA;&#xA;--hard code clean up for  - dept is not coded same as all others &#xA;UPDATE HERMES.STAGING.dbo.dm_Employees&#xA;set Department = 'Stu Hlth &amp; Counseling Svcs'&#xA;WHERE rcid = '0890605';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up Contract Staff"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{7C68FB7F-F7B8-4B9E-B3F6-9883F678A435}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up Contract Staff"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="&#xA;declare @rcid varchar(10)&#xA;declare @department varchar(50)&#xA;declare @title varchar(512)&#xA;&#xA;declare staffCursor cursor for&#xA;&#xA;select rcid, department, title from R_DATAMART_CONTRACT_STAFF_LIST_VIEW&#xA;&#xA;&#xA;open staffcursor&#xA;fetch next from staffcursor into @rcid, @department, @title&#xA;&#xA;while @@FETCH_STATUS = 0&#xA;begin&#xA;&#xA;&#x9;update hermes.staging.dbo.dm_employees&#xA;&#x9;set department = @department, title = @title&#xA;&#x9;Where rcid = @rcid&#xA;&#xA;&#x9;fetch next from staffcursor into @rcid, @department, @title&#xA;end&#xA;close staffcursor&#xA;deallocate staffcursor&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up Contract Staff 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a748ec75-fb22-4a40-b19f-9f941b07fa24}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up Contract Staff 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="&#xA;declare @rcid varchar(10)&#xA;declare @department varchar(50)&#xA;declare @title varchar(512)&#xA;&#xA;declare staffCursor cursor for&#xA;&#xA;select rcid, department, title from R_DATAMART_CONTRACT_STAFF_LIST_VIEW&#xA;&#xA;&#xA;open staffcursor&#xA;fetch next from staffcursor into @rcid, @department, @title&#xA;&#xA;while @@FETCH_STATUS = 0&#xA;begin&#xA;&#xA; update hermes.staging.dbo.dm_employees&#xA; set department = @department, title = @title&#xA; Where rcid = @rcid&#xA;&#xA; fetch next from staffcursor into @rcid, @department, @title&#xA;end&#xA;close staffcursor&#xA;deallocate staffcursor&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up David Gring Record"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7AB9D8FB-7A73-4F0C-BB1A-E5581485B75A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up David Gring Record"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="--hard code exception for David Gring&#xA;&#x9;UPDATE HERMES.Staging.dbo.dm_Employees&#xA;&#x9;set status = NULL, Staff = 'N'&#xA;&#x9;WHERE RCID = '0000134'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean UP David Gring Record Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{cec94731-145a-41e8-b79b-259aaedaecb6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean UP David Gring Record Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Clean UP David Gring Record Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clean UP David Gring Record Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\clean up departments"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Make sure all faculty &amp; Staff have a deparment"
+      DTS:DTSID="{A24B37F9-361E-4A2E-821D-607F27173F97}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="clean up departments"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DECLARE @rcid varchar(10)&#xA;DECLARE @department varchar(100)&#xA;&#xA;DECLARE deptCursor cursor for&#xA;(select rcid, DEPTS_DESC&#xA;from hermes.staging.dbo.dm_employees as e inner join ods_reporting.dbo.r_hrper as h&#xA;on e.rcid = h.hrper_id inner join ods_reporting.dbo.ods_depts on HRP_PRI_DEPT = depts_id&#xA;where department is null and (staff = 'y' or faculty = 'y'))&#xA;&#xA;open deptCursor&#xA;fetch next from deptCursor into @rcid, @department&#xA;while @@Fetch_STatus = 0&#xA;begin&#xA;&#x9;update hermes.staging.dbo.dm_employees&#xA;&#x9;set department = @department&#xA;&#x9;where rcid = @rcid&#xA;&#xA;&#x9;fetch next from deptCursor into @rcid, @department&#xA;&#xA;end&#xA;close deptCursor&#xA;deallocate deptCursor" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\clean up departments 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Make sure all faculty &amp; Staff have a deparment"
+      DTS:DTSID="{768f54ee-f15c-4263-a29a-2f9c001a2a5f}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="clean up departments 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="DECLARE @rcid varchar(10)&#xA;DECLARE @department varchar(100)&#xA;&#xA;DECLARE deptCursor cursor for&#xA;(select rcid, DEPTS_DESC&#xA;from hermes.staging.dbo.dm_employees as e inner join ods_reporting.dbo.r_hrper as h&#xA;on e.rcid = h.hrper_id inner join ods_reporting.dbo.ods_depts on HRP_PRI_DEPT = depts_id&#xA;where department is null and (staff = 'y' or faculty = 'y'))&#xA;&#xA;open deptCursor&#xA;fetch next from deptCursor into @rcid, @department&#xA;while @@Fetch_STatus = 0&#xA;begin&#xA; update hermes.staging.dbo.dm_employees&#xA; set department = @department&#xA; where rcid = @rcid&#xA;&#xA; fetch next from deptCursor into @rcid, @department&#xA;&#xA;end&#xA;close deptCursor&#xA;deallocate deptCursor" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean UP Jonathan Lee Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{5181c126-2d39-4436-8053-e31e277bb85a}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean UP Jonathan Lee Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Clean UP Jonathan Lee Record Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clean UP Jonathan Lee Record Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up Jonathan Lee Record"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{4e2694cf-40cd-440f-ae5d-708760ec1091}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up Jonathan Lee Record"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="--hard code clean up for Jonathan Lee - dept is not coded same as all others &#xA;UPDATE HERMES.STAGING.dbo.dm_Employees&#xA;set Department = 'Alumni Engagement &amp; Student Enrichment'&#xA;WHERE rcid = '0045251'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up Ramona Moore Record"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{61D36B93-8826-4A8A-9000-D0E7A5C1FCBB}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up Ramona Moore Record"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="--hard code clean up for Ramona Moore - sec position is not coded same as all others &#xA;UPDATE HERMES.STAGING.dbo.dm_Employees&#xA;set Sec1Dept = 'Sociology'&#xA;WHERE rcid = '0227992'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean UP Ramona Moore Record Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{de9226cb-d11e-4997-a626-688f1ce9092c}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean UP Ramona Moore Record Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Clean UP Ramona Moore Record Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clean UP Ramona Moore Record Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Live Staging Table DM_Employees"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BF9403F7-7090-45C7-9297-9DE957D0EAD0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Live Staging Table DM_Employees"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.dbo.DM_Employees;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear ODS Staging Table facstaff"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1D494C79-9AE2-46A5-BF53-AD60143143B3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear ODS Staging Table facstaff"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ODS_Staging.dbo.facStaff;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear ODS Staging Table FacStaff Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{5ee5792c-a33f-4f75-a876-954c47c3cac4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear ODS Staging Table FacStaff Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Clear ODS Staging Table FacStaff Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clear ODS Staging Table FacStaff Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear Staging Table DM_Employees Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{10ae15ff-df78-4091-a3a8-5ca461dff156}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Staging Table DM_Employees Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Clear Staging Table DM_Employees Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Clear Staging Table DM_Employees Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dan Cohan Clean Up"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0B8AFAF3-9BFF-48A1-AD24-B5D2AAD6966E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dan Cohan Clean Up"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="--hard code clean up for Dan Cohan he has two positions, thus being in the table twice.&#xA;DELETE HERMES.STAGING.dbo.dm_Employees&#xA;WHERE rcid = '0839804' and faculty ='n'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{33d67614-5d9c-4b57-8421-5e965c2a7359}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\ADO NET Destination"
+              componentClassID="DTS.ManagedComponentWrapper.3"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">[dbo].[R_PHONE_GROUP_DATA]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[PERSONID]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PERSONID"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PERSONID]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSONID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Cell]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Cell"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Cell]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Cell]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Work]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="Work"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Work]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Work]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Home]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Home"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Home]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Home]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PERSONID]"
+                      dataType="wstr"
+                      length="10"
+                      name="PERSONID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Cell]"
+                      dataType="wstr"
+                      length="20"
+                      name="Cell" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Work]"
+                      dataType="wstr"
+                      length="8"
+                      name="Work" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Home]"
+                      dataType="wstr"
+                      length="20"
+                      name="Home" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ADO NET Source"
+              componentClassID="DTS.ManagedComponentWrapper.3"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">[dbo].[R_PHONE_GROUP]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSONID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSONID]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[PERSONID]"
+                      name="PERSONID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Cell]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Cell]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Cell]"
+                      name="Cell"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Work]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Work]"
+                      length="8"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Work]"
+                      name="Work"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Home]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Home]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Home]"
+                      name="Home"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PERSONID]"
+                      dataType="wstr"
+                      length="10"
+                      name="PERSONID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Cell]"
+                      dataType="wstr"
+                      length="20"
+                      name="Cell" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Work]"
+                      dataType="wstr"
+                      length="8"
+                      name="Work" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Home]"
+                      dataType="wstr"
+                      length="20"
+                      name="Home" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSONID]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PERSONID]"
+                      name="PERSONID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Cell]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Cell]"
+                      name="Cell" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Work]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Work]"
+                      name="Work" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Home]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Home]"
+                      name="Home" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Truncate R PHONE GROUP DATA"
+      DTS:DTSID="{3123e92a-3475-46c7-8537-10783367fd64}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="DELETE FROM  R_PHONE_GROUP_DATA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\insert data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F578E2AE-227E-4FF8-8B98-302D1175349A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="insert data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.employment_end_date&#xA;SELECT     TOP (100) PERCENT rcid, employment_end_date&#xA;FROM         ODS_Reporting.dbo.view_employment_end_date&#xA;&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Kate Smith Clean Up"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0A98619F-8DEE-4BE8-9CBC-B67AE88EA9B9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kate Smith Clean Up"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="--hard code clean up for Kate Smith dup record 0942623 JSG 01-19&#xA;DELETE HERMES.STAGING.dbo.dm_Employees&#xA;WHERE rcid = '0942623' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate DM_Employees"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A996E4D9-93CA-413E-B398-E04158FB6787}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate DM_Employees"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_Employees&#xA;&#xA;select DISTINCT ODS_Staging.dbo.facStaff.RCID, &#xA;&#x9;&#x9;FIRST_NAME as First,&#xA;&#x9;&#x9;LAST_NAME as Last,&#xA;&#x9;&#x9;Middle_Name as Middle,&#xA;&#x9; &#xA;&#x9;&#x9;COALESCE(COALESCE(PERSON_MAIL_LABEL, R_PERSON.PREFERRED_NAME), dbo.FN_DATAMART_FULL_NAME(ODS_Staging.dbo.facStaff.rcid)) AS FullName, &#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryPosition = 1) &#xA;&#x9;&#x9;as Title,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;order by pos) &#xA;&#x9;&#x9;&#x9; as Title2,&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;and POSITION_TITLE not in (SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;order by pos)&#xA;&#x9;&#x9;&#x9;) &#xA;&#x9;&#x9;&#x9; as Title3,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;(SELECT top 1 DEPARTMENT_DESC FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition = 1)  &#xA;&#x9;&#x9; as Department,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPT_BUILDINGS.BLDG_DESC&#xA;&#x9;&#x9;FROM SPT_BUILDINGS&#xA;&#x9;&#x9;WHERE SPT_BUILDINGS.BUILDINGS_ID = HRP_PRI_CAMPUS_BUILDING)  as Building,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_OFFICE as Room,&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_EXTENSION as Extension,&#xA;&#x9;&#x9;NULL as Extension1,&#xA;&#x9;&#x9;CampusEmail as Email,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select dbo.fn_DATAMART_SPOUSE_NAME (R_PERSON.ID)) as Spouse,&#xA;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;R_PERSON.NICKNAME as Nickname,&#xA;&#xA;X_PER_PREF_NAME AS Preferred_Name, &#xA;&#xA;&#x9;&#x9;PREFIX as Prefix,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPOUSE.Nickname&#xA;&#x9;&#x9;FROM R_PERSON Spouse&#xA;&#x9;&#x9;WHERE Spouse.ID = R_PERSON.SPOUSE) as SpouseNickname,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and PERSTAT_STATUS = 'FTR' --and primaryposition = 1&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;WHEN 0 then 'P'&#xA;&#x9;&#x9;ELSE 'F' &#xA;&#x9;&#x9;END as Status,&#xA;&#x9;&#xA;&#x9;&#x9;Username,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE GENDER WHEN 'M' THEN 'Male' WHEN 'F' THEN 'Female' ELSE NULL END AS Gender, &#xA;&#x9;&#x9;address.ADDRESS_LINE1 as HomeAddress,&#xA;&#x9;&#x9;address.ADDRESS_LINE2 as HomeAddress2,&#xA;&#x9;&#x9;address.CITY as HomeCity,&#xA;&#x9;&#x9;address.STATE as HomeState,&#xA;&#x9;&#x9;address.ZIP as HomeZip,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;address.ADDRESS_PHONES as HomePhone,&#xA;        &#x9;&#xA;&#x9;&#x9;Faculty,&#xA;&#x9;&#x9;Staff,&#xA;&#x9;&#x9;Retiree,&#xA;&#x9;&#x9;case (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and POSITION_TITLE LIKE 'Chair%')&#xA;&#x9;&#x9;&#x9;WHEN 0 THEN 'N'&#xA;&#x9;&#x9;&#x9;ELSE 'Y'&#xA;&#x9;&#x9;END  as DeptChair,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9;&#x9;FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = ODS_Staging.dbo.facStaff.RCID and primaryPosition = 1 and deptSec = 1&#xA;&#x9;&#x9;&#x9;&#x9;and substring(perpos_position_id,1,5) &lt;&gt; '25011' AND substring(perpos_position_id, 1,5) &lt;&gt;'30030') as&#xA;&#x9;&#x9;&#x9;  Sec1Dept,&#xA;&#xA;&#xA;--- secretary for multiple depts currently not stored in the data in a way that it can be derived hardcoded this field is used for directory sorting via department&#xA;&#xA;&#x9;&#x9;&#x9; CASE ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;&#x9; WHEN '0042195' THEN 'Religion/Philosophy'&#xA;&#x9;&#x9;&#x9; WHEN '1251679' THEN 'Business Admin. &amp; Economics'&#xA;&#x9;&#x9;&#x9; WHEN '0957897' THEN 'Health and Human Performance'&#xA;&#x9;&#x9;&#x9; WHEN '0224154' THEN 'Psychology'&#xA;&#x9;&#x9;&#x9; WHEN '0048527' THEN 'Environmental Studies'&#xA;&#x9;&#x9;&#x9; WHEN '1235053' THEN 'Dining Services'&#xA; &#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9; END as Sec2Dept,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select TOP 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9; from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;AND POSITION_CLASS = 'FAC' &#xA;&#x9;&#x9;AND PERPOS_DEPT &lt;&gt; (SELECT top 1 PERPOS_DEPT FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition=1) &#xA;&#x9;&#x9;)  as AdditionalDepartment,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case PRIVACY_FLAG&#xA;&#x9;&#x9;WHEN 'N' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeDirectory,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NA' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9; WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'        &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeAddress,&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NP' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'    &#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhone,&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NS' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeSpouse,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'       &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;&#x9;&#x9;WHEN 'NM' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NX' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhoto,&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;GETDATE() as ImportDate,&#xA;&#xA;(select top 1 PositionClass from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as EmployeeClass, &#xA;&#x9;&#x9;Supervisor as Supervisor, &#xA;(select top 1 BuildingID from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as BuildingID,&#xA;(select top 1 Cell from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as CellPhone,&#xA;(select top 1 Work from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as WorkPhone,&#xA;(select top 1 Home from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as HomePhoneNumber&#xA;&#xA;&#xA;&#x9;&#x9;FROM ODS_Staging.dbo.facStaff INNER JOIN R_PERSON&#xA;&#x9;&#x9;ON ODS_Staging.dbo.facStaff.RCID = R_PERSON.ID LEFT OUTER JOIN dbo.R_DATAMART_CAMPUS_EMAIL_VIEW&#xA;&#x9;&#x9;on ODS_Staging.dbo.facStaff.RCID = dbo.R_DATAMART_CAMPUS_EMAIL_VIEW.ID &#xA;&#x9;&#x9;LEFT OUTER JOIN ODS_HRPER on ODS_Staging.dbo.facStaff.RCID = ODS_HRPER.HRPER_ID  &#xA;&#x9;&#x9;LEFT OUTER JOIN dbo.R_DATAMART_PERSON_ADDRESSES_VIEW address&#xA;&#x9;&#x9;on R_Person.PREFERRED_ADDRESS = address.ADDRESS_ID and r_person.id = address.rcid&#xA;&#x9;&#x9;LEFT OUTER JOIN R_PER_MAIL_LABEL_L ON R_PERSON.ID = R_PER_MAIL_LABEL_L.ID AND R_PER_MAIL_LABEL_L.POS = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate DM_Employees Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{235cdc6b-98b1-48b9-a7ce-c1c42e17d5b8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate DM_Employees Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="8">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Populate DM_Employees Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Populate DM_Employees Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate Supervisor RCID"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3F01D57E-AB46-41E6-9593-F11130B8D2EC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate Supervisor RCID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="MERGE INTO ODS_STAGING.dbo.facStaff as TARGET&#xA;USING ODS_REPORTING.dbo.view_supervisor_names as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Target.Supervisor = Source.Supervisor&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate Username &amp; Email"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{17262119-F563-4F54-8459-2CC512ABE696}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate Username &amp; Email"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING&#x9;(SELECT ID, SUBSTRING(PREFERRED_EMAIL_ADDRESS, 1, CHARINDEX('@',PREFERRED_EMAIL_ADDRESS, 1) - 1), PREFERRED_EMAIL_ADDRESS&#xA;&#x9;&#x9; FROM dbo.R_DATAMART_CAMPUS_EMAIL_VIEW) AS SOURCE(ID,Username, EmailAddress) ON TARGET.RCID = SOURCE.ID&#xA;WHEN MATCHED THEN&#xA;&#x9;UPDATE SET TARGET.Username = SOURCE.username, TARGET.CampusEmail = SOURCE.EmailAddress;&#xA;&#xA;--clean up emails to account for DIR type vs campus email&#xA;MERGE ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT ID, R_PER_PEOPLE_EMAIL.PERSON_EMAIL_ADDRESSES&#xA;&#x9;&#x9;FROM R_PER_PEOPLE_EMAIL INNER JOIN ODS_Staging.dbo.facStaff&#xA;&#x9;&#x9;ON id = rcid&#xA;&#x9;&#x9;WHERE R_PER_PEOPLE_EMAIL.PERSON_EMAIL_TYPES = 'DIR'&#xA;&#x9;&#x9;and PERSON_EMAIL_ADDRESSES &lt;&gt; CampusEmail) AS SOURCE (ID, EmailAddress) on (TARGET.RCID = SOURCE.ID)&#xA;WHEN MATCHED THEN&#xA;&#x9;UPDATE set CampusEmail = SOURCE.EmailAddress;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate Username &amp; Email Failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{4a7e0b8b-e648-47d7-95be-513bdffd9d3f}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate Username &amp; Email Failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{8B206613-C0DF-471E-A99F-2A305D46D524}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS Datamart Task: Populate Username &amp; Email Failed"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="ODS Task: Populate Username &amp; Email Failed in package PopulateEmployees of project PopulateDatamartStaging_V2  has failed.  &#xA;&#xA; SQL Job PopulateDataMart on ODS needs to be rexecuted.  Datamart population from staging on Hermes also needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate employee end date"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F9B8308F-B4DB-43F5-A3C9-62B7B42A19E9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate employee end date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="DELETE FROM hermes.staging.dbo.employment_end_date;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\v staff name"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2B04E034-47B4-40FD-A13F-C13AF27EA568}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="v staff name"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:SqlStatementSource="--hard code clean up for V staff preffered name&#xA;UPDATE HERMES.STAGING.dbo.dm_Employees&#xA;set Preferred_Name = 'V Staff'&#xA;WHERE rcid = '0053299'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{43CFA685-58D9-4F03-920D-EDFF33489E55}"
+      DTS:From="Package\Clear ODS Staging Table facstaff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Add Faculty" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{47FBC6E0-57FA-494C-99E4-308E40F2AF58}"
+      DTS:From="Package\Clear ODS Staging Table facstaff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Add Staff" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{8DED7CB5-C223-4E58-A15D-7A5C36D0A359}"
+      DTS:From="Package\Populate DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\clean up departments" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{EA38BAED-BEF6-47B4-A607-F1865D96C43E}"
+      DTS:From="Package\Populate DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Clean up Ramona Moore Record" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{FB148E28-EF67-4AB3-9DE4-30450452CDB7}"
+      DTS:From="Package\Populate DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Clean up David Gring Record" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{4AAD4C9E-52A1-4B47-BD16-AFE9B51E55E6}"
+      DTS:From="Package\Clear ODS Staging Table facstaff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Clear ODS Staging Table FacStaff Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{885C86BC-B962-4488-A484-96DC7AE4324A}"
+      DTS:From="Package\Populate Username &amp; Email"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Populate Username &amp; Email Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{E6B1E1C8-B295-4608-A303-1CF11FBC7E84}"
+      DTS:From="Package\Clear Live Staging Table DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\Clear Staging Table DM_Employees Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{FBF8BB4C-28D0-4BB0-84CB-8977A90FF399}"
+      DTS:From="Package\Populate DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\Populate DM_Employees Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{C46136D1-0777-4039-8960-B9F01ABC3519}"
+      DTS:From="Package\clean up departments"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\Clean up Contract Staff" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
+      DTS:CreationName=""
+      DTS:DTSID="{61341885-6D4F-454F-8FAA-2122720EE203}"
+      DTS:From="Package\Clean up Ramona Moore Record"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 18"
+      DTS:To="Package\Clean UP Ramona Moore Record Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{1935212D-071C-4EC9-AD40-CE7D580CF1CC}"
+      DTS:From="Package\Clean up David Gring Record"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\Clean UP David Gring Record Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{038DB40E-48F1-4141-9293-8741D3B5AA85}"
+      DTS:From="Package\Clear ODS Staging Table facstaff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Add Retirees" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{20CF006D-4320-4267-828C-A761A2CD8EEC}"
+      DTS:From="Package\Add VStaff &amp; JStaff &amp; Helpdesk"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\Add VStaff &amp; JStaff Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C60422B-69F4-473B-BB80-339DB686A9A4}"
+      DTS:From="Package\Add Retirees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 21"
+      DTS:To="Package\Add Retirees Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{D6EF8FA1-1AC2-4429-AACD-BF4E723A5C17}"
+      DTS:From="Package\Add Staff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 22"
+      DTS:To="Package\Add Staff Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 23]"
+      DTS:CreationName=""
+      DTS:DTSID="{689A4F5C-6836-4864-8DD4-3134F8C75457}"
+      DTS:From="Package\Add Faculty"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 23"
+      DTS:To="Package\Add Faculty Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 24]"
+      DTS:CreationName=""
+      DTS:DTSID="{83DF2144-D057-4735-93A8-0B2B01BA9308}"
+      DTS:From="Package\Clear ODS Staging Table facstaff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 24"
+      DTS:To="Package\Add Contract Staff" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 25]"
+      DTS:CreationName=""
+      DTS:DTSID="{910F0E1F-2781-473C-B768-088CBB168DD6}"
+      DTS:From="Package\Add Contract Staff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 25"
+      DTS:To="Package\Add Contract Staff Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 26]"
+      DTS:CreationName=""
+      DTS:DTSID="{36ECF1BC-2019-4F30-A39C-7BD0A82FFC1B}"
+      DTS:From="Package\Add Contract Staff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 26"
+      DTS:To="Package\Populate Username &amp; Email" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 29]"
+      DTS:CreationName=""
+      DTS:DTSID="{2F8650E5-4391-48B9-B1AE-9A8912AE36C7}"
+      DTS:From="Package\Populate DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 29"
+      DTS:To="Package\Clean up Jonathan Lee Record" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1A37BF0-A313-4D9B-902B-3B097592F3E2}"
+      DTS:From="Package\Clear ODS Staging Table facstaff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Add VStaff &amp; JStaff &amp; Helpdesk" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 30]"
+      DTS:CreationName=""
+      DTS:DTSID="{DB16AC09-423F-4526-BF8C-0F2FB8B2DC5D}"
+      DTS:From="Package\Clean up Jonathan Lee Record"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 30"
+      DTS:To="Package\Clean UP Jonathan Lee Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 31]"
+      DTS:CreationName=""
+      DTS:DTSID="{042C194D-05D5-4961-A192-02B007B24105}"
+      DTS:From="Package\Clean up Contract Staff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 31"
+      DTS:To="Package\Clean up Contract Departments" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 32]"
+      DTS:CreationName=""
+      DTS:DTSID="{71DE293E-0C82-4672-AB95-3F6C43508240}"
+      DTS:From="Package\Populate DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 32"
+      DTS:To="Package\truncate employee end date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 33]"
+      DTS:CreationName=""
+      DTS:DTSID="{30B0B6F3-A4A0-4B04-9A47-4E31DA8439CD}"
+      DTS:From="Package\truncate employee end date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 33"
+      DTS:To="Package\insert data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 34]"
+      DTS:CreationName=""
+      DTS:DTSID="{00500715-2126-458B-9A7F-A5403C1F039D}"
+      DTS:From="Package\Populate Supervisor RCID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 34"
+      DTS:To="Package\Clear Live Staging Table DM_Employees" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 35]"
+      DTS:CreationName=""
+      DTS:DTSID="{95a2c6b5-1a89-4698-b26d-11639f13cfe0}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 35"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 36]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B76D1EE-B576-46A2-B5AE-91679C66CBC3}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 36"
+      DTS:To="Package\Clear ODS Staging Table facstaff" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 37]"
+      DTS:CreationName=""
+      DTS:DTSID="{3134029B-BE18-46B5-8C16-6B838CCA5655}"
+      DTS:From="Package\Clean up Ramona Moore Record"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 37"
+      DTS:To="Package\Dan Cohan Clean Up" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 38]"
+      DTS:CreationName=""
+      DTS:DTSID="{AEE9BA5E-9B90-4E22-8F77-B624F9E8F2CF}"
+      DTS:From="Package\Dan Cohan Clean Up"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 38"
+      DTS:To="Package\Kate Smith Clean Up" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 39]"
+      DTS:CreationName=""
+      DTS:DTSID="{D4F0DDF2-B13D-4F66-8671-04443B8B8476}"
+      DTS:From="Package\Kate Smith Clean Up"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 39"
+      DTS:To="Package\v staff name" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{AA8DE03E-0126-41E2-B3DD-79987ED13195}"
+      DTS:From="Package\Add Faculty"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Populate Username &amp; Email" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 40]"
+      DTS:CreationName=""
+      DTS:DTSID="{4E75D569-6C5F-47DF-9E0B-7CDC1F0EBFAC}"
+      DTS:From="Package\v staff name"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 40"
+      DTS:To="Package\Clean up Contract Staff 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 41]"
+      DTS:CreationName=""
+      DTS:DTSID="{11595430-C7C2-4A4D-BDD9-6D948E8D03DC}"
+      DTS:From="Package\Clean up Contract Staff 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 41"
+      DTS:To="Package\clean up departments 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{9D6B4912-4CBE-4581-A43A-71EA8C9186D5}"
+      DTS:From="Package\Add Staff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Populate Username &amp; Email" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{E358B5C0-8ECB-4D34-9956-878068959897}"
+      DTS:From="Package\Add Retirees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Populate Username &amp; Email" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{66CFBB7E-C157-4F2C-ADF9-1B199090BB05}"
+      DTS:From="Package\Add VStaff &amp; JStaff &amp; Helpdesk"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Populate Username &amp; Email" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{25C105A2-98FD-4A58-AF4E-00C2F2EFB65B}"
+      DTS:From="Package\Populate Username &amp; Email"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Populate Supervisor RCID" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{A02A8EFF-DBBC-4EAD-8F44-5D48E5C410E4}"
+      DTS:From="Package\Clear Live Staging Table DM_Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Populate DM_Employees" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Add Contract Staff"
+          TopLeft="1080,482" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Add Contract Staff Failed"
+          TopLeft="1152,646" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Add Faculty"
+          TopLeft="308,484" />
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Add Faculty Failed"
+          TopLeft="293,647" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\Add Retirees"
+          TopLeft="680,506" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Add Retirees Failed"
+          TopLeft="758,564" />
+        <NodeLayout
+          Size="124,41.6"
+          Id="Package\Add Staff"
+          TopLeft="474,497" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Add Staff Failed"
+          TopLeft="557,554" />
+        <NodeLayout
+          Size="134.4,71.2"
+          Id="Package\Add VStaff &amp; JStaff &amp; Helpdesk"
+          TopLeft="867,453" />
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\Add VStaff &amp; JStaff Failed"
+          TopLeft="962,566" />
+        <NodeLayout
+          Size="152.8,64"
+          Id="Package\Clean up Contract Departments"
+          TopLeft="304,1173" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Clean up Contract Staff"
+          TopLeft="307,1085" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Clean up Contract Staff 1"
+          TopLeft="1468,1164" />
+        <NodeLayout
+          Size="216.8,41.6"
+          Id="Package\Clean up David Gring Record"
+          TopLeft="846,852" />
+        <NodeLayout
+          Size="248.8,41.6"
+          Id="Package\Clean UP David Gring Record Failed"
+          TopLeft="1143,851" />
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\clean up departments"
+          TopLeft="368,973" />
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package\clean up departments 1"
+          TopLeft="1476,1260" />
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\Clean UP Jonathan Lee Failed"
+          TopLeft="990,1050" />
+        <NodeLayout
+          Size="224,41.6"
+          Id="Package\Clean up Jonathan Lee Record"
+          TopLeft="982,977" />
+        <NodeLayout
+          Size="192,73.6"
+          Id="Package\Clean up Ramona Moore Record"
+          TopLeft="728,955" />
+        <NodeLayout
+          Size="192,56.8"
+          Id="Package\Clean UP Ramona Moore Record Failed"
+          TopLeft="725,1037" />
+        <NodeLayout
+          Size="270.4,41.6"
+          Id="Package\Clear Live Staging Table DM_Employees"
+          TopLeft="523,784" />
+        <NodeLayout
+          Size="636,41.6"
+          Id="Package\Clear ODS Staging Table facstaff"
+          TopLeft="312,381" />
+        <NodeLayout
+          Size="299.2,41.6"
+          Id="Package\Clear ODS Staging Table FacStaff Failed"
+          TopLeft="1028,389" />
+        <NodeLayout
+          Size="278.4,41.6"
+          Id="Package\Clear Staging Table DM_Employees Failed"
+          TopLeft="1025,789" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Dan Cohan Clean Up"
+          TopLeft="797,1175" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="408,274" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="307,155" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\insert data"
+          TopLeft="519,1158" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Kate Smith Clean Up"
+          TopLeft="1036,1179" />
+        <NodeLayout
+          Size="195.2,41.6"
+          Id="Package\Populate DM_Employees"
+          TopLeft="530,861" />
+        <NodeLayout
+          Size="228,41.6"
+          Id="Package\Populate DM_Employees Failed"
+          TopLeft="282,844" />
+        <NodeLayout
+          Size="201.6,41.6"
+          Id="Package\Populate Supervisor RCID"
+          TopLeft="312,744" />
+        <NodeLayout
+          Size="212,41.6"
+          Id="Package\Populate Username &amp; Email"
+          TopLeft="473,681" />
+        <NodeLayout
+          Size="243.2,41.6"
+          Id="Package\Populate Username &amp; Email Failed"
+          TopLeft="875,679" />
+        <NodeLayout
+          Size="129.6,62.4"
+          Id="Package\truncate employee end date"
+          TopLeft="546,1032" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\v staff name"
+          TopLeft="1269,1182" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="441.6,423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-65.6,61"
+              Start="0,0"
+              End="-65.6,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.6621983914209" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.6621983914209"
+                    Point2="0,17.6621983914209"
+                    Point3="-4,17.6621983914209" />
+                  <mssgle:LineSegment
+                    End="-61.6,17.6621983914209" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-61.6,17.6621983914209"
+                    Point2="-65.6,17.6621983914209"
+                    Point3="-65.6,21.6621983914209" />
+                  <mssgle:LineSegment
+                    End="-65.6,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="525.333333333333,423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.6666666666667,74"
+              Start="0,0"
+              End="10.6666666666667,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.711417816813" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.711417816813"
+                    Point2="0,29.711417816813"
+                    Point3="4,29.711417816813" />
+                  <mssgle:LineSegment
+                    End="6.66666666666669,29.711417816813" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.66666666666669,29.711417816813"
+                    Point2="10.6666666666667,29.711417816813"
+                    Point3="10.6666666666667,33.711417816813" />
+                  <mssgle:LineSegment
+                    End="10.6666666666667,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="596.333333333333,903">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-136.833333333333,70"
+              Start="0,0"
+              End="-136.833333333333,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3418107833164" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.3418107833164"
+                    Point2="0,28.3418107833164"
+                    Point3="-4,28.3418107833164" />
+                  <mssgle:LineSegment
+                    End="-132.833333333333,28.3418107833164" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-132.833333333333,28.3418107833164"
+                    Point2="-136.833333333333,28.3418107833164"
+                    Point3="-136.833333333333,32.3418107833164" />
+                  <mssgle:LineSegment
+                    End="-136.833333333333,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="658.666666666667,903">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="165.333333333333,52"
+              Start="0,0"
+              End="165.333333333333,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.0539165818922" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.0539165818922"
+                    Point2="0,21.0539165818922"
+                    Point3="4,21.0539165818922" />
+                  <mssgle:LineSegment
+                    End="161.333333333333,21.0539165818922" />
+                  <mssgle:CubicBezierSegment
+                    Point1="161.333333333333,21.0539165818922"
+                    Point2="165.333333333333,21.0539165818922"
+                    Point3="165.333333333333,25.0539165818922" />
+                  <mssgle:LineSegment
+                    End="165.333333333333,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="725,874.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121,0"
+              Start="0,0"
+              End="113.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="948,402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80,8"
+              Start="0,0"
+              End="72.5,8">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36,0"
+                    Point2="40,0"
+                    Point3="40,4" />
+                  <mssgle:LineSegment
+                    End="40,4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40,4"
+                    Point2="40,8"
+                    Point3="44,8" />
+                  <mssgle:LineSegment
+                    End="72.5,8" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="25.75865234375,9,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="685,701">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190,0"
+              Start="0,0"
+              End="182.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="182.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="77.00865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="793,807.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="232,0"
+              Start="0,0"
+              End="224.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="224.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="98.00865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="565.166666666667,903">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-169.166666666667,-17"
+              Start="0,0"
+              End="-169.166666666667,-9.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="-4,22.5" />
+                  <mssgle:LineSegment
+                    End="-165.166666666667,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-165.166666666667,22.5"
+                    Point2="-169.166666666667,22.5"
+                    Point3="-169.166666666667,18.5" />
+                  <mssgle:LineSegment
+                    End="-169.166666666667,-9.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8246809895833,27.5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="459.5,1015">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-58.5,70"
+              Start="0,0"
+              End="-58.5,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31"
+                    Point2="0,35"
+                    Point3="-4,35" />
+                  <mssgle:LineSegment
+                    End="-54.5,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-54.5,35"
+                    Point2="-58.5,35"
+                    Point3="-58.5,39" />
+                  <mssgle:LineSegment
+                    End="-58.5,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 18]"
+          TopLeft="920,992">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-3,73.5"
+              Start="0,0"
+              End="4.5,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,69.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,69.5"
+                    Point2="22.5,73.5"
+                    Point3="18.5,73.5" />
+                  <mssgle:LineSegment
+                    End="4.5,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.25865234375,-13.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="1063,872.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80,0"
+              Start="0,0"
+              End="72.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="72.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="22.00865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="692.8,423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.7,83"
+              Start="0,0"
+              End="57.7,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.9532449406839" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.9532449406839"
+                    Point2="0,36.9532449406839"
+                    Point3="4,36.9532449406839" />
+                  <mssgle:LineSegment
+                    End="53.7,36.9532449406839" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.7,36.9532449406839"
+                    Point2="57.7,36.9532449406839"
+                    Point3="57.7,40.9532449406839" />
+                  <mssgle:LineSegment
+                    End="57.7,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="955,524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.5,42"
+              Start="0,0"
+              End="87.5,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.0973451327434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.0973451327434"
+                    Point2="0,17.0973451327434"
+                    Point3="4,17.0973451327434" />
+                  <mssgle:LineSegment
+                    End="83.5,17.0973451327434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.5,17.0973451327434"
+                    Point2="87.5,17.0973451327434"
+                    Point3="87.5,21.0973451327434" />
+                  <mssgle:LineSegment
+                    End="87.5,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="29.50865234375,22.0973451327434,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="821,527">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,37"
+              Start="0,0"
+              End="22.5,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.25865234375,-13.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 22]"
+          TopLeft="598,518">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.5,36"
+              Start="0,0"
+              End="36.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.5,0"
+                    Point2="36.5,0"
+                    Point3="36.5,4" />
+                  <mssgle:LineSegment
+                    End="36.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="22.25865234375,-13.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 23]"
+          TopLeft="354.666666666667,526">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.8333333333333,121"
+              Start="0,0"
+              End="21.8333333333333,113.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.2441860465116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.2441860465116"
+                    Point2="0,49.2441860465116"
+                    Point3="4,49.2441860465116" />
+                  <mssgle:LineSegment
+                    End="17.8333333333333,49.2441860465116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.8333333333333,49.2441860465116"
+                    Point2="21.8333333333333,49.2441860465116"
+                    Point3="21.8333333333333,53.2441860465116" />
+                  <mssgle:LineSegment
+                    End="21.8333333333333,113.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-3.32468098958333,54.2441860465116,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 24]"
+          TopLeft="839.333333333333,423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="324.166666666667,59"
+              Start="0,0"
+              End="324.166666666667,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.0265625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.0265625"
+                    Point2="0,15.0265625"
+                    Point3="4,15.0265625" />
+                  <mssgle:LineSegment
+                    End="320.166666666667,15.0265625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="320.166666666667,15.0265625"
+                    Point2="324.166666666667,15.0265625"
+                    Point3="324.166666666667,19.0265625" />
+                  <mssgle:LineSegment
+                    End="324.166666666667,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 25]"
+          TopLeft="1163.5,524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="66,122"
+              Start="0,0"
+              End="66,114.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57"
+                    Point2="0,61"
+                    Point3="4,61" />
+                  <mssgle:LineSegment
+                    End="62,61" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62,61"
+                    Point2="66,61"
+                    Point3="66,65" />
+                  <mssgle:LineSegment
+                    End="66,114.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="18.75865234375,66,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 26]"
+          TopLeft="1137,524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-490,157"
+              Start="0,0"
+              End="-490,149.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,98.940206185567" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,98.940206185567"
+                    Point2="0,102.940206185567"
+                    Point3="-4,102.940206185567" />
+                  <mssgle:LineSegment
+                    End="-486,102.940206185567" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-486,102.940206185567"
+                    Point2="-490,102.940206185567"
+                    Point3="-490,106.940206185567" />
+                  <mssgle:LineSegment
+                    End="-490,149.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 29]"
+          TopLeft="689.833333333333,903">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="404.166666666667,74"
+              Start="0,0"
+              End="404.166666666667,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.6155778894472" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.6155778894472"
+                    Point2="0,19.6155778894472"
+                    Point3="4,19.6155778894472" />
+                  <mssgle:LineSegment
+                    End="400.166666666667,19.6155778894472" />
+                  <mssgle:CubicBezierSegment
+                    Point1="400.166666666667,19.6155778894472"
+                    Point2="404.166666666667,19.6155778894472"
+                    Point3="404.166666666667,23.6155778894472" />
+                  <mssgle:LineSegment
+                    End="404.166666666667,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="734.666666666667,423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="199.333333333333,30"
+              Start="0,0"
+              End="199.333333333333,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.04516938519448" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.04516938519448"
+                    Point2="0,12.0451693851945"
+                    Point3="4,12.0451693851945" />
+                  <mssgle:LineSegment
+                    End="195.333333333333,12.0451693851945" />
+                  <mssgle:CubicBezierSegment
+                    Point1="195.333333333333,12.0451693851945"
+                    Point2="199.333333333333,12.0451693851945"
+                    Point3="199.333333333333,16.0451693851945" />
+                  <mssgle:LineSegment
+                    End="199.333333333333,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 30]"
+          TopLeft="1097,1019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.24134765625,7.87548828125,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 31]"
+          TopLeft="401,1127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.5,46"
+              Start="0,0"
+              End="-20.5,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="-4,23" />
+                  <mssgle:LineSegment
+                    End="-16.5,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.5,23"
+                    Point2="-20.5,23"
+                    Point3="-20.5,27" />
+                  <mssgle:LineSegment
+                    End="-20.5,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 32]"
+          TopLeft="627.5,903">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.5,129"
+              Start="0,0"
+              End="-16.5,121.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.5"
+                    Point2="0,64.5"
+                    Point3="-4,64.5" />
+                  <mssgle:LineSegment
+                    End="-12.5,64.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.5,64.5"
+                    Point2="-16.5,64.5"
+                    Point3="-16.5,68.5" />
+                  <mssgle:LineSegment
+                    End="-16.5,121.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 33]"
+          TopLeft="611,1094">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-27.5,64"
+              Start="0,0"
+              End="-27.5,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="-4,32" />
+                  <mssgle:LineSegment
+                    End="-23.5,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-23.5,32"
+                    Point2="-27.5,32"
+                    Point3="-27.5,36" />
+                  <mssgle:LineSegment
+                    End="-27.5,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 34]"
+          TopLeft="514,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="144,22.5"
+              Start="0,0"
+              End="144,15">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="140,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="140,0"
+                    Point2="144,0"
+                    Point3="144,4" />
+                  <mssgle:LineSegment
+                    End="144,15" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 35]"
+          TopLeft="389.5,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="95,77"
+              Start="0,0"
+              End="95,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="4,38.5" />
+                  <mssgle:LineSegment
+                    End="91,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="91,38.5"
+                    Point2="95,38.5"
+                    Point3="95,42.5" />
+                  <mssgle:LineSegment
+                    End="95,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 36]"
+          TopLeft="484.5,316">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145.5,65"
+              Start="0,0"
+              End="145.5,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="4,32.5" />
+                  <mssgle:LineSegment
+                    End="141.5,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141.5,32.5"
+                    Point2="145.5,32.5"
+                    Point3="145.5,36.5" />
+                  <mssgle:LineSegment
+                    End="145.5,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 37]"
+          TopLeft="824,1029">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62,146"
+              Start="0,0"
+              End="62,138.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69"
+                    Point2="0,73"
+                    Point3="4,73" />
+                  <mssgle:LineSegment
+                    End="58,73" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58,73"
+                    Point2="62,73"
+                    Point3="62,77" />
+                  <mssgle:LineSegment
+                    End="62,138.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 38]"
+          TopLeft="975,1198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61,0"
+              Start="0,0"
+              End="53.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 39]"
+          TopLeft="1214,1201.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,0"
+              Start="0,0"
+              End="47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="397.333333333333,526">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="113.666666666667,155"
+              Start="0,0"
+              End="113.666666666667,147.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,97.8148016997167" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,97.8148016997167"
+                    Point2="0,101.814801699717"
+                    Point3="4,101.814801699717" />
+                  <mssgle:LineSegment
+                    End="109.666666666667,101.814801699717" />
+                  <mssgle:CubicBezierSegment
+                    Point1="109.666666666667,101.814801699717"
+                    Point2="113.666666666667,101.814801699717"
+                    Point3="113.666666666667,105.814801699717" />
+                  <mssgle:LineSegment
+                    End="113.666666666667,147.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 40]"
+          TopLeft="1409,1203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59,-18"
+              Start="0,0"
+              End="51.5,-18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.5,0"
+                    Point2="29.5,0"
+                    Point3="29.5,-4" />
+                  <mssgle:LineSegment
+                    End="29.5,-14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.5,-14"
+                    Point2="29.5,-18"
+                    Point3="33.5,-18" />
+                  <mssgle:LineSegment
+                    End="51.5,-18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 41]"
+          TopLeft="1562,1206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,54"
+              Start="0,0"
+              End="9,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="4,27" />
+                  <mssgle:LineSegment
+                    End="5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,27"
+                    Point2="9,27"
+                    Point3="9,31" />
+                  <mssgle:LineSegment
+                    End="9,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="536,539">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,142"
+              Start="0,0"
+              End="9,134.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.561797752809" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,80.561797752809"
+                    Point2="0,84.561797752809"
+                    Point3="4,84.561797752809" />
+                  <mssgle:LineSegment
+                    End="5,84.561797752809" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,84.561797752809"
+                    Point2="9,84.561797752809"
+                    Point3="9,88.561797752809" />
+                  <mssgle:LineSegment
+                    End="9,134.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="750.5,548">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-171.5,133"
+              Start="0,0"
+              End="-171.5,125.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.5"
+                    Point2="0,66.5"
+                    Point3="-4,66.5" />
+                  <mssgle:LineSegment
+                    End="-167.5,66.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-167.5,66.5"
+                    Point2="-171.5,66.5"
+                    Point3="-171.5,70.5" />
+                  <mssgle:LineSegment
+                    End="-171.5,125.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="913,524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-300,157"
+              Start="0,0"
+              End="-300,149.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.920824742268" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,74.920824742268"
+                    Point2="0,78.920824742268"
+                    Point3="-4,78.920824742268" />
+                  <mssgle:LineSegment
+                    End="-296,78.920824742268" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-296,78.920824742268"
+                    Point2="-300,78.920824742268"
+                    Point3="-300,82.920824742268" />
+                  <mssgle:LineSegment
+                    End="-300,149.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="473,702">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-60,42"
+              Start="0,0"
+              End="-60,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-56,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-56,0"
+                    Point2="-60,0"
+                    Point3="-60,4" />
+                  <mssgle:LineSegment
+                    End="-60,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="658,826">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-30.5,35"
+              Start="0,0"
+              End="-30.5,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="-4,17.5" />
+                  <mssgle:LineSegment
+                    End="-26.5,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-26.5,17.5"
+                    Point2="-30.5,17.5"
+                    Point3="-30.5,21.5" />
+                  <mssgle:LineSegment
+                    End="-30.5,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Data Flow Task\ADO NET Destination"
+          TopLeft="422,352" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data Flow Task\ADO NET Source"
+          TopLeft="438,130" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="515.25,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,180"
+              Start="0,0"
+              End="0,172.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,172.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

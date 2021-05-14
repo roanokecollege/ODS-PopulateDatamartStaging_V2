@@ -1,0 +1,851 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/20/2016 2:43:13 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\Webserv"
+  DTS:DTSID="{16B70E8D-6F84-4D22-9616-46C3531A2FFD}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulatePersonAll"
+  DTS:PackageType="5"
+  DTS:VersionBuild="182"
+  DTS:VersionGUID="{4F7ADFA8-398C-4929-8AB0-CF3DE5EC37AA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HERMES.Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DB2D6582-B421-46B0-958E-C331C79F675A}"
+      DTS:ObjectName="HERMES.Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Reporting]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{4576FDA2-2E10-4097-8F4D-ACA63D19BCC1}"
+      DTS:ObjectName="ODS.ODS_Reporting">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Reporting;Integrated Security=True;Application Name=SSIS-PopulatePersonAll-{4576FDA2-2E10-4097-8F4D-ACA63D19BCC1}ODS.ODS_Reporting;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting2]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A6982F74-D51B-479D-B6CF-6D5038BED527}"
+      DTS:ObjectName="ods.ODS_Reporting2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:Description="New Connection 8-2019"
+      DTS:DTSID="{FAB3D0F0-2762-4AF0-9817-E08FC5412AD2}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=receive.roanoke.edu;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3F2793D0-AC55-47BC-A7AD-FD0D5C49950A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLFetchCount">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT COUNT(RCID) AS ProcessedCount FROM dbo.view_Person_RC_ALL_W_Building</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7BCFD233-26F5-4CA7-8051-54A54A63B531}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ViewCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Bad Email 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{effeb682-c99e-49d0-9260-85d7aa219741}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Bad Email 1"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{FAB3D0F0-2762-4AF0-9817-E08FC5412AD2}"
+          SendMailTask:From="gabrielson@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Person All - ERROR"
+          SendMailTask:MessageSource="Oh, no! Something went wrong Gabrielson, the Truncate table in Hermes Staging didnt happen....check ODS-&gt; PopulatePersonAll.dtsx and fixy fixy asap!" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data didnt Load"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{662569e9-62d4-4990-83fc-a7dfbcda90bd}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data didnt Load"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{FAB3D0F0-2762-4AF0-9817-E08FC5412AD2}"
+          SendMailTask:From="gabrielson@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Person All - ERROR"
+          SendMailTask:MessageSource="Oh, no! Something went wrong Gabrielson, the data from ODS Reporting did not make it to Hermes Staging PERSON_RC_ALL. Check the ODS SSIS PAckage called Populate Person All. " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\insert into staging hermes table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9E4B9EA0-B969-46B9-9230-FD506CAEC51D}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="insert into staging hermes table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A6982F74-D51B-479D-B6CF-6D5038BED527}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.Person_RC_ALL&#xA;&#x9;( rcid, username, email, firstname, lastname, nick_name, maiden_name, middle_name, faculty, staff, student, studentemployee, retiree, updated_at, created_at, &#xA;                      deceased, basic, bldg_address, bldg_city, bldg_zip, bldg_latitude, bldg_longitude, updated_at2)&#xA;SELECT     RCID, Username, email, FIRST_NAME, LAST_NAME, nick_name, maiden_name, MIDDLE_NAME, faculty, staff, student, student_employee, retiree, updated_at, &#xA;                      created_at, deceased, basic, BLDG_ADDRESS, BLDG_CITY, BLDG_ZIP, BLDG_LATITUDE, BLDG_LONGITUDE, GETDATE() AS Expr1&#xA;FROM         dbo.view_Person_RC_ALL_W_Building;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\inset record into log table"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{36F9C951-A0F5-4B0A-A730-B381D2AB4FCF}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="inset record into log table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\inset record into log table\processed_table_information"
+              componentClassID="DTS.ManagedComponentWrapper.3"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="processed_table_information"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."processed_table_information"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\inset record into log table\processed_table_information.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].Columns[table_name]"
+                      cachedDataType="wstr"
+                      cachedLength="21"
+                      cachedName="table_name"
+                      externalMetadataColumnId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].ExternalColumns[table_name]"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[table_name]" />
+                    <inputColumn
+                      refId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].Columns[row_count]"
+                      cachedDataType="i4"
+                      cachedName="row_count"
+                      externalMetadataColumnId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].ExternalColumns[row_count]"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[row_count]" />
+                    <inputColumn
+                      refId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].Columns[datetime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="datetime"
+                      externalMetadataColumnId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].ExternalColumns[datetime]"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[datetime]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].ExternalColumns[table_name]"
+                      dataType="wstr"
+                      length="50"
+                      name="table_name" />
+                    <externalMetadataColumn
+                      refId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].ExternalColumns[row_count]"
+                      dataType="wstr"
+                      length="50"
+                      name="row_count" />
+                    <externalMetadataColumn
+                      refId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input].ExternalColumns[datetime]"
+                      dataType="dbTimeStamp"
+                      name="datetime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\inset record into log table\processed_table_information.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\inset record into log table\processed_table_information.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\inset record into log table\processed_table_information.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\inset record into log table\processed_table_information.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\inset record into log table\processed_table_information.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\inset record into log table\view_Person_RC_ALL_W_Building"
+              componentClassID="DTS.ManagedComponentWrapper.3"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="view_Person_RC_ALL_W_Building"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        'PopulatePersonAllSSIS' AS table_name, COUNT(@@ROWCOUNT) AS row_count, GETDATE() AS datetime
+FROM            view_Person_RC_ALL_W_Building AS view_Person_RC_ALL_W_Building_1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODS.ODS_Reporting]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS.ODS_Reporting]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[table_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].ExternalColumns[table_name]"
+                      length="21"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[table_name]"
+                      name="table_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[row_count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].ExternalColumns[row_count]"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[row_count]"
+                      name="row_count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[datetime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].ExternalColumns[datetime]"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].Columns[datetime]"
+                      name="datetime"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].ExternalColumns[table_name]"
+                      dataType="wstr"
+                      length="21"
+                      name="table_name" />
+                    <externalMetadataColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].ExternalColumns[row_count]"
+                      dataType="i4"
+                      name="row_count" />
+                    <externalMetadataColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output].ExternalColumns[datetime]"
+                      dataType="dbTimeStamp"
+                      name="datetime" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[table_name]"
+                      dataType="wstr"
+                      length="21"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[table_name]"
+                      name="table_name" />
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[row_count]"
+                      dataType="i4"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[row_count]"
+                      name="row_count" />
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[datetime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[datetime]"
+                      name="datetime" />
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\inset record into log table.Paths[ADO NET Source Output]"
+              endId="Package\inset record into log table\processed_table_information.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\inset record into log table\view_Person_RC_ALL_W_Building.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pre-Check Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FAC33797-1D6D-48DF-93BE-8E762EF978F9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pre-Check Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A6982F74-D51B-479D-B6CF-6D5038BED527}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQLFetchCount"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ViewCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pre-Check-Data-Bad Email"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{DAE51434-8ECA-4D1F-AC70-9AB0AB280D33}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pre-Check-Data-Bad Email"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{FAB3D0F0-2762-4AF0-9817-E08FC5412AD2}"
+          SendMailTask:From="gabrielson@roanoke.edu"
+          SendMailTask:To="gabrielson@roanoke.edu"
+          SendMailTask:Subject="Populate Person RC All Data ERROR"
+          SendMailTask:MessageSource="There is a data error in PopulatePersonRCALL SSIS package on ODS and it has STOPPED. There is something wrong with the data to create this package. Start with view_Person_RC_ALL_W_Building. There should be more than 11350 records.  " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table on Hermes Staging PERSON RC ALL"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3DF4F9AD-F92D-4A4F-94D0-6A0D727CCBD0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table on Hermes Staging PERSON RC ALL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A6982F74-D51B-479D-B6CF-6D5038BED527}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.dbo.Person_RC_ALL; &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{67E19704-0680-4284-8056-DA26BDAB538B}"
+      DTS:From="Package\Truncate Table on Hermes Staging PERSON RC ALL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\insert into staging hermes table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{81C175D8-C5AD-4E2F-B49B-57382EA99419}"
+      DTS:From="Package\insert into staging hermes table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\inset record into log table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{41E34968-88E6-424D-BCCD-55F2E05321A8}"
+      DTS:From="Package\insert into staging hermes table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Data didnt Load"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{80B2EC59-821A-48F4-8A73-B3635A0B54BA}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::ViewCount] &lt;= 10000"
+      DTS:From="Package\Pre-Check Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Pre-Check-Data-Bad Email" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{3D78D588-E51D-415D-9F12-FAFE6258F6C0}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::ViewCount] &gt;= 10000"
+      DTS:From="Package\Pre-Check Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Truncate Table on Hermes Staging PERSON RC ALL" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{B03E1B7A-80A4-4A55-93F5-FF292AA39237}"
+      DTS:From="Package\Truncate Table on Hermes Staging PERSON RC ALL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Bad Email 1"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Bad Email 1"
+          TopLeft="281,285" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Data didnt Load"
+          TopLeft="888,355" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\insert into staging hermes table"
+          TopLeft="494,379" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\inset record into log table"
+          TopLeft="551,482" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Pre-Check Data"
+          TopLeft="323,104" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Pre-Check-Data-Bad Email"
+          TopLeft="77,205" />
+        <NodeLayout
+          Size="324,42"
+          Id="Package\Truncate Table on Hermes Staging PERSON RC ALL"
+          TopLeft="484,285" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="646,327">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38,52"
+              Start="0,0"
+              End="-38,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-34,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34,26"
+                    Point2="-38,26"
+                    Point3="-38,30" />
+                  <mssgle:LineSegment
+                    End="-38,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="608,421">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43,61"
+              Start="0,0"
+              End="43,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="4,30.5" />
+                  <mssgle:LineSegment
+                    End="39,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39,30.5"
+                    Point2="43,30.5"
+                    Point3="43,34.5" />
+                  <mssgle:LineSegment
+                    End="43,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="722,400">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="166,-24"
+              Start="0,0"
+              End="158.5,-24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="79,0"
+                    Point2="83,0"
+                    Point3="83,-4" />
+                  <mssgle:LineSegment
+                    End="83,-20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83,-20"
+                    Point2="83,-24"
+                    Point3="87,-24" />
+                  <mssgle:LineSegment
+                    End="158.5,-24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="67.75865234375,1,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="375,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-196.5,59"
+              Start="0,0"
+              End="-196.5,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.96875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.96875"
+                    Point2="0,23.96875"
+                    Point3="-4,23.96875" />
+                  <mssgle:LineSegment
+                    End="-192.5,23.96875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-192.5,23.96875"
+                    Point2="-196.5,23.96875"
+                    Point3="-196.5,27.96875" />
+                  <mssgle:LineSegment
+                    End="-196.5,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-106.25,28.96875,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="423,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="223,139"
+              Start="0,0"
+              End="223,131.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.46875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,52.46875"
+                    Point2="0,56.46875"
+                    Point3="4,56.46875" />
+                  <mssgle:LineSegment
+                    End="219,56.46875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="219,56.46875"
+                    Point2="223,56.46875"
+                    Point3="223,60.46875" />
+                  <mssgle:LineSegment
+                    End="223,131.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="103.5,61.46875,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="484,306">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66,0"
+              Start="0,0"
+              End="-58.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-58.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-44.49134765625,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Created a new package different from the old Rob code. JSG 08 30 2017"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="384,56"
+          Id="706be2d6-7579-4af6-b4a8-8f965892db78"
+          TopLeft="642,72" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\inset record into log table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="238,42"
+          Id="Package\inset record into log table\view_Person_RC_ALL_W_Building"
+          TopLeft="258,185" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\inset record into log table\processed_table_information"
+          TopLeft="583,347" />
+        <EdgeLayout
+          Id="Package\inset record into log table.Paths[ADO NET Source Output]"
+          TopLeft="377,227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="313.5,120"
+              Start="0,0"
+              End="313.5,112.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56"
+                    Point2="0,60"
+                    Point3="4,60" />
+                  <mssgle:LineSegment
+                    End="309.5,60" />
+                  <mssgle:CubicBezierSegment
+                    Point1="309.5,60"
+                    Point2="313.5,60"
+                    Point3="313.5,64" />
+                  <mssgle:LineSegment
+                    End="313.5,112.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\inset record into log table\processed_table_information">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\inset record into log table\view_Person_RC_ALL_W_Building">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,17 +1,24 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "PopulateDatamartStaging_V2", "PopulateDatamartStaging_V2\PopulateDatamartStaging_V2.dtproj", "{36BDD992-18A4-4B8C-9DC2-4DCD859EA595}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Deploy|Default = Deploy|Default
 		Development|Default = Development|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36BDD992-18A4-4B8C-9DC2-4DCD859EA595}.Deploy|Default.ActiveCfg = Deploy
 		{36BDD992-18A4-4B8C-9DC2-4DCD859EA595}.Development|Default.ActiveCfg = Development
 		{36BDD992-18A4-4B8C-9DC2-4DCD859EA595}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C2900B8-551B-4553-ADFE-D947C8D7F199}
 	EndGlobalSection
 EndGlobal

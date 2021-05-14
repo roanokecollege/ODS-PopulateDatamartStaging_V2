@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateCourses_Meeting"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{EB921C35-B4DA-475D-8D18-9617FEE02344}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{E8EC9751-D5CF-4327-BEC1-BA2ABAFD7F31}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAH2cHOOrgB0eEQpI3VpLmuwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB9UQDicmbuhvbdc6z/mHmCAAAAAASAAACgAAAAEAAAAA+h4URUVagpEhvJ90yfxT1YAAAAZRVimQN1Gyq8Cyhz7Jdy/3QVOCw3jsW8CoIAgJOa8ejDMBpRwiz2paoIiYdhzaqwkgF6dXOVAUfm9u7+qNRXvUCE+CEt0gJoCJur26Em44sBMNRhsycr5BQAAAAjhuslONyZ33e8CvGXdoNgLgF2tw</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAH2cHOOrgB0eEQpI3VpLmuwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAmd3Mn/3/S9G5EyepL2LgTAAAAAASAAACgAAAAEAAAACiJc9xyj1GV04DRs29cJYVYAAAADfMMHvSh+flJd/5onjSWpAbGvhMpEJCAMqhFtFpzuUHQ02ECP98t3UDJfOWHxkulBT6h09YEahKiwhWnRm+c2/mpeLHuvHJ5/mpNKT7qut1d9nEAs3D7lRQAAADaRoWq8neFAzvBoiXT/cbaeXMMLg</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -62,7 +62,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear course_meeting_times_by_days"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -79,7 +79,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="CLEAR DM_COURSES_MEETING"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -95,7 +95,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate course_meeting_times_by_days"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -112,7 +112,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_COURSES_MEETINGS"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -128,7 +128,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Send Mail Task"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -149,7 +149,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Clear Datamart staging table DM_COURSES_MEETING has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -171,7 +171,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Populate Datamart staging table DM_COURSES_MEETING has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -249,7 +249,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="257,42"
           Id="Package\Clear course_meeting_times_by_days"
@@ -261,7 +261,7 @@
         <NodeLayout
           Size="273,42"
           Id="Package\Populate course_meeting_times_by_days"
-          TopLeft="1141,269" />
+          TopLeft="1141,270" />
         <NodeLayout
           Size="248,42"
           Id="Package\Populate DM_COURSES_MEETINGS"
@@ -283,7 +283,7 @@
           TopLeft="173,92">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="95,104"
               Start="0,0"
               End="95,96.5">
@@ -317,7 +317,7 @@
           TopLeft="289,71">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="86,53"
               Start="0,0"
               End="78.5,53">
@@ -353,7 +353,7 @@
           TopLeft="268,238">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="340.5,63"
               Start="0,0"
               End="340.5,55.5">
@@ -386,18 +386,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="1276,151">
+          TopLeft="1274.5,151">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,118"
+              StartConnector="{assembly:Null}"
+              EndConnector="-41.1666666666667,119"
               Start="0,0"
-              End="0,110.5">
+              End="-41.1666666666667,111.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,110.5" />
+                    End="0,66.9839766933722" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66.9839766933722"
+                    Point2="0,70.9839766933722"
+                    Point3="-4,70.9839766933722" />
+                  <mssgle:LineSegment
+                    End="-37.1666666666667,70.9839766933722" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-37.1666666666667,70.9839766933722"
+                    Point2="-41.1666666666667,70.9839766933722"
+                    Point3="-41.1666666666667,74.9839766933722" />
+                  <mssgle:LineSegment
+                    End="-41.1666666666667,111.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -411,7 +423,7 @@
           TopLeft="1403,130">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="235,47"
               Start="0,0"
               End="227.5,47">
@@ -444,37 +456,37 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="1321.66666666667,269">
+          TopLeft="1321.66666666667,270">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="391.333333333333,-71"
+              StartConnector="{assembly:Null}"
+              EndConnector="391.333333333333,-72"
               Start="0,0"
-              End="391.333333333333,-63.5">
+              End="391.333333333333,-64.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-24.6482155863073" />
+                    End="0,-25.0517115804807" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-24.6482155863073"
-                    Point2="0,-28.6482155863073"
-                    Point3="4,-28.6482155863073" />
+                    Point1="0,-25.0517115804807"
+                    Point2="0,-29.0517115804807"
+                    Point3="4,-29.0517115804807" />
                   <mssgle:LineSegment
-                    End="387.333333333333,-28.6482155863073" />
+                    End="387.333333333333,-29.0517115804807" />
                   <mssgle:CubicBezierSegment
-                    Point1="387.333333333333,-28.6482155863073"
-                    Point2="391.333333333333,-28.6482155863073"
-                    Point3="391.333333333333,-32.6482155863073" />
+                    Point1="387.333333333333,-29.0517115804807"
+                    Point2="391.333333333333,-29.0517115804807"
+                    Point3="391.333333333333,-33.0517115804807" />
                   <mssgle:LineSegment
-                    End="391.333333333333,-63.5" />
+                    End="391.333333333333,-64.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="180.425319010417,-23.6482155863073,30.4826953125,9.7490234375"
+              BoundingBox="180.425319010417,-24.0517115804807,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

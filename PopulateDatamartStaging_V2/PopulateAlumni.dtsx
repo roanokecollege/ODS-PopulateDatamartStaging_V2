@@ -7,13 +7,13 @@
   DTS:CreatorName="ACADEMIC\it_gabrielson"
   DTS:DTSID="{F3500EE5-0EBD-4D43-A486-B666AD15454F}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="15.0.0900.30"
+  DTS:LastModifiedProductVersion="11.0.7507.2"
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="PopulateAlumni"
   DTS:PackageType="5"
-  DTS:VersionBuild="105"
-  DTS:VersionGUID="{6914EF62-ACDE-4AF5-AD86-9C3E73C6D7A4}">
+  DTS:VersionBuild="109"
+  DTS:VersionGUID="{D0D5B283-71DB-49DA-BAD4-51D2A97FD1D6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -105,7 +105,7 @@
           <components>
             <component
               refId="Package\inset record into log table\processed_table_information"
-              componentClassID="DTS.ManagedComponentWrapper.3"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
               contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
               description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="processed_table_information"
@@ -218,7 +218,7 @@
             </component>
             <component
               refId="Package\inset record into log table\view_Person_RC_ALL_W_Building"
-              componentClassID="DTS.ManagedComponentWrapper.3"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
               contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
               name="view_Person_RC_ALL_W_Building"

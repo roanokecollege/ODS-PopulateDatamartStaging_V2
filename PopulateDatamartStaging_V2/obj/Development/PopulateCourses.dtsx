@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/18/2014 3:51:55 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{EAA3039E-CA19-4091-91F5-AF5268A5F174}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.7493.4"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateCourses"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{446A720C-07EF-4FD3-8BF2-C3C71838A937}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PopulateCourses_Comments.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{808F1E78-3546-4534-91A8-44D7C21BF88A}"
+      DTS:ObjectName="PopulateCourses_Comments.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Projects\PopulateDatamartStaging_V2\PopulateDatamartStaging_V2\PopulateCourses_Comments.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PopulateCourses_Core.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{9650AE8B-A025-46AE-8103-A8DBAA046467}"
+      DTS:ObjectName="PopulateCourses_Core.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Projects\PopulateDatamartStaging_V2\PopulateDatamartStaging_V2\PopulateCourses_Core.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PopulateCourses_Instructors.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{D3BCB8C0-B694-4383-BB0E-00D29E3B5A92}"
+      DTS:ObjectName="PopulateCourses_Instructors.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Projects\PopulateDatamartStaging_V2\PopulateDatamartStaging_V2\PopulateCourses_Instructors.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PopulateCourses_Meeting.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{D025666F-C092-46C6-B74A-F7741AEAEEEE}"
+      DTS:ObjectName="PopulateCourses_Meeting.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Projects\PopulateDatamartStaging_V2\PopulateDatamartStaging_V2\PopulateCourses_Meeting.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Populate Courses Meeting"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{721869E6-AD4D-4230-A832-6D4F21F3E63A}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate Courses Meeting"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <Connection>{D025666F-C092-46C6-B74A-F7741AEAEEEE}</Connection>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PopulateCourses_Comments"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{53983B21-F813-463E-BA92-17559708339E}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PopulateCourses_Comments"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <Connection>{808F1E78-3546-4534-91A8-44D7C21BF88A}</Connection>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PopulateCourses_Core"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{A59F4124-75F0-4052-A0BA-BB93C652E405}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PopulateCourses_Core"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <Connection>{9650AE8B-A025-46AE-8103-A8DBAA046467}</Connection>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PopulateCourses_Instructors"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{7FA2536F-0B12-47DF-B173-0348FD5FEC68}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PopulateCourses_Instructors"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <Connection>{D3BCB8C0-B694-4383-BB0E-00D29E3B5A92}</Connection>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{5721D5BB-E2C6-4102-B1E6-7CC5DF51034E}"
+      DTS:From="Package\PopulateCourses_Core"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\PopulateCourses_Instructors" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{85964972-F79B-4A3D-A16C-B07735C58D03}"
+      DTS:From="Package\PopulateCourses_Core"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Populate Courses Meeting" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{96E97EDA-12E4-4332-8E51-36194D742BD2}"
+      DTS:From="Package\PopulateCourses_Core"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\PopulateCourses_Comments" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Populate Courses Meeting"
+          TopLeft="242,294" />
+        <NodeLayout
+          Size="243,48"
+          Id="Package\PopulateCourses_Comments"
+          TopLeft="443,250" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\PopulateCourses_Core"
+          TopLeft="230,68" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\PopulateCourses_Instructors"
+          TopLeft="31,192" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="278.5,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-139.5,82"
+              Start="0,0"
+              End="-139.5,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.1060070671378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.1060070671378"
+                    Point2="0,28.1060070671378"
+                    Point3="-4,28.1060070671378" />
+                  <mssgle:LineSegment
+                    End="-135.5,28.1060070671378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-135.5,28.1060070671378"
+                    Point2="-139.5,28.1060070671378"
+                    Point3="-139.5,32.1060070671378" />
+                  <mssgle:LineSegment
+                    End="-139.5,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="323,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.5,184"
+              Start="0,0"
+              End="11.5,176.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,88"
+                    Point2="0,92"
+                    Point3="4,92" />
+                  <mssgle:LineSegment
+                    End="7.5,92" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.5,92"
+                    Point2="11.5,92"
+                    Point3="11.5,96" />
+                  <mssgle:LineSegment
+                    End="11.5,176.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="367.5,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="197,140"
+              Start="0,0"
+              End="197,132.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.9858657243816" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.9858657243816"
+                    Point2="0,47.9858657243816"
+                    Point3="4,47.9858657243816" />
+                  <mssgle:LineSegment
+                    End="193,47.9858657243816" />
+                  <mssgle:CubicBezierSegment
+                    Point1="193,47.9858657243816"
+                    Point2="197,47.9858657243816"
+                    Point3="197,51.9858657243816" />
+                  <mssgle:LineSegment
+                    End="197,132.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

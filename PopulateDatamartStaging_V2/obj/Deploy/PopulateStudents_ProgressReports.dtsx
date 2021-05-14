@@ -1,0 +1,1072 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/14/2014 11:07:34 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{4D6B016A-9A71-4673-A652-4BE1BB70A026}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateStudents_ProgressReports"
+  DTS:PackageType="5"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{71993614-4FBF-4F35-B68B-4B03B88E9786}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Reporting]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+      DTS:ObjectName="ods.ODS_Reporting">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Reporting;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=receive.roanoke.edu;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FA874D65-4F9A-4FE7-A2C7-9861DE1C3CAE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLFetchCount">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT COUNT(STC_PERSON_ID) AS ProcessedCount FROM dbo.R_STUDENT_ENROLLMENT_VIEW</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EB8BFFC-7934-4566-B421-252E5770F69A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ViewCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Add students on academic warning the previous term"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{56F224B5-0B4D-4759-AEA2-41F081FDA6EF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add students on academic warning the previous term"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="MERGE ODS_Staging.dbo.tempstudents&#xA; as TARGET&#xA;USING (select DISTINCT STTN_STUDENT from R_STTN_TERM_NOTES&#xA;where STTN_NOTES like 'AW%' and STTN_TERM = dbo.FN_DATAMART_PREVIOUS_TERM()) as SOURCE&#xA;&#x9;&#xA;ON TARGET.RCID = SOURCE.STTN_STUDENT AND ProgressReport = 'N' &#xA;WHEN MATCHED THEN&#xA;&#x9;UPDATE SET ProgressReport = 'Y';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Students on academic warning the previous term has failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{1db85bc6-d805-4a95-bda7-a45bd0691439}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Students on academic warning the previous term has failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK:Add Students on academic warning the previous term has failed"
+          SendMailTask:MessageSource="ODS TASK: Add Students on academic warning the previous term  has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add students who have ever been on Academic suspension"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0F6C2F30-6939-4F34-89F8-DE9E05FFB9FC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add students who have ever been on Academic suspension"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="&#xA;MERGE ODS_Staging.dbo.tempstudents as TARGET&#xA;USING (select DISTINCT STTN_STUDENT from R_STTN_TERM_NOTES&#xA;where STTN_NOTES like 'AS%') as SOURCE&#xA;&#x9;&#xA;ON TARGET.RCID = SOURCE.STTN_STUDENT AND TARGET.ProgressReport = 'N' &#xA;WHEN MATCHED THEN&#xA;&#x9;UPDATE SET ProgressReport = 'N';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Students who have ever been on Academic suspension"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{50a806cf-d8a6-4b4b-a572-ef8828bbb7cb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Students who have ever been on Academic suspension"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK:Add Students who have ever been on Academic suspension failed"
+          SendMailTask:MessageSource="ODS TASK: Add Students who have ever been on Academic suspension has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up Start Terms"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2E043C68-0663-4E1E-95FF-BA446D9EE00C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up Start Terms"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="MERGE ODS_Staging.dbo.tempStudents as TARGET&#xA;USING (SELECT DISTINCT RCID FROM ODS_Staging.dbo.progressReportStudents) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID AND ProgressReport = 'N' AND NOT(TARGET.CLASS='HH')&#xA;WHEN MATCHED THEN&#xA;&#x9;UPDATE SET ProgressReport = 'Y';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean up Start Terms failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{5b6ab0d4-e4c0-4b9b-8555-e09110da21b4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean up Start Terms failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK: Clean up Start Terms failed"
+          SendMailTask:MessageSource="ODS TASK: Clean up Start Terms  has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear  ODS staging table ProgressReportStudents failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{56c18ce6-e1d9-4a36-8cf0-d5586eced0f1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear  ODS staging table ProgressReportStudents failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK: Clear ODS staging table ProgressReportStudents failed"
+          SendMailTask:MessageSource="ODS TASK: Clear ODS staging table ProgressReportStudents has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear ODS Staging table ProgressReportCredits"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{56C90D8B-7EBC-4F07-8AC3-64BD6BEDBC83}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear ODS Staging table ProgressReportCredits"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ODS_STAGING.dbo.ProgressReportCredits;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear ODS staging table ProgressReportCredits failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{c4819758-11c3-425f-ab3a-fb071b41f75a}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear ODS staging table ProgressReportCredits failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK: Clear ODS staging table ProgressReportCredits failed"
+          SendMailTask:MessageSource="ODS TASK: Clear ODS staging table ProgressReportCredits failed has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear ODS Staging Table ProgressReportStudents"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AEC77865-30E4-4D6E-8EA5-C9458D9994C0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear ODS Staging Table ProgressReportStudents"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ODS_STAGING.dbo.ProgressReportStudents;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate ODS Staging Table ProgressReportCredits"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8B030758-881C-4013-AA11-E08276945EB7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate ODS Staging Table ProgressReportCredits"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="&#xA;INSERT INTO ODS_Staging.dbo.progressReportCredits&#xA;&#xA;SELECT STC_PERSON_ID, sum(stc_cred)&#xA; fROM R_STUDENT_ENROLLMENT_VIEW&#xA;where STC_REPORTING_TERM = dbo.FN_DATAMART_CURRENT_TERM()&#xA;and STC_CURRENT_STATUS in ('A','N')&#xA;Group by STC_PERSON_ID;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate ODS staging table ProgressReportCredits failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{b48e7cdb-6223-431c-b758-a759e792a93f}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate ODS staging table ProgressReportCredits failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK: Populate ODS staging table ProgressReportCredits failed"
+          SendMailTask:MessageSource="ODS TASK: Populate ODS staging table ProgressReportCredits has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate ODS Staging Table ProgressReportStudents"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1D3975DB-CF46-434C-B89E-18A1F02EF77F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate ODS Staging Table ProgressReportStudents"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="&#xA;DECLARE @currentTerm varchar(20);&#xA;DECLARE @currentTermYear char(4);&#xA;DECLARE @previousTermYear char(4);&#xA;DECLARE @currentTermSemester char(2);&#xA;DECLARE @progressReportStartTermList varchar(50)&#xA;&#xA;set @currentTerm = (SELECT dbo.FN_DATAMART_CURRENT_TERM());&#xA;set @currentTermYear = substring(@currentTerm,1,4);&#xA;set @currentTermSemester = substring(@currentTerm,5,2);&#xA;set @previousTermYear = @currentTermYear - 1 &#xA;&#xA;if @currentTermSemester='SP'&#xA;&#x9;set @progressReportStartTermList = '('''+@currentTerm +''',''' + @previousTermYear+'FA'','''+ @previousTermYear+'S3'','''+@previousTermYear+'S2'','''+@previousTermYear+'S1'')'&#xA;&#xA;else&#xA;&#x9;set @progressReportStartTermList = '('''+@currentTermYear+'FA'',''' + @currentTermYear+'S3'','''+@currentTermYear+'S2'','''+@currentTermYear+'S1'')'&#xA;&#x9;&#xA;&#xA;INSERT INTO ODS_Staging.dbo.progressReportStudents&#xA;execute('SELECT RCID&#xA;&#x9;&#x9;FROM ODS_Staging.dbo.tempstudents WHERE StartTerm in' + @progressReportStartTermList);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate ODS staging table ProgressReportStudents failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{5aec55cb-c80b-4d2f-b3e9-c43fdae75c9c}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate ODS staging table ProgressReportStudents failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK: Populate ODS staging table ProgressReportStudents failed"
+          SendMailTask:MessageSource="ODS TASK: Populate ODS staging table ProgressReportStudents has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove students with less than 3 credits"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{990EFCEA-3EFF-4E54-80BF-BF7BDFB6E9F5}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove students with less than 3 credits"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
+          SQLTask:SqlStatementSource="&#xA;&#x9;MERGE ODS_Staging.dbo.tempStudents as TARGET&#xA;USING (SELECT DISTINCT RCID FROM ODS_Staging.dbo.progressReportCredits WHERE TotalCredits &lt; 3) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID AND ProgressReport = 'Y' &#xA;WHEN MATCHED THEN&#xA;&#x9;UPDATE SET ProgressReport = 'N';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove Students with less than 3 credits has failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{11673f42-1bc8-4d9d-9e39-c0cbffa41ca3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove Students with less than 3 credits has failed"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{DE5F5233-372D-4BE1-A320-94602ED72E3C}"
+          SendMailTask:From="noreply@roanoke.edu"
+          SendMailTask:To="datamart@roanoke.edu"
+          SendMailTask:CC="gabrielson@roanoke.edu"
+          SendMailTask:Subject="ODS TASK: Remove Students with less than 3 credits failed"
+          SendMailTask:MessageSource="ODS TASK: Remove Students with less than 3 credits has failed in package PopulateStudents_ProgressReports.  This package needs to be re-executed." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FAB96B5C-14C4-4C9B-B679-14293CEC0C10}"
+      DTS:From="Package\Clear ODS Staging table ProgressReportCredits"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Populate ODS Staging Table ProgressReportCredits" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C4C80D32-8D76-40AE-9AE0-9543749F10AD}"
+      DTS:From="Package\Clear ODS Staging Table ProgressReportStudents"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Populate ODS Staging Table ProgressReportStudents" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{E0C29C30-24BE-4575-8BEE-37A3BA1AC0AF}"
+      DTS:From="Package\Add students who have ever been on Academic suspension"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Add Students who have ever been on Academic suspension"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{8881C6A1-50F1-472A-B5DA-6398FF781645}"
+      DTS:From="Package\Add students on academic warning the previous term"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Add Students on academic warning the previous term has failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{E1AA1F1F-7854-4428-8191-27673340A4DF}"
+      DTS:From="Package\Populate ODS Staging Table ProgressReportStudents"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Populate ODS staging table ProgressReportStudents failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B982A8F-C285-4810-AF91-6F67316E7299}"
+      DTS:From="Package\Clear ODS Staging Table ProgressReportStudents"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Clear  ODS staging table ProgressReportStudents failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{78443867-EDE9-4F1D-8E68-2BC9BFC82C20}"
+      DTS:From="Package\Clean up Start Terms"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Clean up Start Terms failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{3E2D184A-50D6-482A-BEC8-C482C211F651}"
+      DTS:From="Package\Populate ODS Staging Table ProgressReportStudents"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Clean up Start Terms" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{4DC6A5E0-470D-4C61-B75F-1B8028B0AD10}"
+      DTS:From="Package\Populate ODS Staging Table ProgressReportCredits"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Remove students with less than 3 credits" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{C8D00165-AFFA-47A1-8499-B3F6369BDB80}"
+      DTS:From="Package\Remove students with less than 3 credits"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Add students who have ever been on Academic suspension" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{7511141E-0C6B-4912-B38A-601A77263233}"
+      DTS:From="Package\Clean up Start Terms"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Add students who have ever been on Academic suspension" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{D54FF84D-E097-4A63-B828-5AD5C5BC01F2}"
+      DTS:From="Package\Add students who have ever been on Academic suspension"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Add students on academic warning the previous term" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{5CA2886F-2526-4114-AA71-FA17880C5E08}"
+      DTS:From="Package\Clear ODS Staging table ProgressReportCredits"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Clear ODS staging table ProgressReportCredits failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{8621774E-B844-441F-8803-7D3D4B78AF58}"
+      DTS:From="Package\Populate ODS Staging Table ProgressReportCredits"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Populate ODS staging table ProgressReportCredits failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{CE80DF30-6DDB-41A0-AECF-C75A18AC2BFA}"
+      DTS:From="Package\Remove students with less than 3 credits"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Remove Students with less than 3 credits has failed"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="333,42"
+          Id="Package\Add students on academic warning the previous term"
+          TopLeft="460,688.000000000001" />
+        <NodeLayout
+          Size="382,42"
+          Id="Package\Add Students on academic warning the previous term has failed"
+          TopLeft="127,773.000000000001" />
+        <NodeLayout
+          Size="360,42"
+          Id="Package\Add students who have ever been on Academic suspension"
+          TopLeft="397,576.000000000001" />
+        <NodeLayout
+          Size="361,42"
+          Id="Package\Add Students who have ever been on Academic suspension"
+          TopLeft="57,643.000000000001" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Clean up Start Terms"
+          TopLeft="682,387.000000000001" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Clean up Start Terms failed"
+          TopLeft="804,513.000000000001" />
+        <NodeLayout
+          Size="355,42"
+          Id="Package\Clear  ODS staging table ProgressReportStudents failed"
+          TopLeft="933,170" />
+        <NodeLayout
+          Size="302,42"
+          Id="Package\Clear ODS Staging table ProgressReportCredits"
+          TopLeft="355,130" />
+        <NodeLayout
+          Size="329,42"
+          Id="Package\Clear ODS staging table ProgressReportCredits failed"
+          TopLeft="232,200" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Clear ODS Staging Table ProgressReportStudents"
+          TopLeft="672,128" />
+        <NodeLayout
+          Size="321,42"
+          Id="Package\Populate ODS Staging Table ProgressReportCredits"
+          TopLeft="354,270" />
+        <NodeLayout
+          Size="346,42"
+          Id="Package\Populate ODS staging table ProgressReportCredits failed"
+          TopLeft="79,337.000000000001" />
+        <NodeLayout
+          Size="330,42"
+          Id="Package\Populate ODS Staging Table ProgressReportStudents"
+          TopLeft="725,266" />
+        <NodeLayout
+          Size="355,42"
+          Id="Package\Populate ODS staging table ProgressReportStudents failed"
+          TopLeft="913,354.000000000001" />
+        <NodeLayout
+          Size="274,42"
+          Id="Package\Remove students with less than 3 credits"
+          TopLeft="385,432.000000000001" />
+        <NodeLayout
+          Size="324,42"
+          Id="Package\Remove Students with less than 3 credits has failed"
+          TopLeft="82,502.000000000001" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="569.75,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,98"
+              Start="0,0"
+              End="0,90.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,90.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="797,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93,96"
+              Start="0,0"
+              End="93,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44"
+                    Point2="0,48"
+                    Point3="4,48" />
+                  <mssgle:LineSegment
+                    End="89,48" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89,48"
+                    Point2="93,48"
+                    Point3="93,52" />
+                  <mssgle:LineSegment
+                    End="93,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="518.333333333333,618.000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-280.833333333333,25"
+              Start="0,0"
+              End="-280.833333333333,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.06637168141593" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.06637168141593"
+                    Point2="0,10.0663716814159"
+                    Point3="-4,10.0663716814159" />
+                  <mssgle:LineSegment
+                    End="-276.833333333333,10.0663716814159" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-276.833333333333,10.0663716814159"
+                    Point2="-280.833333333333,10.0663716814159"
+                    Point3="-280.833333333333,14.0663716814159" />
+                  <mssgle:LineSegment
+                    End="-280.833333333333,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-154.658014322917,15.0663716814159,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="626.5,730.000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-308.5,43"
+              Start="0,0"
+              End="-308.5,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="-4,21.5" />
+                  <mssgle:LineSegment
+                    End="-304.5,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-304.5,21.5"
+                    Point2="-308.5,21.5"
+                    Point3="-308.5,25.5" />
+                  <mssgle:LineSegment
+                    End="-308.5,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-168.49134765625,26.5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="943.666666666667,308">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146.833333333333,46"
+              Start="0,0"
+              End="146.833333333333,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5331724969843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5331724969843"
+                    Point2="0,18.5331724969843"
+                    Point3="4,18.5331724969843" />
+                  <mssgle:LineSegment
+                    End="142.833333333333,18.5331724969843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="142.833333333333,18.5331724969843"
+                    Point2="146.833333333333,18.5331724969843"
+                    Point3="146.833333333333,22.5331724969843" />
+                  <mssgle:LineSegment
+                    End="146.833333333333,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="59.1753190104167,23.5331724969843,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="922,147.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="188.5,22.5"
+              Start="0,0"
+              End="188.5,15">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="184.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="184.5,0"
+                    Point2="188.5,0"
+                    Point3="188.5,4" />
+                  <mssgle:LineSegment
+                    End="188.5,15" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="174.25865234375,-13.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="816.666666666667,429.000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.8333333333334,84"
+              Start="0,0"
+              End="91.8333333333334,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.9922178988327" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.9922178988327"
+                    Point2="0,33.9922178988327"
+                    Point3="4,33.9922178988327" />
+                  <mssgle:LineSegment
+                    End="87.8333333333334,33.9922178988327" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.8333333333334,33.9922178988327"
+                    Point2="91.8333333333334,33.9922178988327"
+                    Point3="91.8333333333334,37.9922178988327" />
+                  <mssgle:LineSegment
+                    End="91.8333333333334,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="31.6753190104167,38.9922178988327,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="836.333333333333,308">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52.3333333333334,79"
+              Start="0,0"
+              End="-52.3333333333334,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.8287092882992" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.8287092882992"
+                    Point2="0,31.8287092882992"
+                    Point3="-4,31.8287092882992" />
+                  <mssgle:LineSegment
+                    End="-48.3333333333334,31.8287092882992" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48.3333333333334,31.8287092882992"
+                    Point2="-52.3333333333334,31.8287092882992"
+                    Point3="-52.3333333333334,35.8287092882992" />
+                  <mssgle:LineSegment
+                    End="-52.3333333333334,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="518.25,312">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,120"
+              Start="0,0"
+              End="0,112.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,112.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="566.333333333333,474.000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-47.9999999999999,102"
+              Start="0,0"
+              End="-47.9999999999999,94.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.0878007767146" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.0878007767146"
+                    Point2="0,51.0878007767146"
+                    Point3="-4,51.0878007767146" />
+                  <mssgle:LineSegment
+                    End="-43.9999999999999,51.0878007767146" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-43.9999999999999,51.0878007767146"
+                    Point2="-47.9999999999999,51.0878007767146"
+                    Point3="-47.9999999999999,55.0878007767146" />
+                  <mssgle:LineSegment
+                    End="-47.9999999999999,94.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="784,429.000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-148.333333333333,147"
+              Start="0,0"
+              End="-148.333333333333,139.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.8097345132743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,83.8097345132743"
+                    Point2="0,87.8097345132743"
+                    Point3="-4,87.8097345132743" />
+                  <mssgle:LineSegment
+                    End="-144.333333333333,87.8097345132743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-144.333333333333,87.8097345132743"
+                    Point2="-148.333333333333,87.8097345132743"
+                    Point3="-148.333333333333,91.8097345132743" />
+                  <mssgle:LineSegment
+                    End="-148.333333333333,139.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="635.666666666667,618.000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.16666666666663,70"
+              Start="0,0"
+              End="-9.16666666666663,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.1858407079646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.1858407079646"
+                    Point2="0,28.1858407079646"
+                    Point3="-4,28.1858407079646" />
+                  <mssgle:LineSegment
+                    End="-5.16666666666663,28.1858407079646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.16666666666663,28.1858407079646"
+                    Point2="-9.16666666666663,28.1858407079646"
+                    Point3="-9.16666666666663,32.1858407079646" />
+                  <mssgle:LineSegment
+                    End="-9.16666666666663,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="457,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-60.5,28"
+              Start="0,0"
+              End="-60.5,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.28853754940712" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.28853754940712"
+                    Point2="0,11.2885375494071"
+                    Point3="-4,11.2885375494071" />
+                  <mssgle:LineSegment
+                    End="-56.5,11.2885375494071" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-56.5,11.2885375494071"
+                    Point2="-60.5,11.2885375494071"
+                    Point3="-60.5,15.2885375494071" />
+                  <mssgle:LineSegment
+                    End="-60.5,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-44.49134765625,16.2885375494071,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="462.333333333333,312">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-210.333333333333,25"
+              Start="0,0"
+              End="-210.333333333333,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.07439553626782" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.07439553626782"
+                    Point2="0,10.0743955362678"
+                    Point3="-4,10.0743955362678" />
+                  <mssgle:LineSegment
+                    End="-206.333333333333,10.0743955362678" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-206.333333333333,10.0743955362678"
+                    Point2="-210.333333333333,10.0743955362678"
+                    Point3="-210.333333333333,14.0743955362678" />
+                  <mssgle:LineSegment
+                    End="-210.333333333333,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-119.408014322917,15.0743955362678,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="477.666666666667,474.000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-233.666666666667,28"
+              Start="0,0"
+              End="-233.666666666667,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.29753265602322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.29753265602322"
+                    Point2="0,11.2975326560232"
+                    Point3="-4,11.2975326560232" />
+                  <mssgle:LineSegment
+                    End="-229.666666666667,11.2975326560232" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-229.666666666667,11.2975326560232"
+                    Point2="-233.666666666667,11.2975326560232"
+                    Point3="-233.666666666667,15.2975326560232" />
+                  <mssgle:LineSegment
+                    End="-233.666666666667,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-131.074680989583,16.2975326560232,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

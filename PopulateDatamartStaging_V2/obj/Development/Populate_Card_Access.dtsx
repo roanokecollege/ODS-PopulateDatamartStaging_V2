@@ -1,0 +1,1618 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/2/2018 10:33:39 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODS"
+  DTS:CreatorName="ACADEMIC\webserv"
+  DTS:DTSID="{66C28530-3783-4BEC-BDCE-5E9448BE2C48}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.7493.4"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Populate_Card_Access"
+  DTS:PackageType="5"
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{B1D2603F-B636-45FD-83CC-B618738221A1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ods.ODS_Staging]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{C6CE931F-C0D5-4177-8880-C8DC05A82D39}"
+      DTS:ObjectName="ods.ODS_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ods;Initial Catalog=ODS_Staging;Integrated Security=True;Application Name=SSIS-Populate_Card_Access-{C6CE931F-C0D5-4177-8880-C8DC05A82D39}ods.ODS_Staging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS.ODS_Staging1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{579B801F-0706-4232-A52C-390BF72DABCE}"
+      DTS:ObjectName="ODS.ODS_Staging1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODS;Initial Catalog=ODS_Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PostgreSQL35W.report]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{2A538FA9-A1D5-483F-BDEF-EBEA92D667CD}"
+      DTS:ObjectName="PostgreSQL35W.report">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=report;Dsn=PostgreSQL35W;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PostgreSQL35W.report 1]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{7C9146CE-A6FF-4AC7-AC14-F9D7C507493E}"
+      DTS:ObjectName="PostgreSQL35W.report 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=report;Dsn=PostgreSQL35W;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2b950632-e500-4ce8-8d12-558941f6f5e9}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."Card_Swipes"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ods.ODS_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[ods.ODS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[logkey]"
+                      cachedDataType="i4"
+                      cachedName="logkey"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[logkey]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[logkey]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[personid]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="personid"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[personid]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[personid]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[portalname]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="portalname"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[portalname]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[portalname]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[dttm]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="dttm"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[dttm]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[dttm]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[personid]"
+                      dataType="wstr"
+                      length="255"
+                      name="personid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[portalname]"
+                      dataType="wstr"
+                      length="255"
+                      name="portalname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[dttm]"
+                      dataType="dbTimeStamp"
+                      name="dttm" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[logkey]"
+                      dataType="i4"
+                      name="logkey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ADO NET Source"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT
+A.logkey,
+ B.personid,
+ A.portalname,
+ A.dttm
+ FROM
+ s2logactivity A
+INNER JOIN person B ON A.personkey = B.personkey
+where A.dttm &gt; current_date - interval '5' day;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PostgreSQL35W.report 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[PostgreSQL35W.report 1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[logkey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[logkey]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[logkey]"
+                      name="logkey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[personid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[personid]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[personid]"
+                      name="personid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[portalname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[portalname]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[portalname]"
+                      name="portalname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[dttm]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[dttm]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[dttm]"
+                      name="dttm"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[logkey]"
+                      dataType="i4"
+                      name="logkey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[personid]"
+                      dataType="wstr"
+                      length="255"
+                      name="personid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[portalname]"
+                      dataType="wstr"
+                      length="255"
+                      name="portalname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[dttm]"
+                      dataType="dbTimeStamp"
+                      name="dttm" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[logkey]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[logkey]"
+                      name="logkey" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[personid]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[personid]"
+                      name="personid" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[portalname]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[portalname]"
+                      name="portalname" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[dttm]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[dttm]"
+                      name="dttm" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Odd Crapola"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B5AFA0DA-EF77-42B2-92D1-1475525B4C31}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Odd Crapola"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:SqlStatementSource="DELETE from Card_Swipes&#xA;WHERE     (logkey IS NULL);&#xA;&#xA;DELETE from Card_Swipes&#xA;WHERE     (personid IS NULL);&#xA;&#xA;&#xA;DELETE from Card_Swipes&#xA;WHERE     (personid = '0000000');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fix RCID's"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F20465F4-0835-46D1-B3CB-21F775CC803F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fix RCID's"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="update Netbox_Card_Access_Data  set personid=RIGHT ('0000000' + ISNULL(personid, ''), 7);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fix RCID's 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e3055205-7f61-4aa5-a4b6-b312a3cf6cfd}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fix RCID's 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="update Card_swipes set personid=RIGHT ('0000000' + ISNULL(personid, ''), 7);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\insert date"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{0656D1D8-98B3-4F4C-84A1-6336E67D06BE}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="insert date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE&#xA;   Netbox_Card_Access_Data&#xA;SET&#xA;    Netbox_Card_Access_Data.updated_at = getdate()&#xA;WHERE &#xA;  Netbox_Card_Access_Data.updated_at is Null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\insert date 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2858693f-3704-462f-b734-06f51712861d}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="insert date 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE&#xA;   card_swipes&#xA;SET&#xA;    card_swipes.updated_at = getdate()&#xA;WHERE &#xA;  card_swipes.updated_at is Null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert Terri Maxey Record"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{36AD5C35-2D0F-4E6C-A4F5-E1507954773A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert Terri Maxey Record"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO Netbox_Card_Access_Data (firstname,lastname,actdate,expdate,accesslevelkey,personid, deleted, expr1)&#xA;VALUES ('Terri', 'Maxey', '2017-01-01 00:01:00.000', NULL ,'499', '0048336', '0', 'num');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PSQL S2 to ODS Staging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{8AA024F8-B5A7-4489-A681-ACCFD014F881}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PSQL S2 to ODS Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\PSQL S2 to ODS Staging\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"Netbox_Card_Access_Data"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ods.ODS_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[ods.ODS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[firstname]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="firstname"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[firstname]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[firstname]" />
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[lastname]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="lastname"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[lastname]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[lastname]" />
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[actdate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="actdate"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[actdate]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[actdate]" />
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[expdate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="expdate"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[expdate]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[expdate]" />
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[accesslevelkey]"
+                      cachedDataType="i4"
+                      cachedName="accesslevelkey"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[accesslevelkey]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[accesslevelkey]" />
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[personid]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="personid"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[personid]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[personid]" />
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[deleted]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="deleted"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[deleted]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[deleted]" />
+                    <inputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[expr1]"
+                      cachedDataType="nText"
+                      cachedName="expr1"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[expr1]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[expr1]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[firstname]"
+                      dataType="wstr"
+                      length="50"
+                      name="firstname" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[lastname]"
+                      dataType="wstr"
+                      length="50"
+                      name="lastname" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[actdate]"
+                      dataType="dbTimeStamp"
+                      name="actdate" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[expdate]"
+                      dataType="dbTimeStamp"
+                      name="expdate" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[accesslevelkey]"
+                      dataType="i4"
+                      name="accesslevelkey" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[personid]"
+                      dataType="wstr"
+                      length="255"
+                      name="personid" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[deleted]"
+                      dataType="wstr"
+                      length="5"
+                      name="deleted" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[expr1]"
+                      dataType="wstr"
+                      length="2147483647"
+                      name="expr1" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PSQL S2 to ODS Staging\ODBC Source"
+              componentClassID="{A77F5655-A006-443A-9B7E-90B6BD55CB84}"
+              contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1"
+              description="ODBC Source"
+              name="ODBC Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand">SELECT        report.person.firstname, report.person.lastname, report.person.actdate, report.person.expdate, report.persontoaccesslevel.accesslevelkey, report.person.personid, report.persontoaccesslevel.deleted, LPAD('numcol::personid', 3, '0')
+                             AS Expr1
+    FROM            report.persontoaccesslevel, report.person
+    WHERE        report.persontoaccesslevel.personkey = report.person.personkey AND (report.persontoaccesslevel.accesslevelkey = 627 or report.persontoaccesslevel.accesslevelkey = 499 or report.persontoaccesslevel.accesslevelkey = 585)</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows fetched per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for fetching data."
+                  expressionType="Notify"
+                  name="FetchMethod"
+                  typeConverter="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PSQL S2 to ODS Staging\ODBC Source.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PostgreSQL35W.report]"
+                  connectionManagerRefId="Package.ConnectionManagers[PostgreSQL35W.report]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="ODBC Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[firstname]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[firstname]"
+                      length="50"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[firstname]"
+                      name="firstname" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[lastname]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[lastname]"
+                      length="50"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[lastname]"
+                      name="lastname" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[actdate]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[actdate]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[actdate]"
+                      name="actdate" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[expdate]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[expdate]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[expdate]"
+                      name="expdate" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[accesslevelkey]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[accesslevelkey]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[accesslevelkey]"
+                      name="accesslevelkey" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[personid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[personid]"
+                      length="255"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[personid]"
+                      name="personid" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[deleted]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[deleted]"
+                      length="5"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[deleted]"
+                      name="deleted" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[expr1]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[expr1]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].Columns[expr1]"
+                      name="expr1" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[firstname]"
+                      dataType="wstr"
+                      length="50"
+                      name="firstname" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[lastname]"
+                      dataType="wstr"
+                      length="50"
+                      name="lastname" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[actdate]"
+                      dataType="dbTimeStamp"
+                      name="actdate" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[expdate]"
+                      dataType="dbTimeStamp"
+                      name="expdate" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[accesslevelkey]"
+                      dataType="i4"
+                      name="accesslevelkey" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[personid]"
+                      dataType="wstr"
+                      length="255"
+                      name="personid" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[deleted]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="deleted" />
+                    <externalMetadataColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[expr1]"
+                      dataType="nText"
+                      name="expr1" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[firstname]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[firstname]"
+                      length="50"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[firstname]"
+                      name="firstname" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[lastname]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[lastname]"
+                      length="50"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[lastname]"
+                      name="lastname" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[actdate]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[actdate]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[actdate]"
+                      name="actdate" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[expdate]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[expdate]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[expdate]"
+                      name="expdate" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[accesslevelkey]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[accesslevelkey]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[accesslevelkey]"
+                      name="accesslevelkey" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[personid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[personid]"
+                      length="255"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[personid]"
+                      name="personid" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[deleted]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[deleted]"
+                      length="5"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[deleted]"
+                      name="deleted" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[expr1]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[expr1]"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[expr1]"
+                      name="expr1" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\PSQL S2 to ODS Staging.Paths[ODBC Source Output]"
+              endId="Package\PSQL S2 to ODS Staging\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ODBC Source Output"
+              startId="Package\PSQL S2 to ODS Staging\ODBC Source.Outputs[ODBC Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\staging to hermes staging table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{0455442C-6126-436F-8CED-1FA68BE6ECE0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="staging to hermes staging table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.dbo.Netbox_Card_Access_Data;&#xA;&#xA;&#xA;INSERT INTO HERMES.STAGING.dbo.Netbox_Card_Access_Data&#xA;SELECT     firstname, lastname, actdate, expdate, accesslevelkey, personid, deleted, expr1, updated_at&#xA;FROM         dbo.Netbox_Card_Access_Data&#xA;;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\staging to hermes staging table 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f71ec9fd-1beb-4345-8313-bc15c625bc39}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="staging to hermes staging table 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.STAGING.dbo.card_swipes;&#xA;&#xA;&#xA;INSERT INTO HERMES.STAGING.dbo.card_swipes&#xA;SELECT     personid, portalname, dttm, updated_at, logkey&#xA;FROM         dbo.card_swipes;&#xA;;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Card Access on ODS Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{FE6DCC29-6936-442C-AB64-22412CBDBB58}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Card Access on ODS Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:SqlStatementSource="Truncate Table Netbox_Card_Access_Data;&#xA;truncate table card_swipes;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate card swipes table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{121cde97-8ab6-4e49-ab07-b0aaf326f13a}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate card swipes table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{579B801F-0706-4232-A52C-390BF72DABCE}"
+          SQLTask:SqlStatementSource="truncate table card_swipes;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{676C3198-7B0D-43D4-8CF9-6033D9C35316}"
+      DTS:From="Package\Truncate Card Access on ODS Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\PSQL S2 to ODS Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CFB3E05B-F7B9-4CA1-AFC9-2DD02EEBDF18}"
+      DTS:From="Package\PSQL S2 to ODS Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Fix RCID's" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{29EB1879-100B-483B-A4D2-D79619891AE1}"
+      DTS:From="Package\Delete Odd Crapola"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\insert date 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{6C1150A5-9314-4104-9FBC-CA1C9282B1A6}"
+      DTS:From="Package\Fix RCID's"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Insert Terri Maxey Record" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{DB1BBD73-F899-4116-8D6A-5E691FB65952}"
+      DTS:From="Package\Insert Terri Maxey Record"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\insert date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{5CC499B7-F660-4B27-9AB8-58E0E9049DCD}"
+      DTS:From="Package\insert date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\staging to hermes staging table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{5c2ae922-15d9-4725-aa25-da7154989505}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Fix RCID's 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{735388c0-d5d6-406b-9775-a66784af63ce}"
+      DTS:From="Package\truncate card swipes table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{157BC0C1-ACDD-4254-8A4D-131A41831FA9}"
+      DTS:From="Package\staging to hermes staging table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\truncate card swipes table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{0FAC3309-6B06-4558-8F17-E2BD6588DF69}"
+      DTS:From="Package\Fix RCID's 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Delete Odd Crapola" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{06C54601-3D7E-4D44-84C2-481A322BFD17}"
+      DTS:From="Package\insert date 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\staging to hermes staging table 1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="167,43"
+          Id="Package\Data Flow Task"
+          TopLeft="821,258" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Delete Odd Crapola"
+          TopLeft="825,461" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\Fix RCID's"
+          TopLeft="243,285" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\Fix RCID's 1"
+          TopLeft="839,360" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\insert date"
+          TopLeft="258,479" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\insert date 1"
+          TopLeft="827,546" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Insert Terri Maxey Record"
+          TopLeft="214,373" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\PSQL S2 to ODS Staging"
+          TopLeft="210,183" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\staging to hermes staging table"
+          TopLeft="348,559" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\staging to hermes staging table 1"
+          TopLeft="783,650" />
+        <NodeLayout
+          Size="260,42"
+          Id="Package\Truncate Card Access on ODS Staging"
+          TopLeft="185,87" />
+        <NodeLayout
+          Size="327,42"
+          Id="Package\truncate card swipes table"
+          TopLeft="656,143" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="311.5,129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="307.75,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="911.5,503">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.5,43"
+              Start="0,0"
+              End="-14.5,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="-4,21.5" />
+                  <mssgle:LineSegment
+                    End="-10.5,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.5,21.5"
+                    Point2="-14.5,21.5"
+                    Point3="-14.5,25.5" />
+                  <mssgle:LineSegment
+                    End="-14.5,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="307.5,327">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,46"
+              Start="0,0"
+              End="8,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
+                  <mssgle:LineSegment
+                    End="4,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,23"
+                    Point2="8,23"
+                    Point3="8,27" />
+                  <mssgle:LineSegment
+                    End="8,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="315.5,415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,64"
+              Start="0,0"
+              End="8,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="4,32" />
+                  <mssgle:LineSegment
+                    End="4,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,32"
+                    Point2="8,32"
+                    Point3="8,36" />
+                  <mssgle:LineSegment
+                    End="8,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="323.5,521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.5,38"
+              Start="0,0"
+              End="102.5,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6424870466321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6424870466321"
+                    Point2="0,22.6424870466321"
+                    Point3="4,22.6424870466321" />
+                  <mssgle:LineSegment
+                    End="98.5,22.6424870466321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.5,22.6424870466321"
+                    Point2="102.5,22.6424870466321"
+                    Point3="102.5,26.6424870466321" />
+                  <mssgle:LineSegment
+                    End="102.5,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="904,301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="872.666666666667,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.8333333333334,73"
+              Start="0,0"
+              End="31.8333333333334,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.4132684114425" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.4132684114425"
+                    Point2="0,29.4132684114425"
+                    Point3="4,29.4132684114425" />
+                  <mssgle:LineSegment
+                    End="27.8333333333334,29.4132684114425" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.8333333333334,29.4132684114425"
+                    Point2="31.8333333333334,29.4132684114425"
+                    Point3="31.8333333333334,33.4132684114425" />
+                  <mssgle:LineSegment
+                    End="31.8333333333334,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="500,559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="266.333333333333,-374"
+              Start="0,0"
+              End="266.333333333333,-366.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-183.475315759132" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-183.475315759132"
+                    Point2="0,-187.475315759132"
+                    Point3="4,-187.475315759132" />
+                  <mssgle:LineSegment
+                    End="262.333333333333,-187.475315759132" />
+                  <mssgle:CubicBezierSegment
+                    Point1="262.333333333333,-187.475315759132"
+                    Point2="266.333333333333,-187.475315759132"
+                    Point3="266.333333333333,-191.475315759132" />
+                  <mssgle:LineSegment
+                    End="266.333333333333,-366.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="903.5,402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,59"
+              Start="0,0"
+              End="8,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="4,29.5" />
+                  <mssgle:LineSegment
+                    End="4,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,29.5"
+                    Point2="8,29.5"
+                    Point3="8,33.5" />
+                  <mssgle:LineSegment
+                    End="8,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="899.75,588">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Data Flow Task\ADO NET Destination"
+          TopLeft="440,369" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data Flow Task\ADO NET Source"
+          TopLeft="362,194" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="442,236">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="88.5,133"
+              Start="0,0"
+              End="88.5,125.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.5"
+                    Point2="0,66.5"
+                    Point3="4,66.5" />
+                  <mssgle:LineSegment
+                    End="84.5,66.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="84.5,66.5"
+                    Point2="88.5,66.5"
+                    Point3="88.5,70.5" />
+                  <mssgle:LineSegment
+                    End="88.5,125.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\PSQL S2 to ODS Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\PSQL S2 to ODS Staging\ADO NET Destination"
+          TopLeft="280,389" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\PSQL S2 to ODS Staging\ODBC Source"
+          TopLeft="314,128" />
+        <EdgeLayout
+          Id="Package\PSQL S2 to ODS Staging.Paths[ODBC Source Output]"
+          TopLeft="386,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.5,219"
+              Start="0,0"
+              End="-15.5,211.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,105.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,105.5"
+                    Point2="0,109.5"
+                    Point3="-4,109.5" />
+                  <mssgle:LineSegment
+                    End="-11.5,109.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.5,109.5"
+                    Point2="-15.5,109.5"
+                    Point3="-15.5,113.5" />
+                  <mssgle:LineSegment
+                    End="-15.5,211.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\PSQL S2 to ODS Staging\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
