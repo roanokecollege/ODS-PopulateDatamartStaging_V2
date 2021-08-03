@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{C2F11439-FDD1-463A-B002-A5FA1669F030}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.7462.6"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateRegistrations"
   DTS:PackageType="5"
-  DTS:VersionBuild="156"
-  DTS:VersionGUID="{8A2BFDC4-F59E-4DEB-BA9F-F2BB60513F6A}">
+  DTS:VersionBuild="157"
+  DTS:VersionGUID="{0D9B3D46-7512-4D27-B63F-61E7307CC0A7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -184,7 +184,7 @@
           <components>
             <component
               refId="Package\build grades data\ADO NET Destination"
-              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              componentClassID="DTS.ManagedComponentWrapper.3"
               contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
               description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="ADO NET Destination"
@@ -196,7 +196,7 @@
                   description="The Destination database table name."
                   expressionType="Notify"
                   name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"r_grades_data"</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"r_grades_data"</property>
                 <property
                   dataType="System.Int32"
                   description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
@@ -280,8 +280,8 @@
                       refId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[cum_gpa]"
                       cachedDataType="numeric"
                       cachedName="cum_gpa"
-                      cachedPrecision="38"
-                      cachedScale="6"
+                      cachedPrecision="10"
+                      cachedScale="5"
                       externalMetadataColumnId="Package\build grades data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[cum_gpa]"
                       lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[cum_gpa]" />
                     <inputColumn
@@ -390,7 +390,7 @@
             </component>
             <component
               refId="Package\build grades data\ADO NET Source"
-              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              componentClassID="DTS.ManagedComponentWrapper.3"
               contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
               name="ADO NET Source"
@@ -404,11 +404,11 @@
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT     TOP (100) PERCENT SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, SPT_STUDENT_ACAD_CRED.STC_GRADE AS gpa_value, 
                       SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade, SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, R_GRADES.GRD_GRADE AS mid_term_grade, 
-                      R_STUDENTS.X_MID_GPA AS term_gpa, R_STUDENTS_CC.X_STU_CUM_GPA AS cum_gpa, 'NA' AS permission, R_STU_MISC3_L.STU_MISC3 AS est_grad_date, 
+                      R_STUDENTS.X_MID_GPA AS term_gpa, R_STUDENTS.X_STU_CUM_GPA AS cum_gpa, 'NA' AS permission, R_STU_MISC3_L.STU_MISC3 AS est_grad_date, 
                       COALESCE (current_students_on_campus_view.LiveCampus, 0) AS live_campus
 FROM         R_STU_MISC3_L RIGHT OUTER JOIN
-                      R_STUDENTS_CC RIGHT OUTER JOIN
-                      R_STUDENTS ON R_STUDENTS_CC.STUCC_ID = R_STUDENTS.STUDENTS_ID ON R_STU_MISC3_L.STUDENTS_ID = R_STUDENTS.STUDENTS_ID RIGHT OUTER JOIN
+                     
+                      R_STUDENTS ON R_STU_MISC3_L.STUDENTS_ID = R_STUDENTS.STUDENTS_ID RIGHT OUTER JOIN
                       SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN
                       current_students_on_campus_view ON SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = current_students_on_campus_view.RMAS_PERSON_ID ON 
                       R_STUDENTS.STUDENTS_ID = SPT_STUDENT_ACAD_CRED.STC_PERSON_ID LEFT OUTER JOIN
@@ -418,7 +418,7 @@ FROM         R_STU_MISC3_L RIGHT OUTER JOIN
                       SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID
 GROUP BY SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID, SPT_STUDENT_ACAD_CRED.STC_GRADE, SPT_STUDENT_ACAD_CRED.GRADE_VALUE, 
                       SPT_STUDENT_ACAD_CRED.STC_CRED, R_GRADES.GRD_GRADE, R_STUDENTS.X_MID_GPA, R_STU_MISC3_L.STU_MISC3, 
-                      COALESCE (current_students_on_campus_view.LiveCampus, 0), R_STU_MISC3_L.POS, R_STUDENTS_CC.X_STU_CUM_GPA
+                      COALESCE (current_students_on_campus_view.LiveCampus, 0), R_STU_MISC3_L.POS, R_STUDENTS.X_STU_CUM_GPA
 HAVING      (R_STU_MISC3_L.POS = 1)
 ORDER BY key_RegId</property>
                 <property
@@ -528,8 +528,8 @@ ORDER BY key_RegId</property>
                       externalMetadataColumnId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[cum_gpa]"
                       lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[cum_gpa]"
                       name="cum_gpa"
-                      precision="38"
-                      scale="6"
+                      precision="10"
+                      scale="5"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].Columns[permission]"
@@ -600,8 +600,8 @@ ORDER BY key_RegId</property>
                       refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[cum_gpa]"
                       dataType="numeric"
                       name="cum_gpa"
-                      precision="38"
-                      scale="6" />
+                      precision="10"
+                      scale="5" />
                     <externalMetadataColumn
                       refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[permission]"
                       dataType="wstr"
@@ -667,8 +667,8 @@ ORDER BY key_RegId</property>
                       dataType="numeric"
                       lineageId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[cum_gpa]"
                       name="cum_gpa"
-                      precision="38"
-                      scale="6" />
+                      precision="10"
+                      scale="5" />
                     <outputColumn
                       refId="Package\build grades data\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[permission]"
                       dataType="wstr"
@@ -741,7 +741,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Parent Access"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -778,7 +778,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_REGISTRATIONS Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -800,7 +800,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Student Terms"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -818,7 +818,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Copy Majors to Herps Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -840,7 +840,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="DTF Hermes Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -862,7 +862,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Majors to Staging Hermes"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -880,7 +880,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Parent Access to Staging"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -898,7 +898,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Registration Assignment Data to Staging  Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -938,7 +938,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Student Terms to Staging"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -957,7 +957,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="populate dm grades"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -974,7 +974,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="populate person_source"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1035,7 +1035,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Send Mail Task 1"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1055,7 +1055,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="SSIS Failure"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1077,7 +1077,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate dm_est_graddate_living_on_campus"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1111,7 +1111,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Herps Majors Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1133,7 +1133,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate person_sources"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1150,7 +1150,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="update dm_grad_date_living_campus"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2179,7 +2179,7 @@ ORDER BY key_RegId</property>
     design-time-name="Package\build grades data">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="160,42"
           Id="Package\build grades data\ADO NET Source"
@@ -2219,9 +2219,7 @@ ORDER BY key_RegId</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
