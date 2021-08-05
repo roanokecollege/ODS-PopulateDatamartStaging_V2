@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateRegistrations"
   DTS:PackageType="5"
-  DTS:VersionBuild="157"
-  DTS:VersionGUID="{0D9B3D46-7512-4D27-B63F-61E7307CC0A7}">
+  DTS:VersionBuild="162"
+  DTS:VersionGUID="{1266B30F-D478-448B-A494-4D7588069EE0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -33,7 +33,7 @@
       DTS:ObjectName="Hermes.DataMart1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{11134916-93F6-4C6F-9A7B-236699C8F534}Hermes.DataMart1;" />
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{11134916-93F6-4C6F-9A7B-236699C8F534}Hermes.DataMart1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -43,7 +43,7 @@
       DTS:ObjectName="Hermes.DataMart1 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{F3B1963D-B2D9-4346-845D-198B3E7EAC64}Hermes.DataMart1 1;" />
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=DataMart;Integrated Security=True;Application Name=&quot;SSIS-PopulateRegistrations-{F3B1963D-B2D9-4346-845D-198B3E7EAC64}Hermes.DataMart1 1&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -63,7 +63,7 @@
       DTS:ObjectName="Hermes.Staging1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{01C809E0-5A6E-4668-91D6-904E3F259169}Hermes.Staging1;" />
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{01C809E0-5A6E-4668-91D6-904E3F259169}Hermes.Staging1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -73,7 +73,7 @@
       DTS:ObjectName="Hermes.Staging1 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{3BA286A0-D2AC-4360-B28F-C9629DEA2D98}Hermes.Staging1 1;" />
+          DTS:ConnectionString="Data Source=HERMES;Initial Catalog=Staging;Integrated Security=True;Application Name=&quot;SSIS-PopulateRegistrations-{3BA286A0-D2AC-4360-B28F-C9629DEA2D98}Hermes.Staging1 1&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -723,7 +723,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Majors"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -741,7 +741,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Parent Access"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -778,7 +778,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_REGISTRATIONS Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -800,7 +800,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Student Terms"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -818,7 +818,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Copy Majors to Herps Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -840,7 +840,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="DTF Hermes Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -862,7 +862,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Majors to Staging Hermes"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -880,7 +880,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Parent Access to Staging"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -898,7 +898,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Registration Assignment Data to Staging  Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -926,7 +926,7 @@ ORDER BY key_RegId</property>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="INSERT INTO Hermes.Staging.dbo.DM_REGISTRATIONS&#xA;SELECT        TOP (100) PERCENT dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION AS fkey_courseId, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID AS RCID, dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS AS fkey_RegStatus, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE AS letter_grade, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade_value, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, dbo.R_GRADES.GRD_GRADE AS mid_term_grade, &#xA;                         dbo.R_STUDENT_COURSE_SEC.SCS_PASS_AUDIT AS pass_fail_audit, GETDATE() AS updated_at&#xA;FROM            dbo.current_students_on_campus_view RIGHT OUTER JOIN&#xA;                         dbo.SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN&#xA;                         dbo.view_student_notes ON dbo.SPT_STUDENT_ACAD_CRED.STC_TERM = dbo.view_student_notes.STTN_TERM AND &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.view_student_notes.STTN_STUDENT ON &#xA;                         dbo.current_students_on_campus_view.RMAS_PERSON_ID = dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID LEFT OUTER JOIN&#xA;                         dbo.view_R_STU_MISC3_L RIGHT OUTER JOIN&#xA;                         dbo.R_STUDENTS ON dbo.view_R_STU_MISC3_L.STUDENTS_ID = dbo.R_STUDENTS.STUDENTS_ID ON dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.R_STUDENTS.STUDENTS_ID LEFT OUTER JOIN&#xA;                         dbo.R_STUDENT_COURSE_SEC INNER JOIN&#xA;                         dbo.R_GRADES ON dbo.R_STUDENT_COURSE_SEC.SCS_MID_TERM_GRADE1 = dbo.R_GRADES.GRADES_ID RIGHT OUTER JOIN&#xA;                         dbo.SPT_STUDENT_COURSE_SEC ON dbo.R_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID ON &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID&#xA;GROUP BY dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION, dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE, dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED, &#xA;                         dbo.R_GRADES.GRD_GRADE, dbo.R_STUDENT_COURSE_SEC.SCS_PASS_AUDIT&#xA;HAVING        (dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS &lt;&gt; 'C')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.Staging.dbo.DM_REGISTRATIONS&#xA;SELECT        TOP (100) PERCENT dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID AS key_RegId, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION AS fkey_courseId, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID AS RCID, dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS AS fkey_RegStatus, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE AS letter_grade, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE AS grade_value, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED AS credits, dbo.R_GRADES.GRD_GRADE AS mid_term_grade, &#xA;                         dbo.R_STUDENT_COURSE_SEC.SCS_PASS_AUDIT AS pass_fail_audit, GETDATE() AS updated_at&#xA;FROM            dbo.current_students_on_campus_view RIGHT OUTER JOIN&#xA;                         dbo.SPT_STUDENT_ACAD_CRED LEFT OUTER JOIN&#xA;                         dbo.view_student_notes ON dbo.SPT_STUDENT_ACAD_CRED.STC_TERM = dbo.view_student_notes.STTN_TERM AND &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.view_student_notes.STTN_STUDENT ON &#xA;                         dbo.current_students_on_campus_view.RMAS_PERSON_ID = dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID LEFT OUTER JOIN&#xA;                         dbo.view_R_STU_MISC3_L RIGHT OUTER JOIN&#xA;                         dbo.R_STUDENTS ON dbo.view_R_STU_MISC3_L.STUDENTS_ID = dbo.R_STUDENTS.STUDENTS_ID ON dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID = dbo.R_STUDENTS.STUDENTS_ID LEFT OUTER JOIN&#xA;                         dbo.R_STUDENT_COURSE_SEC INNER JOIN&#xA;                         dbo.R_GRADES ON dbo.R_STUDENT_COURSE_SEC.SCS_MID_TERM_GRADE1 = dbo.R_GRADES.GRADES_ID RIGHT OUTER JOIN&#xA;                         dbo.SPT_STUDENT_COURSE_SEC ON dbo.R_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID ON &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_STUDENT_COURSE_SEC = dbo.SPT_STUDENT_COURSE_SEC.STUDENT_COURSE_SEC_ID&#xA;GROUP BY dbo.SPT_STUDENT_ACAD_CRED.STUDENT_ACAD_CRED_ID, dbo.SPT_STUDENT_COURSE_SEC.SCS_COURSE_SECTION, dbo.SPT_STUDENT_ACAD_CRED.STC_PERSON_ID, &#xA;                         dbo.SPT_STUDENT_ACAD_CRED.STC_CURRENT_STATUS, dbo.SPT_STUDENT_ACAD_CRED.STC_GRADE, dbo.SPT_STUDENT_ACAD_CRED.GRADE_VALUE, dbo.SPT_STUDENT_ACAD_CRED.STC_CRED, &#xA;                         dbo.R_GRADES.GRD_GRADE, dbo.R_STUDENT_COURSE_SEC.SCS_PASS_AUDIT&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -938,7 +938,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Move Student Terms to Staging"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -957,12 +957,12 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="populate dm grades"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{07ECD6CA-34CB-4F82-89EE-1D5F77873E68}"
-          SQLTask:SqlStatementSource="INSERT INTO hermes.STAGING.dbo.dm_grades&#xA;SELECT     TOP (100) PERCENT key_RegId, gpa_value, grade, credits, mid_term_grade, term_gpa, cum_gpa, permission, est_grad_date, live_campus&#xA;FROM         dbo.view_r_grades_data&#xA;GROUP BY key_RegId, gpa_value, grade, credits, mid_term_grade, term_gpa, cum_gpa, permission, est_grad_date, live_campus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO sandbox.STAGING.dbo.dm_grades&#xA;SELECT     TOP (100) PERCENT key_RegId, gpa_value, grade, credits, mid_term_grade, term_gpa, cum_gpa, permission, est_grad_date, live_campus&#xA;FROM         dbo.view_r_grades_data&#xA;GROUP BY key_RegId, gpa_value, grade, credits, mid_term_grade, term_gpa, cum_gpa, permission, est_grad_date, live_campus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -974,7 +974,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="populate person_source"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1035,7 +1035,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Send Mail Task 1"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1055,7 +1055,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="SSIS Failure"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1077,7 +1077,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate dm_est_graddate_living_on_campus"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1111,7 +1111,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Herps Majors Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1133,7 +1133,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate person_sources"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1150,7 +1150,7 @@ ORDER BY key_RegId</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="update dm_grad_date_living_campus"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2185,7 +2185,7 @@ ORDER BY key_RegId</property>
           Id="Package\build grades data\ADO NET Source"
           TopLeft="302,116" />
         <NodeLayout
-          Size="181,42"
+          Size="179,42"
           Id="Package\build grades data\ADO NET Destination"
           TopLeft="414,245" />
         <EdgeLayout
@@ -2194,9 +2194,9 @@ ORDER BY key_RegId</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="122.5,87"
+              EndConnector="121.5,87"
               Start="0,0"
-              End="122.5,79.5">
+              End="121.5,79.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2207,13 +2207,13 @@ ORDER BY key_RegId</property>
                     Point2="0,43.5"
                     Point3="4,43.5" />
                   <mssgle:LineSegment
-                    End="118.5,43.5" />
+                    End="117.5,43.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="118.5,43.5"
-                    Point2="122.5,43.5"
-                    Point3="122.5,47.5" />
+                    Point1="117.5,43.5"
+                    Point2="121.5,43.5"
+                    Point3="121.5,47.5" />
                   <mssgle:LineSegment
-                    End="122.5,79.5" />
+                    End="121.5,79.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
