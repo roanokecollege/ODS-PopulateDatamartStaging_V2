@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{D0F36348-AB44-4A2B-A45D-1687A49F1806}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.7001.0"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateStudentProgramDeclarations"
   DTS:PackageType="5"
-  DTS:VersionBuild="55"
-  DTS:VersionGUID="{06D23CC1-BF57-473E-8DD6-E48C934879FA}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{47F620D5-AF84-4560-8334-38BF3756E1C0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -65,7 +65,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Current Students to List Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -87,7 +87,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Next Term Students to List"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -104,7 +104,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Next Term Students to List Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -144,7 +144,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Previous Students to List Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -166,7 +166,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="CLEAR DM_Student_Program_Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -217,7 +217,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table StudentProgramDeclarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -239,7 +239,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table StudentProgramDeclarationsList Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -261,7 +261,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_Student_Program_Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -283,7 +283,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Move data to table DM_Student_Program_Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -300,7 +300,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Move data to Table DM_Student_Program_Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -322,7 +322,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Major Program Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -340,7 +340,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Major Program Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -362,7 +362,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Minor Program Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -379,7 +379,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Minor Program Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -401,7 +401,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Specializaitons Program Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -423,7 +423,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Specializations Program Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -665,7 +665,7 @@
           Id="Package\Move data to Table DM_Student_Program_Declarations Failed"
           TopLeft="351,821" />
         <NodeLayout
-          Size="256,42"
+          Size="254,42"
           Id="Package\Populate Major Program Declarations"
           TopLeft="40,476" />
         <NodeLayout
@@ -860,37 +860,37 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="296,497">
+          TopLeft="294,497">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="49,12"
+              EndConnector="51,12"
               Start="0,0"
-              End="41.5,12">
+              End="43.5,12">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="20.5,0" />
+                    End="21.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="20.5,0"
-                    Point2="24.5,0"
-                    Point3="24.5,4" />
+                    Point1="21.5,0"
+                    Point2="25.5,0"
+                    Point3="25.5,4" />
                   <mssgle:LineSegment
-                    End="24.5,8" />
+                    End="25.5,8" />
                   <mssgle:CubicBezierSegment
-                    Point1="24.5,8"
-                    Point2="24.5,12"
-                    Point3="28.5,12" />
+                    Point1="25.5,8"
+                    Point2="25.5,12"
+                    Point3="29.5,12" />
                   <mssgle:LineSegment
-                    End="41.5,12" />
+                    End="43.5,12" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="10.25865234375,-13.7490234375,30.4826953125,9.7490234375"
+              BoundingBox="10.25865234375,-15.7490234375,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1024,7 +1024,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="164.25,453">
+          TopLeft="163.75,453">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1046,7 +1046,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="168,518">
+          TopLeft="167.5,518">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

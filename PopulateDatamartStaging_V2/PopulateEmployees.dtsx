@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateEmployees"
   DTS:PackageType="5"
-  DTS:VersionBuild="200"
-  DTS:VersionGUID="{4FA8BAAD-C2F8-4DF2-8065-B1CB2594F8AE}">
+  DTS:VersionBuild="202"
+  DTS:VersionGUID="{12B09E30-7945-4C0E-8338-69FC74B3E00B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -108,7 +108,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -125,7 +125,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -164,7 +164,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -187,7 +187,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -204,7 +204,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -226,7 +226,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -243,7 +243,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -265,7 +265,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff &amp; Helpdesk"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -282,7 +282,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -304,7 +304,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -322,31 +322,13 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="&#xA;declare @rcid varchar(10)&#xA;declare @department varchar(50)&#xA;declare @title varchar(512)&#xA;&#xA;declare staffCursor cursor for&#xA;&#xA;select rcid, department, title from R_DATAMART_CONTRACT_STAFF_LIST_VIEW&#xA;&#xA;&#xA;open staffcursor&#xA;fetch next from staffcursor into @rcid, @department, @title&#xA;&#xA;while @@FETCH_STATUS = 0&#xA;begin&#xA;&#xA;&#x9;update hermes.staging.dbo.dm_employees&#xA;&#x9;set department = @department, title = @title&#xA;&#x9;Where rcid = @rcid&#xA;&#xA;&#x9;fetch next from staffcursor into @rcid, @department, @title&#xA;end&#xA;close staffcursor&#xA;deallocate staffcursor&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Clean up Contract Staff 1"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{a748ec75-fb22-4a40-b19f-9f941b07fa24}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Clean up Contract Staff 1"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
-          SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="&#xA;declare @rcid varchar(10)&#xA;declare @department varchar(50)&#xA;declare @title varchar(512)&#xA;&#xA;declare staffCursor cursor for&#xA;&#xA;select rcid, department, title from R_DATAMART_CONTRACT_STAFF_LIST_VIEW&#xA;&#xA;&#xA;open staffcursor&#xA;fetch next from staffcursor into @rcid, @department, @title&#xA;&#xA;while @@FETCH_STATUS = 0&#xA;begin&#xA;&#xA; update hermes.staging.dbo.dm_employees&#xA; set department = @department, title = @title&#xA; Where rcid = @rcid&#xA;&#xA; fetch next from staffcursor into @rcid, @department, @title&#xA;end&#xA;close staffcursor&#xA;deallocate staffcursor&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET&#xA;&#x9;dest.title = src.title, dest.department = src.department &#xA;FROM&#xA;&#x9;(SELECT rcid, department, title FROM R_DATAMART_CONTRACT_STAFF_LIST_VIEW) src INNER JOIN&#xA;&#x9;HERMES.staging.dbo.dm_employees as dest ON dest.rcid = src.rcid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -358,7 +340,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up David Gring Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -375,7 +357,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP David Gring Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -397,7 +379,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="clean up departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -410,6 +392,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:refId="Package\clean up departments 1"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Make sure all faculty &amp; Staff have a deparment"
+      DTS:Disabled="True"
       DTS:DTSID="{768f54ee-f15c-4263-a29a-2f9c001a2a5f}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -432,7 +415,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Jonathan Lee Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -454,7 +437,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Jonathan Lee Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -545,7 +528,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table FacStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -939,7 +922,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="insert data"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -991,7 +974,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_Employees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1070,7 +1053,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate employee end date"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1269,6 +1252,14 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:ObjectName="Constraint 26"
       DTS:To="Package\Populate Username &amp; Email" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{CADE17B2-5FD7-4349-A1D2-071F682BBC20}"
+      DTS:From="Package\v staff name"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 27"
+      DTS:To="Package\clean up departments 1" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 29]"
       DTS:CreationName=""
       DTS:DTSID="{2F8650E5-4391-48B9-B1AE-9A8912AE36C7}"
@@ -1374,22 +1365,6 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:ObjectName="Constraint 4"
       DTS:To="Package\Populate Username &amp; Email" />
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 40]"
-      DTS:CreationName=""
-      DTS:DTSID="{4E75D569-6C5F-47DF-9E0B-7CDC1F0EBFAC}"
-      DTS:From="Package\v staff name"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 40"
-      DTS:To="Package\Clean up Contract Staff 1" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 41]"
-      DTS:CreationName=""
-      DTS:DTSID="{11595430-C7C2-4A4D-BDD9-6D948E8D03DC}"
-      DTS:From="Package\Clean up Contract Staff 1"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 41"
-      DTS:To="Package\clean up departments 1" />
-    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
       DTS:DTSID="{9D6B4912-4CBE-4581-A43A-71EA8C9186D5}"
@@ -1490,10 +1465,6 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
           Size="188,42"
           Id="Package\Clean up Contract Staff"
           TopLeft="307,1085" />
-        <NodeLayout
-          Size="188,42"
-          Id="Package\Clean up Contract Staff 1"
-          TopLeft="1468,1164" />
         <NodeLayout
           Size="217,42"
           Id="Package\Clean up David Gring Record"
@@ -2635,74 +2606,6 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 40]"
-          TopLeft="1409,1203">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="59,-18"
-              Start="0,0"
-              End="51.5,-18">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="25.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="25.5,0"
-                    Point2="29.5,0"
-                    Point3="29.5,-4" />
-                  <mssgle:LineSegment
-                    End="29.5,-14" />
-                  <mssgle:CubicBezierSegment
-                    Point1="29.5,-14"
-                    Point2="29.5,-18"
-                    Point3="33.5,-18" />
-                  <mssgle:LineSegment
-                    End="51.5,-18" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 41]"
-          TopLeft="1562,1206">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="9,54"
-              Start="0,0"
-              End="9,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23"
-                    Point2="0,27"
-                    Point3="4,27" />
-                  <mssgle:LineSegment
-                    End="5,27" />
-                  <mssgle:CubicBezierSegment
-                    Point1="5,27"
-                    Point2="9,27"
-                    Point3="9,31" />
-                  <mssgle:LineSegment
-                    End="9,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
           TopLeft="536,539">
           <EdgeLayout.Curve>
@@ -2866,6 +2769,40 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="1339,1224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="201.666666666667,36"
+              Start="0,0"
+              End="201.666666666667,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.419624217119" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.419624217119"
+                    Point2="0,21.419624217119"
+                    Point3="4,21.419624217119" />
+                  <mssgle:LineSegment
+                    End="197.666666666667,21.419624217119" />
+                  <mssgle:CubicBezierSegment
+                    Point1="197.666666666667,21.419624217119"
+                    Point2="201.666666666667,21.419624217119"
+                    Point3="201.666666666667,25.419624217119" />
+                  <mssgle:LineSegment
+                    End="201.666666666667,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2873,7 +2810,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
     design-time-name="Package\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="179,42"
           Id="Package\Data Flow Task\ADO NET Destination"
@@ -2901,7 +2838,9 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
