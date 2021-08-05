@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">ODS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAH2cHOOrgB0eEQpI3VpLmuwAAAAACAAAAAAADZgAAwAAAABAAAADr6YcD9WJnsrFkjUbaeo/OAAAAAASAAACgAAAAEAAAACOMG2g8Oofm9G63xPUf2fCIAAAAoaOj7zx3dUBfJfPfdaGpvLCib0NsyBKGhcPNH28rEzMFKKsSIb4gK8dOIE5k1Ix92kWRk/L+hngZnFzWJF3CgMdWVFrfJ9hjsIHCCNQ/qx5FeidDFCiD09DFR770X598ahMFPyPpMX9XCw0OY4AeStnEIa9mOokTD1E11SKCTn6xez4V17qKkRQAAAAr0MedzeTa72/wMpEQ5BYID+41qA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtIWotzDxqUC7DpeGBzJj2gAAAAACAAAAAAADZgAAwAAAABAAAACy1lyPu+7d3bBG804jb0YLAAAAAASAAACgAAAAEAAAAEO0pjGbB/mfum166/K2dcOIAAAAn3Zmtt4zF6BbEBSqt37GNs27YQcZzbR+mcBWPSb4H/kUJPklkMR9fZhOY/CUlqDKzzQq3sk7DwnnLzf8g53d0vtRzwGoZnDXLPXC85HKCTZSFTJssbUyW6b2UMEg2q3eZ5p62r2dmXL+jWM1Glu5+JJScvAGlt13Zh9jEypgK/Mo4UGKbvcBiRQAAABxphBP3a7Ej8mEg2RaKe+8W/JJzg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -582,10 +582,10 @@
                 <SSIS:Property SSIS:Name="Name">PopulateRegistrations</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">153</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">162</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{445112B6-F85E-44D2-9F20-34F07F3B2653}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1266B30F-D478-448B-A494-4D7588069EE0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -691,7 +691,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{11134916-93F6-4C6F-9A7B-236699C8F534}Hermes.DataMart1;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=HERMES;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{11134916-93F6-4C6F-9A7B-236699C8F534}Hermes.DataMart1;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -750,7 +750,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Hermes</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">HERMES</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -779,7 +779,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=Hermes;Initial Catalog=DataMart;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{F3B1963D-B2D9-4346-845D-198B3E7EAC64}Hermes.DataMart1 1;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=HERMES;Initial Catalog=DataMart;Integrated Security=True;Application Name="SSIS-PopulateRegistrations-{F3B1963D-B2D9-4346-845D-198B3E7EAC64}Hermes.DataMart1 1";</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -838,7 +838,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Hermes</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">HERMES</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -955,7 +955,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{01C809E0-5A6E-4668-91D6-904E3F259169}Hermes.Staging1;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=HERMES;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{01C809E0-5A6E-4668-91D6-904E3F259169}Hermes.Staging1;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1014,7 +1014,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Hermes</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">HERMES</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1043,7 +1043,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=Hermes;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-PopulateRegistrations-{3BA286A0-D2AC-4360-B28F-C9629DEA2D98}Hermes.Staging1 1;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=HERMES;Initial Catalog=Staging;Integrated Security=True;Application Name="SSIS-PopulateRegistrations-{3BA286A0-D2AC-4360-B28F-C9629DEA2D98}Hermes.Staging1 1";</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1102,7 +1102,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Hermes</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">HERMES</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1163,6 +1163,21 @@
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">receive.roanoke.edu</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.Mail Connection.TargetServerVersion">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">110</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.Mail Connection.UseWindowsAuthentication">
@@ -9791,6 +9806,21 @@
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">receive.roanoke.edu</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.SMTP Connection Manager.TargetServerVersion">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.SMTP Connection Manager.UseWindowsAuthentication">
