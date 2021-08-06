@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{EAA3039E-CA19-4091-91F5-AF5268A5F174}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateCourses"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{446A720C-07EF-4FD3-8BF2-C3C71838A937}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{F099597B-CAC2-45E8-B4BE-C8A0FA8B017B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -63,6 +63,7 @@
       DTS:refId="Package\Populate Courses Meeting"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{721869E6-AD4D-4230-A832-6D4F21F3E63A}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -161,11 +162,11 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="185,42"
           Id="Package\Populate Courses Meeting"
-          TopLeft="242,294" />
+          TopLeft="241,294" />
         <NodeLayout
           Size="243,48"
           Id="Package\PopulateCourses_Comments"
@@ -183,7 +184,7 @@
           TopLeft="278.5,110">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="-139.5,82"
               Start="0,0"
               End="-139.5,74.5">
@@ -217,10 +218,10 @@
           TopLeft="323,110">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="11.5,184"
+              StartConnector="{x:Null}"
+              EndConnector="10.5,184"
               Start="0,0"
-              End="11.5,176.5">
+              End="10.5,176.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -231,13 +232,13 @@
                     Point2="0,92"
                     Point3="4,92" />
                   <mssgle:LineSegment
-                    End="7.5,92" />
+                    End="6.5,92" />
                   <mssgle:CubicBezierSegment
-                    Point1="7.5,92"
-                    Point2="11.5,92"
-                    Point3="11.5,96" />
+                    Point1="6.5,92"
+                    Point2="10.5,92"
+                    Point3="10.5,96" />
                   <mssgle:LineSegment
-                    End="11.5,176.5" />
+                    End="10.5,176.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -251,7 +252,7 @@
           TopLeft="367.5,110">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="197,140"
               Start="0,0"
               End="197,132.5">
