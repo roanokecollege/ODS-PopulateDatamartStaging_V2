@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateEmployees"
   DTS:PackageType="5"
-  DTS:VersionBuild="202"
-  DTS:VersionGUID="{12B09E30-7945-4C0E-8338-69FC74B3E00B}">
+  DTS:VersionBuild="203"
+  DTS:VersionGUID="{57CE463E-1632-4E4C-9890-786ACD9FC75A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -326,9 +326,9 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
+          SQLTask:Connection="{92D67BEA-13F1-4C18-8F8E-7E268CD4D12E}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET&#xA;&#x9;dest.title = src.title, dest.department = src.department &#xA;FROM&#xA;&#x9;(SELECT rcid, department, title FROM R_DATAMART_CONTRACT_STAFF_LIST_VIEW) src INNER JOIN&#xA;&#x9;HERMES.staging.dbo.dm_employees as dest ON dest.rcid = src.rcid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET&#xA;&#x9;dest.title = src.title, dest.department = src.department &#xA;FROM&#xA;&#x9;(SELECT rcid, department, title FROM ODS.ODS_Reporting.dbo.R_DATAMART_CONTRACT_STAFF_LIST_VIEW) src INNER JOIN&#xA;&#x9;Staging.dbo.dm_employees as dest ON dest.rcid = src.rcid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
