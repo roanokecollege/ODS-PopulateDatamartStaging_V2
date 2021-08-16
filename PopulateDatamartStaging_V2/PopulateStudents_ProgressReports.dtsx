@@ -7,12 +7,12 @@
   DTS:CreatorName="ACADEMIC\webserv"
   DTS:DTSID="{4D6B016A-9A71-4673-A652-4BE1BB70A026}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.7462.6"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateStudents_ProgressReports"
   DTS:PackageType="5"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{71993614-4FBF-4F35-B68B-4B03B88E9786}">
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{4DB7794E-022C-43DF-9DFA-8D7900849F1E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -67,7 +67,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add students on academic warning the previous term"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -84,7 +84,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Students on academic warning the previous term has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -122,7 +122,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Students who have ever been on Academic suspension"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -160,7 +160,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Start Terms failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -181,7 +181,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear  ODS staging table ProgressReportStudents failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -202,7 +202,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging table ProgressReportCredits"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -257,7 +257,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate ODS Staging Table ProgressReportCredits"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -300,7 +300,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A9C1D3D2-1A2A-44F3-8EF5-EFACCF8DCDB5}"
-          SQLTask:SqlStatementSource="&#xA;DECLARE @currentTerm varchar(20);&#xA;DECLARE @currentTermYear char(4);&#xA;DECLARE @previousTermYear char(4);&#xA;DECLARE @currentTermSemester char(2);&#xA;DECLARE @progressReportStartTermList varchar(50)&#xA;&#xA;set @currentTerm = (SELECT dbo.FN_DATAMART_CURRENT_TERM());&#xA;set @currentTermYear = substring(@currentTerm,1,4);&#xA;set @currentTermSemester = substring(@currentTerm,5,2);&#xA;set @previousTermYear = @currentTermYear - 1 &#xA;&#xA;if @currentTermSemester='SP'&#xA;&#x9;set @progressReportStartTermList = '('''+@currentTerm +''',''' + @previousTermYear+'FA'','''+ @previousTermYear+'S3'','''+@previousTermYear+'S2'','''+@previousTermYear+'S1'')'&#xA;&#xA;else&#xA;&#x9;set @progressReportStartTermList = '('''+@currentTermYear+'FA'',''' + @currentTermYear+'S3'','''+@currentTermYear+'S2'','''+@currentTermYear+'S1'')'&#xA;&#x9;&#xA;&#xA;INSERT INTO ODS_Staging.dbo.progressReportStudents&#xA;execute('SELECT RCID&#xA;&#x9;&#x9;FROM ODS_Staging.dbo.tempstudents WHERE StartTerm in' + @progressReportStartTermList);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DECLARE @currentTerm varchar(20);&#xA;DECLARE @currentTermYear char(4);&#xA;DECLARE @previousTermYear char(4);&#xA;DECLARE @currentTermSemester char(2);&#xA;DECLARE @progressReportStartTermList varchar(50)&#xA;&#xA;set @currentTerm = (SELECT dbo.FN_DATAMART_CURRENT_TERM());&#xA;set @currentTermYear = ISNULL(substring(@currentTerm,1,4), DATEPART(YYYY, CURRENT_TIMESTAMP));&#xA;set @currentTermSemester = substring(@currentTerm,5,2);&#xA;set @previousTermYear = @currentTermYear - 1 &#xA;&#xA;if @currentTermSemester='SP'&#xA;&#x9;set @progressReportStartTermList = '('''+@currentTerm +''',''' + @previousTermYear+'FA'','''+ @previousTermYear+'S3'','''+@previousTermYear+'S2'','''+@previousTermYear+'S1'')';&#xA;else&#xA;&#x9;set @progressReportStartTermList = '('''+@currentTermYear+'FA'',''' + @currentTermYear+'S3'','''+@currentTermYear+'S2'','''+@currentTermYear+'S1'')';&#xA;&#xA;&#xA;INSERT INTO ODS_Staging.dbo.progressReportStudents&#xA;execute('SELECT RCID FROM ODS_Staging.dbo.tempstudents WHERE StartTerm in' +  @progressReportStartTermList)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -333,7 +333,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Remove students with less than 3 credits"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -350,7 +350,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Remove Students with less than 3 credits has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
