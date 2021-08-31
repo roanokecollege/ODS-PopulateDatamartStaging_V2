@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Summer_Mailing"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{9C40C588-85DE-429B-BCA6-6A13F7C89FB4}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{75DAC738-D1D0-4977-B568-59F49DBAD8B9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -52,7 +52,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{FB3290CB-BF55-4535-B5F0-2B8959E8E15A}"
-          SQLTask:SqlStatementSource="DELETE FROM HERMES.Staging.dbo.summer_mailing_lists;&#xA;INSERT INTO HERMES.Staging.dbo.summer_mailing_lists&#xA;SELECT * FROM ODS.ODS_Reporting.dbo.view_summer_mailing_savedlists;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.Staging.dbo.summer_mailing_lists;&#xA;INSERT INTO HERMES.Staging.dbo.summer_mailing_lists&#xA;SELECT * FROM ODS.ODS_Reporting.dbo.R_X_SAVEDLISTS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
