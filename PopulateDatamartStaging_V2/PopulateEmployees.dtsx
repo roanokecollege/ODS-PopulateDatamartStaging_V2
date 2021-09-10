@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateEmployees"
   DTS:PackageType="5"
-  DTS:VersionBuild="205"
-  DTS:VersionGUID="{5AB783D4-660F-4D25-B71B-7469DEEBDF60}">
+  DTS:VersionBuild="207"
+  DTS:VersionGUID="{FCCD3C52-C0D6-420C-8AFE-F8328503F3CB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -108,7 +108,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -125,7 +125,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -147,7 +147,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -164,7 +164,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -187,7 +187,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -204,7 +204,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -304,7 +304,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -322,13 +322,13 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{92D67BEA-13F1-4C18-8F8E-7E268CD4D12E}"
+          SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET&#xA;&#x9;dest.title = src.title, dest.department = src.department &#xA;FROM&#xA;&#x9;(SELECT rcid, department, title FROM ODS.ODS_Reporting.dbo.R_DATAMART_CONTRACT_STAFF_LIST_VIEW) src INNER JOIN&#xA;&#x9;Staging.dbo.dm_employees as dest ON dest.rcid = src.rcid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET&#xA;&#x9;dest.title = src.title, dest.department = src.department &#xA;FROM&#xA;&#x9;(SELECT rcid, department, title FROM ODS.ODS_Reporting.dbo.R_DATAMART_CONTRACT_STAFF_LIST_VIEW) src INNER JOIN&#xA;&#x9;HERMES.Staging.dbo.dm_employees as dest ON dest.rcid = src.rcid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -340,7 +340,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up David Gring Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -357,7 +357,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP David Gring Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -379,7 +379,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="clean up departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -398,7 +398,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="clean up departments 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -415,7 +415,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Jonathan Lee Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -437,7 +437,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Jonathan Lee Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -455,7 +455,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Ramona Moore Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -472,7 +472,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Ramona Moore Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -494,7 +494,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Live Staging Table DM_Employees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -529,7 +529,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table FacStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -551,7 +551,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_Employees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -573,7 +573,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Dan Cohan Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -923,7 +923,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="insert data"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -940,7 +940,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Kate Smith Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -957,7 +957,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_Employees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -975,7 +975,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_Employees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -997,7 +997,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Supervisor RCID"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1015,7 +1015,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Username &amp; Email"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1032,7 +1032,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Username &amp; Email Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1054,7 +1054,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate employee end date"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1071,7 +1071,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="v staff name"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
