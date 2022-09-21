@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="7/17/2014 2:52:48 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateEmployees"
   DTS:PackageType="5"
-  DTS:VersionBuild="213"
-  DTS:VersionGUID="{E3B7211D-C334-4EC4-A15F-1B7328716FFE}">
+  DTS:VersionBuild="216"
+  DTS:VersionGUID="{1E4F85FE-23E7-4EA9-A8D3-EFDF76E36E28}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -108,7 +108,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -125,7 +125,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -147,7 +147,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -164,7 +164,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -186,7 +186,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -203,7 +203,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -225,7 +225,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -242,7 +242,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -264,12 +264,12 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff &amp; Helpdesk"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
-          SQLTask:SqlStatementSource="DECLARE @genericAccountRcids TABLE (RCID varchar(7));&#xA;INSERT INTO @genericAccountRcids VALUES ('0053299'),('0277817'),('0224006'),('0325423'),('0247200'),('0805939'),('0921519'),('0851069'),('0443617'),('0736161');&#xA;&#xA;MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT RCID FROM @genericAccountRcids) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','Y','N');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DECLARE @genericAccountRcids TABLE (RCID varchar(7));&#xA;INSERT INTO @genericAccountRcids VALUES ('0053299'),('0277817'),('0224006'),('0325423'),('0247200'),('0805939'),('0921519'),('0851069'),('0443617'),('0736161'),('1293303');&#xA;&#xA;MERGE INTO ODS_Staging.dbo.facStaff as TARGET&#xA;USING (SELECT RCID FROM @genericAccountRcids) as SOURCE&#xA;ON TARGET.RCID = SOURCE.RCID&#xA;WHEN MATCHED THEN &#xA;&#x9;UPDATE SET Staff = 'Y'&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID, Faculty, Staff, Retiree) VALUES (SOURCE.RCID, 'N','Y','N');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -281,7 +281,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -339,7 +339,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up David Gring Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -356,7 +356,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP David Gring Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -397,7 +397,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="clean up departments 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -414,7 +414,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Jonathan Lee Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -436,7 +436,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Jonathan Lee Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -454,7 +454,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Ramona Moore Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -471,7 +471,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Ramona Moore Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -493,7 +493,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Live Staging Table DM_Employees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -528,7 +528,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table FacStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -550,7 +550,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_Employees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -572,7 +572,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Dan Cohan Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -922,7 +922,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="insert data"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -939,7 +939,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Kate Smith Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -956,7 +956,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_Employees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -974,7 +974,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate DM_Employees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -996,7 +996,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Supervisor RCID"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1014,7 +1014,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Username &amp; Email"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1031,7 +1031,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Username &amp; Email Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -1053,7 +1053,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate employee end date"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1070,7 +1070,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="v staff name"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1365,6 +1365,14 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:ObjectName="Constraint 4"
       DTS:To="Package\Populate Username &amp; Email" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 40]"
+      DTS:CreationName=""
+      DTS:DTSID="{536142A1-BE19-444F-A4BD-F9D4C4AE008B}"
+      DTS:From="Package\v staff name"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 40"
+      DTS:To="Package\clean up departments" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
       DTS:DTSID="{9D6B4912-4CBE-4581-A43A-71EA8C9186D5}"
@@ -1460,11 +1468,11 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         <NodeLayout
           Size="153,64"
           Id="Package\Clean up Contract Departments"
-          TopLeft="304,1173" />
+          TopLeft="298,1413" />
         <NodeLayout
           Size="188,42"
           Id="Package\Clean up Contract Staff"
-          TopLeft="307,1085" />
+          TopLeft="287,1329" />
         <NodeLayout
           Size="217,42"
           Id="Package\Clean up David Gring Record"
@@ -1476,15 +1484,15 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         <NodeLayout
           Size="183,42"
           Id="Package\clean up departments"
-          TopLeft="368,973" />
+          TopLeft="291,1244" />
         <NodeLayout
           Size="190,42"
           Id="Package\clean up departments 1"
-          TopLeft="1476,1260" />
+          TopLeft="930,1244" />
         <NodeLayout
           Size="220,42"
           Id="Package\Clean UP Jonathan Lee Failed"
-          TopLeft="990,1050" />
+          TopLeft="1289,976" />
         <NodeLayout
           Size="224,42"
           Id="Package\Clean up Jonathan Lee Record"
@@ -1496,7 +1504,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         <NodeLayout
           Size="192,57"
           Id="Package\Clean UP Ramona Moore Record Failed"
-          TopLeft="725,1037" />
+          TopLeft="891,1067" />
         <NodeLayout
           Size="270,42"
           Id="Package\Clear Live Staging Table DM_Employees"
@@ -1516,7 +1524,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         <NodeLayout
           Size="178,42"
           Id="Package\Dan Cohan Clean Up"
-          TopLeft="797,1175" />
+          TopLeft="699,1077" />
         <NodeLayout
           Size="153,42"
           Id="Package\Data Flow Task"
@@ -1528,11 +1536,11 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         <NodeLayout
           Size="129,42"
           Id="Package\insert data"
-          TopLeft="519,1158" />
+          TopLeft="541,1125" />
         <NodeLayout
           Size="178,42"
           Id="Package\Kate Smith Clean Up"
-          TopLeft="1036,1179" />
+          TopLeft="702,1163" />
         <NodeLayout
           Size="195,42"
           Id="Package\Populate DM_Employees"
@@ -1560,7 +1568,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         <NodeLayout
           Size="140,42"
           Id="Package\v staff name"
-          TopLeft="1269,1182" />
+          TopLeft="726,1240" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="441.6,423">
@@ -1631,30 +1639,30 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="596.333333333333,903">
+          TopLeft="565.166666666667,903">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-136.833333333333,70"
+              EndConnector="-182.666666666667,341"
               Start="0,0"
-              End="-136.833333333333,62.5">
+              End="-182.666666666667,333.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.3418107833164" />
+                    End="0,86.3907035175879" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.3418107833164"
-                    Point2="0,28.3418107833164"
-                    Point3="-4,28.3418107833164" />
+                    Point1="0,86.3907035175879"
+                    Point2="0,90.3907035175879"
+                    Point3="-4,90.3907035175879" />
                   <mssgle:LineSegment
-                    End="-132.833333333333,28.3418107833164" />
+                    End="-178.666666666667,90.3907035175879" />
                   <mssgle:CubicBezierSegment
-                    Point1="-132.833333333333,28.3418107833164"
-                    Point2="-136.833333333333,28.3418107833164"
-                    Point3="-136.833333333333,32.3418107833164" />
+                    Point1="-178.666666666667,90.3907035175879"
+                    Point2="-182.666666666667,90.3907035175879"
+                    Point3="-182.666666666667,94.3907035175879" />
                   <mssgle:LineSegment
-                    End="-136.833333333333,62.5" />
+                    End="-182.666666666667,333.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1841,30 +1849,18 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 17]"
-          TopLeft="459.5,1015">
+          TopLeft="381.75,1286">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-58.5,70"
+              EndConnector="0,43"
               Start="0,0"
-              End="-58.5,62.5">
+              End="0,35.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31"
-                    Point2="0,35"
-                    Point3="-4,35" />
-                  <mssgle:LineSegment
-                    End="-54.5,35" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-54.5,35"
-                    Point2="-58.5,35"
-                    Point3="-58.5,39" />
-                  <mssgle:LineSegment
-                    End="-58.5,62.5" />
+                    End="0,35.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1875,37 +1871,37 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 18]"
-          TopLeft="920,992">
+          TopLeft="854.666666666667,1029">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-3,73.5"
+              EndConnector="132.333333333333,38"
               Start="0,0"
-              End="4.5,73.5">
+              End="132.333333333333,30.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="18.5,0" />
+                    End="0,11.3884297520661" />
                   <mssgle:CubicBezierSegment
-                    Point1="18.5,0"
-                    Point2="22.5,0"
-                    Point3="22.5,4" />
+                    Point1="0,11.3884297520661"
+                    Point2="0,15.3884297520661"
+                    Point3="4,15.3884297520661" />
                   <mssgle:LineSegment
-                    End="22.5,69.5" />
+                    End="128.333333333333,15.3884297520661" />
                   <mssgle:CubicBezierSegment
-                    Point1="22.5,69.5"
-                    Point2="22.5,73.5"
-                    Point3="18.5,73.5" />
+                    Point1="128.333333333333,15.3884297520661"
+                    Point2="132.333333333333,15.3884297520661"
+                    Point3="132.333333333333,19.3884297520661" />
                   <mssgle:LineSegment
-                    End="4.5,73.5" />
+                    End="132.333333333333,30.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="8.25865234375,-13.7490234375,30.4826953125,9.7490234375"
+              BoundingBox="50.9253190104167,20.3884297520661,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2205,30 +2201,18 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 27]"
-          TopLeft="1339,1224">
+          TopLeft="866,1263">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="201.666666666667,36"
+              EndConnector="64,0"
               Start="0,0"
-              End="201.666666666667,28.5">
+              End="56.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.419624217119" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.419624217119"
-                    Point2="0,21.419624217119"
-                    Point3="4,21.419624217119" />
-                  <mssgle:LineSegment
-                    End="197.666666666667,21.419624217119" />
-                  <mssgle:CubicBezierSegment
-                    Point1="197.666666666667,21.419624217119"
-                    Point2="201.666666666667,21.419624217119"
-                    Point3="201.666666666667,25.419624217119" />
-                  <mssgle:LineSegment
-                    End="201.666666666667,28.5" />
+                    End="56.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2307,54 +2291,42 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 30]"
-          TopLeft="1097,1019">
+          TopLeft="1206,997.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31"
+              EndConnector="83,0"
               Start="0,0"
-              End="0,23.5">
+              End="75.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.5" />
+                    End="75.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-14.24134765625,7.87548828125,30.4826953125,9.7490234375"
+              BoundingBox="22.50865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 31]"
-          TopLeft="401,1127">
+          TopLeft="377.75,1371">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-20.5,46"
+              EndConnector="0,42"
               Start="0,0"
-              End="-20.5,38.5">
+              End="0,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19"
-                    Point2="0,23"
-                    Point3="-4,23" />
-                  <mssgle:LineSegment
-                    End="-16.5,23" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-16.5,23"
-                    Point2="-20.5,23"
-                    Point3="-20.5,27" />
-                  <mssgle:LineSegment
-                    End="-20.5,38.5" />
+                    End="0,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2399,30 +2371,18 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 33]"
-          TopLeft="611,1094">
+          TopLeft="608.25,1094">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-27.5,64"
+              EndConnector="0,31"
               Start="0,0"
-              End="-27.5,56.5">
+              End="0,23.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,28"
-                    Point2="0,32"
-                    Point3="-4,32" />
-                  <mssgle:LineSegment
-                    End="-23.5,32" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-23.5,32"
-                    Point2="-27.5,32"
-                    Point3="-27.5,36" />
-                  <mssgle:LineSegment
-                    End="-27.5,56.5" />
+                    End="0,23.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2529,30 +2489,18 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 37]"
-          TopLeft="824,1029">
+          TopLeft="790.666666666667,1029">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="62,146"
+              EndConnector="0,48"
               Start="0,0"
-              End="62,138.5">
+              End="0,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,69" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,69"
-                    Point2="0,73"
-                    Point3="4,73" />
-                  <mssgle:LineSegment
-                    End="58,73" />
-                  <mssgle:CubicBezierSegment
-                    Point1="58,73"
-                    Point2="62,73"
-                    Point3="62,77" />
-                  <mssgle:LineSegment
-                    End="62,138.5" />
+                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2563,18 +2511,18 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 38]"
-          TopLeft="975,1198">
+          TopLeft="789.5,1119">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="61,0"
+              EndConnector="0,44"
               Start="0,0"
-              End="53.5,0">
+              End="0,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="53.5,0" />
+                    End="0,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2585,18 +2533,18 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 39]"
-          TopLeft="1214,1201.5">
+          TopLeft="793.5,1205">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="55,0"
+              EndConnector="0,35"
               Start="0,0"
-              End="47.5,0">
+              End="0,27.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="47.5,0" />
+                    End="0,27.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2795,6 +2743,28 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
                     Point3="-30.5,21.5" />
                   <mssgle:LineSegment
                     End="-30.5,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 40]"
+          TopLeft="726,1263">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-252,0"
+              Start="0,0"
+              End="-244.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-244.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
