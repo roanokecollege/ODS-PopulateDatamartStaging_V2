@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ODS_to_Student_Forms"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{D38ED21C-E0F7-4205-AC02-2558AC567F6E}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{CA40FE6B-074E-4EF4-A17A-17D160658DB2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -67,7 +67,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Admit Status"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -83,7 +83,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear PERC table"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -410,7 +410,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Citizenship Information"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -426,7 +426,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Emergency Contacts"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -442,7 +442,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Employment Information"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -527,7 +527,7 @@ ORDER BY fkey_rcid, sequence</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{E4C1906D-47C7-42B0-9906-917E2676BF1E}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].students;&#xA;&#xA;MERGE ods.students AS target&#xA;USING Staging.[student-forms].students AS source&#xA;ON source.RCID = target.RCID&#xA;WHEN MATCHED THEN&#xA; UPDATE SET target.[FIRST_NAME] = source.[FIRST_NAME]&#xA;  ,target.[MIDDLE_NAME] = source.[MIDDLE_NAME]&#xA;  ,target.[LAST_NAME] = source.[LAST_NAME]&#xA;  ,target.[maiden_name] = source.[maiden_name]&#xA;  ,target.[fkey_marital_status] = source.[fkey_marital_status]&#xA;  ,target.[ethnics] = source.[ethnics]&#xA;  ,target.[home_as_billing] = source.[home_as_billing]&#xA;  ,target.[home_as_local] = source.[home_as_local]&#xA;  ,target.[fkey_military_id] = source.[fkey_military_id]&#xA;  ,target.[fkey_residency_status] = source.[fkey_residency_status]&#xA;WHEN NOT MATCHED BY target THEN&#xA; INSERT VALUES ([RCID]&#xA;      ,[FIRST_NAME]&#xA;      ,[MIDDLE_NAME]&#xA;      ,[LAST_NAME]&#xA;      ,[maiden_name]&#xA;      ,[fkey_marital_status]&#xA;      ,[ethnics]&#xA;      ,[home_as_billing]&#xA;      ,[home_as_local]&#xA;      ,[fkey_military_id]&#xA;      ,[fkey_residency_status])&#xA;WHEN NOT MATCHED BY source THEN&#xA; DELETE;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].students;&#xA;&#xA;MERGE ods.students AS target&#xA;USING Staging.[student-forms].students AS source&#xA;ON source.RCID = target.RCID&#xA;WHEN MATCHED THEN&#xA; UPDATE SET target.[FIRST_NAME] = source.[FIRST_NAME]&#xA;  ,target.[MIDDLE_NAME] = source.[MIDDLE_NAME]&#xA;  ,target.[LAST_NAME] = source.[LAST_NAME]&#xA;  ,target.[maiden_name] = source.[maiden_name]&#xA;  ,target.[personal_email] = source.[personal_email]&#xA;  ,target.[fkey_marital_status] = source.[fkey_marital_status]&#xA;  ,target.[ethnics] = source.[ethnics]&#xA;  ,target.[home_as_billing] = source.[home_as_billing]&#xA;  ,target.[home_as_local] = source.[home_as_local]&#xA;  ,target.[fkey_military_id] = source.[fkey_military_id]&#xA;  ,target.[fkey_residency_status] = source.[fkey_residency_status]&#xA;WHEN NOT MATCHED BY target THEN&#xA; INSERT VALUES ([RCID]&#xA;      ,[FIRST_NAME]&#xA;      ,[MIDDLE_NAME]&#xA;      ,[LAST_NAME]&#xA;      ,[maiden_name]&#xA;      ,[personal_email]&#xA;      ,[fkey_marital_status]&#xA;      ,[ethnics]&#xA;      ,[home_as_billing]&#xA;      ,[home_as_local]&#xA;      ,[fkey_military_id]&#xA;      ,[fkey_residency_status])&#xA;WHEN NOT MATCHED BY source THEN&#xA; DELETE;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
