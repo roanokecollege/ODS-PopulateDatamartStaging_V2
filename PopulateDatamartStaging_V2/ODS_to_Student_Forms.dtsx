@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ODS_to_Student_Forms"
   DTS:PackageType="5"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{418CAF94-4991-4C7A-ADD6-EF3CAD86825D}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{99A0F9CA-FB74-4B15-8EF4-0EEFFB945D20}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -67,7 +67,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Admit Status"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -83,7 +83,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear PERC table"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -399,7 +399,7 @@ ORDER BY fkey_rcid, sequence</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{353E864A-355C-457F-9F68-6D3F8588D2AE}"
-          SQLTask:SqlStatementSource="DELETE FROM HERMES.Staging.[student-forms].citizenship_information;&#xA;DELETE FROM HERMES.Staging.[student-forms].emergency_contacts;&#xA;DELETE FROM HERMES.Staging.[student-forms].employment_info;&#xA;DELETE FROM HERMES.Staging.[student-forms].guardian_info;&#xA;DELETE FROM HERMES.Staging.[student-forms].health_concerns;&#xA;DELETE FROM HERMES.Staging.[student-forms].medical_data;&#xA;DELETE FROM HERMES.Staging.[student-forms].race_map;&#xA;DELETE FROM HERMES.Staging.[student-forms].students;&#xA;DELETE FROM HERMES.Staging.[student-forms].us_residence;&#xA;DELETE FROM HERMES.Staging.[student-forms].visa_type_map;&#xA;DELETE FROM HERMES.Staging.[student-forms].admit_status;&#xA;DELETE FROM HERMES.Staging.dbo.student_perc_notifications;&#xA;&#xA;INSERT INTO HERMES.Staging.[student-forms].citizenship_information SELECT * FROM [student-forms].view_citizenship_information;&#xA;INSERT INTO HERMES.Staging.[student-forms].emergency_contacts SELECT * FROM [student-forms].view_emergency_contacts;&#xA;INSERT INTO HERMES.Staging.[student-forms].employment_info SELECT * FROM [student-forms].view_employment_info;&#xA;&#xA;INSERT INTO HERMES.Staging.[student-forms].guardian_info&#xA;SELECT        student_rcid, fkey_parent_rcid, FIRST_NAME, MIDDLE_NAME, LAST_NAME, nick_name, relationship, relationship_other, fkey_marital_status, reside_with, claimed_dependent, home_phone, cell_phone, email, &#xA;                         Address1, Address2, CITY, fkey_StateCode, PostalCode, fkey_CountryId, joint_mail_1, joint_mail_2&#xA;FROM            [student-forms].view_guardian_info&#xA;&#xA;INSERT INTO HERMES.Staging.[student-forms].health_concerns SELECT * FROM [student-forms].view_health_concerns;&#xA;INSERT INTO HERMES.Staging.[student-forms].medical_data SELECT * FROM [student-forms].view_medical_data;&#xA;INSERT INTO HERMES.Staging.[student-forms].race_map SELECT * FROM [student-forms].view_race_map;&#xA;INSERT INTO HERMES.Staging.[student-forms].students SELECT * FROM [student-forms].view_students;&#xA;INSERT INTO HERMES.Staging.[student-forms].us_residence SELECT * FROM [student-forms].view_us_residence;&#xA;INSERT INTO HERMES.Staging.[student-forms].visa_type_map SELECT * FROM [student-forms].view_visa_type_map;&#xA;INSERT INTO HERMES.Staging.[student-forms].admit_status SELECT * FROM [student-forms].view_admit_status;&#xA;INSERT INTO HERMES.Staging.dbo.student_perc_notifications SELECT * FROM dbo.student_perc_notifications;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DELETE FROM HERMES.Staging.[student-forms].citizenship_information;&#xA;DELETE FROM HERMES.Staging.[student-forms].emergency_contacts;&#xA;DELETE FROM HERMES.Staging.[student-forms].employment_info;&#xA;DELETE FROM HERMES.Staging.[student-forms].guardian_info;&#xA;DELETE FROM HERMES.Staging.[student-forms].health_concerns;&#xA;DELETE FROM HERMES.Staging.[student-forms].medical_data;&#xA;DELETE FROM HERMES.Staging.[student-forms].race_map;&#xA;DELETE FROM HERMES.Staging.[student-forms].students;&#xA;DELETE FROM HERMES.Staging.[student-forms].us_residence;&#xA;DELETE FROM HERMES.Staging.[student-forms].visa_type_map;&#xA;DELETE FROM HERMES.Staging.[student-forms].admit_status;&#xA;DELETE FROM HERMES.Staging.dbo.student_perc_notifications;&#xA;&#xA;INSERT INTO HERMES.Staging.[student-forms].citizenship_information SELECT * FROM [student-forms].view_citizenship_information;&#xA;INSERT INTO HERMES.Staging.[student-forms].emergency_contacts SELECT * FROM [student-forms].view_emergency_contacts;&#xA;INSERT INTO HERMES.Staging.[student-forms].employment_info SELECT * FROM [student-forms].view_employment_info;&#xA;&#xA;INSERT INTO HERMES.Staging.[student-forms].guardian_info&#xA;SELECT        student_rcid, fkey_parent_rcid, PREFIX, FIRST_NAME, MIDDLE_NAME, LAST_NAME, nick_name, SUFFIX, relationship, relationship_other, fkey_marital_status, reside_with, claimed_dependent, home_phone, cell_phone, email, &#xA;                         Address1, Address2, CITY, fkey_StateCode, PostalCode, fkey_CountryId, joint_mail_1, joint_mail_2&#xA;FROM            [student-forms].view_guardian_info&#xA;&#xA;INSERT INTO HERMES.Staging.[student-forms].health_concerns SELECT * FROM [student-forms].view_health_concerns;&#xA;INSERT INTO HERMES.Staging.[student-forms].medical_data SELECT * FROM [student-forms].view_medical_data;&#xA;INSERT INTO HERMES.Staging.[student-forms].race_map SELECT * FROM [student-forms].view_race_map;&#xA;INSERT INTO HERMES.Staging.[student-forms].students SELECT * FROM [student-forms].view_students;&#xA;INSERT INTO HERMES.Staging.[student-forms].us_residence SELECT * FROM [student-forms].view_us_residence;&#xA;INSERT INTO HERMES.Staging.[student-forms].visa_type_map SELECT * FROM [student-forms].view_visa_type_map;&#xA;INSERT INTO HERMES.Staging.[student-forms].admit_status SELECT * FROM [student-forms].view_admit_status;&#xA;INSERT INTO HERMES.Staging.dbo.student_perc_notifications SELECT * FROM dbo.student_perc_notifications;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -410,7 +410,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Citizenship Information"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -426,7 +426,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Emergency Contacts"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -442,7 +442,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Employment Information"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -458,12 +458,12 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Guardian Info"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{E4C1906D-47C7-42B0-9906-917E2676BF1E}"
-          SQLTask:SqlStatementSource="MERGE ods.guardian_info AS target USING(SELECT DISTINCT *&#xA;                                                                                              FROM            Staging.[student-forms].guardian_info) AS source ON source.student_rcid = target.student_rcid AND &#xA;source.fkey_parent_rcid = target.fkey_parent_rcid WHEN MATCHED THEN&#xA;    UPDATE       &#xA;     SET                 target.[FIRST_NAME] = source.[FIRST_NAME], target.[MIDDLE_NAME] = source.[MIDDLE_NAME], target.[LAST_NAME] = source.[LAST_NAME],  target.[nick_name] = source.[nick_name], &#xA;                              target.[relationship] = source.[relationship], target.[relationship_other] = source.[relationship_other], target.[fkey_marital_status] = source.[fkey_marital_status], target.[reside_with] = source.[reside_with], &#xA;                              target.[claimed_dependent] = source.[claimed_dependent], target.[home_phone] = source.[home_phone], target.[cell_phone] = source.[cell_phone], target.[email] = source.[email], &#xA;                              target.[Address1] = source.[Address1], target.[Address2] = source.[Address2], target.[CITY] = source.[CITY], target.[fkey_StateCode] = source.[fkey_StateCode], target.[PostalCode] = source.[PostalCode], &#xA;                              target.[fkey_CountryId] = source.[fkey_CountryId], target.[joint_mail_1] = source.[joint_mail_1], target.[joint_mail_2] = source.[joint_mail_2] WHEN NOT MATCHED BY target THEN INSERT ([student_rcid], &#xA;                              [fkey_parent_rcid], [FIRST_NAME], [MIDDLE_NAME], [LAST_NAME], [nick_name], [relationship], [relationship_other], [fkey_marital_status], [reside_with], [claimed_dependent], [home_phone], [cell_phone], &#xA;                              [email], [Address1], [Address2], [CITY], [fkey_StateCode], [PostalCode], [fkey_CountryId], [joint_mail_1], [joint_mail_2])&#xA;     VALUES        (source.[student_rcid], source.[fkey_parent_rcid], source.[FIRST_NAME], source.[MIDDLE_NAME], source.[LAST_NAME], source.[nick_name], source.[relationship], source.[relationship_other], &#xA;                              source.[fkey_marital_status], source.[reside_with], source.[claimed_dependent], source.[home_phone], source.[cell_phone], source.[email], source.[Address1], source.[Address2], source.[CITY], &#xA;                              source.[fkey_StateCode], source.[PostalCode], source.[fkey_CountryId], source.[joint_mail_1], source.[joint_mail_2]) WHEN NOT MATCHED BY source THEN DELETE;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="MERGE ods.guardian_info AS target USING(SELECT DISTINCT *&#xA;                                                                                              FROM            Staging.[student-forms].guardian_info) AS source ON source.student_rcid = target.student_rcid AND &#xA;source.fkey_parent_rcid = target.fkey_parent_rcid WHEN MATCHED THEN&#xA;    UPDATE       &#xA;     SET                target.prefix = source.PREFIX,  target.[FIRST_NAME] = source.[FIRST_NAME], target.[MIDDLE_NAME] = source.[MIDDLE_NAME], target.[LAST_NAME] = source.[LAST_NAME],  target.[nick_name] = source.[nick_name], &#xA;                              target.suffix = source.suffix, target.[relationship] = source.[relationship], target.[relationship_other] = source.[relationship_other], target.[fkey_marital_status] = source.[fkey_marital_status], target.[reside_with] = source.[reside_with], &#xA;                              target.[claimed_dependent] = source.[claimed_dependent], target.[home_phone] = source.[home_phone], target.[cell_phone] = source.[cell_phone], target.[email] = source.[email], &#xA;                              target.[Address1] = source.[Address1], target.[Address2] = source.[Address2], target.[CITY] = source.[CITY], target.[fkey_StateCode] = source.[fkey_StateCode], target.[PostalCode] = source.[PostalCode], &#xA;                              target.[fkey_CountryId] = source.[fkey_CountryId], target.[joint_mail_1] = source.[joint_mail_1], target.[joint_mail_2] = source.[joint_mail_2] WHEN NOT MATCHED BY target THEN INSERT ([student_rcid], &#xA;                              [fkey_parent_rcid], [prefix], [FIRST_NAME], [MIDDLE_NAME], [LAST_NAME], [nick_name], [suffix], [relationship], [relationship_other], [fkey_marital_status], [reside_with], [claimed_dependent], [home_phone], [cell_phone], &#xA;                              [email], [Address1], [Address2], [CITY], [fkey_StateCode], [PostalCode], [fkey_CountryId], [joint_mail_1], [joint_mail_2])&#xA;     VALUES        (source.[student_rcid], source.[fkey_parent_rcid], source.prefix, source.[FIRST_NAME], source.[MIDDLE_NAME], source.[LAST_NAME], source.[nick_name], source.suffix, source.[relationship], source.[relationship_other], &#xA;                              source.[fkey_marital_status], source.[reside_with], source.[claimed_dependent], source.[home_phone], source.[cell_phone], source.[email], source.[Address1], source.[Address2], source.[CITY], &#xA;                              source.[fkey_StateCode], source.[PostalCode], source.[fkey_CountryId], source.[joint_mail_1], source.[joint_mail_2]) WHEN NOT MATCHED BY source THEN DELETE;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -474,7 +474,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Health Concerns"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -490,7 +490,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Medical Data"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -506,7 +506,7 @@ ORDER BY fkey_rcid, sequence</property>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging to SAO Race Map"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -527,7 +527,7 @@ ORDER BY fkey_rcid, sequence</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{E4C1906D-47C7-42B0-9906-917E2676BF1E}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].students;&#xA;&#xA;MERGE ods.students AS target&#xA;USING Staging.[student-forms].students AS source&#xA;ON source.RCID = target.RCID&#xA;WHEN MATCHED THEN&#xA; UPDATE SET target.[FIRST_NAME] = source.[FIRST_NAME]&#xA;  ,target.[MIDDLE_NAME] = source.[MIDDLE_NAME]&#xA;  ,target.[LAST_NAME] = source.[LAST_NAME]&#xA;  ,target.[maiden_name] = source.[maiden_name]&#xA;  ,target.[fkey_marital_status] = source.[fkey_marital_status]&#xA;  ,target.[ethnics] = source.[ethnics]&#xA;  ,target.[home_as_billing] = source.[home_as_billing]&#xA;  ,target.[home_as_local] = source.[home_as_local]&#xA;  ,target.[fkey_military_id] = source.[fkey_military_id]&#xA;WHEN NOT MATCHED BY target THEN&#xA; INSERT VALUES ([RCID]&#xA;      ,[FIRST_NAME]&#xA;      ,[MIDDLE_NAME]&#xA;      ,[LAST_NAME]&#xA;      ,[maiden_name]&#xA;      ,[fkey_marital_status]&#xA;      ,[ethnics]&#xA;      ,[home_as_billing]&#xA;      ,[home_as_local]&#xA;      ,[fkey_military_id])&#xA;WHEN NOT MATCHED BY source THEN&#xA; DELETE;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].students;&#xA;&#xA;MERGE ods.students AS target&#xA;USING Staging.[student-forms].students AS source&#xA;ON source.RCID = target.RCID&#xA;WHEN MATCHED THEN&#xA; UPDATE SET target.[FIRST_NAME] = source.[FIRST_NAME]&#xA;  ,target.[MIDDLE_NAME] = source.[MIDDLE_NAME]&#xA;  ,target.[LAST_NAME] = source.[LAST_NAME]&#xA;  ,target.[maiden_name] = source.[maiden_name]&#xA;  ,target.[personal_email] = source.[personal_email]&#xA;  ,target.[fkey_marital_status] = source.[fkey_marital_status]&#xA;  ,target.[ethnics] = source.[ethnics]&#xA;  ,target.[home_as_billing] = source.[home_as_billing]&#xA;  ,target.[home_as_local] = source.[home_as_local]&#xA;  ,target.[fkey_military_id] = source.[fkey_military_id]&#xA;  ,target.[fkey_residency_status] = source.[fkey_residency_status]&#xA;WHEN NOT MATCHED BY target THEN&#xA; INSERT VALUES ([RCID]&#xA;      ,[FIRST_NAME]&#xA;      ,[MIDDLE_NAME]&#xA;      ,[LAST_NAME]&#xA;      ,[maiden_name]&#xA;      ,[personal_email]&#xA;      ,[fkey_marital_status]&#xA;      ,[ethnics]&#xA;      ,[home_as_billing]&#xA;      ,[home_as_local]&#xA;      ,[fkey_military_id]&#xA;      ,[fkey_residency_status])&#xA;WHEN NOT MATCHED BY source THEN&#xA; DELETE;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1162,7 +1162,7 @@ ORDER BY fkey_rcid, sequence</property>
     design-time-name="Package\Data Flow Task 1">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Data Flow Task 1\OLE DB Source"
@@ -1190,7 +1190,9 @@ ORDER BY fkey_rcid, sequence</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
