@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateStudentProgramDeclarations"
   DTS:PackageType="5"
-  DTS:VersionBuild="56"
-  DTS:VersionGUID="{47F620D5-AF84-4560-8334-38BF3756E1C0}">
+  DTS:VersionBuild="57"
+  DTS:VersionGUID="{D040CBC8-894A-43AE-81D3-8C02D5B69B25}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -65,7 +65,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Current Students to List Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -104,7 +104,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Next Term Students to List Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -144,7 +144,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Previous Students to List Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -166,7 +166,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="CLEAR DM_Student_Program_Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -217,7 +217,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table StudentProgramDeclarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -239,7 +239,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table StudentProgramDeclarationsList Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -261,7 +261,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear Staging Table DM_Student_Program_Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -283,7 +283,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Move data to table DM_Student_Program_Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -300,7 +300,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Move data to Table DM_Student_Program_Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -322,12 +322,12 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Major Program Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{C3650C4A-0F93-46CD-9ABE-91A6FC99B659}"
-          SQLTask:SqlStatementSource="MERGE INTO ods_staging.dbo.studentProgramDeclarations as Target&#xA;&#x9;USING (select distinct programs.stpr_student as RCID, acpg_degree, acpg_majors, start_date, end_date&#xA;&#x9;&#x9;&#x9;FROM spt_student_programs as Programs &#xA;&#x9;&#x9;&#x9;INNER JOIN R_ACPG_MAJORS_L on Programs.STPR_ACAD_PROGRAM = ACAD_PROGRAMS_ID&#xA;&#x9;&#x9;&#x9;INNER JOIN ods_staging.dbo.studentProgramDeclarationsList on studentProgramDeclarationsList.RCID = programs.STPR_STUDENT&#xA;&#x9;&#x9;&#x9;where Programs.STPR_ACAD_PROGRAM not like 'ANT%'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'POST'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and ACPG_MAJORS &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and START_DATE IS NOT NULL) as SOURCE&#xA;&#x9;ON TARGET.RCID = SOURCE.RCID AND MajorType = 1 AND TARGET.Program = SOURCE.ACPG_MAJORS&#xA;&#x9;WHEN NOT MATCHED THEN &#xA;&#x9;&#x9;INSERT(RCID, MajorType, Program, Degree, DeclareDate, EndDate)&#xA;&#x9;&#x9;VALUES(SOURCE.RCID, 1, SOURCE.ACPG_MAJORS, SOURCE.ACPG_DEGREE, SOURCE.START_DATE, SOURCE.END_DATE);&#xA;&#xA;&#xA;--- insert additional majors&#xA;MERGE INTO ods_staging.dbo.studentProgramDeclarations as Target&#xA;&#x9;USING (select distinct programs.stpr_student as RCID, acpg_degree, stpr_addnl_majors, stpr_addnl_major_start_date,stpr_addnl_major_end_date&#xA;&#x9;&#x9;&#x9;FROM SPT_STU_PROG_ADDNL_MAJORS as Programs &#xA;&#x9;&#x9;&#x9;INNER JOIN R_ACPG_MAJORS_L on Programs.STPR_ACAD_PROGRAM = ACAD_PROGRAMS_ID&#xA;&#x9;&#x9;&#x9;INNER JOIN ods_staging.dbo.studentProgramDeclarationsList on studentProgramDeclarationsList.RCID = programs.STPR_STUDENT&#xA;&#x9;&#x9;&#x9;where Programs.STPR_ACAD_PROGRAM not like 'ANT%'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'POST'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and ACPG_MAJORS &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and stpr_addnl_major_start_date IS NOT NULL) as SOURCE&#xA;&#x9;ON TARGET.RCID = SOURCE.RCID AND MajorType = 1 AND TARGET.Program = SOURCE.stpr_addnl_majors&#xA;&#x9;WHEN NOT MATCHED THEN &#xA;&#x9;&#x9;INSERT(RCID, MajorType, Program, Degree, DeclareDate, EndDate)&#xA;&#x9;&#x9;VALUES(SOURCE.RCID, 1, SOURCE.stpr_addnl_majors, SOURCE.ACPG_DEGREE, SOURCE.stpr_addnl_major_start_date, SOURCE.stpr_addnl_major_end_date);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="MERGE INTO ods_staging.dbo.studentProgramDeclarations as Target&#xA;&#x9;USING (select distinct programs.stpr_student as RCID, acpg_degree, acpg_majors, start_date, end_date&#xA;&#x9;&#x9;&#x9;FROM spt_student_programs as Programs &#xA;&#x9;&#x9;&#x9;INNER JOIN R_ACPG_MAJORS_L on Programs.STPR_ACAD_PROGRAM = ACAD_PROGRAMS_ID&#xA;&#x9;&#x9;&#x9;INNER JOIN ods_staging.dbo.studentProgramDeclarationsList on studentProgramDeclarationsList.RCID = programs.STPR_STUDENT&#xA;&#x9;&#x9;&#x9;where Programs.STPR_ACAD_PROGRAM not like 'ANT%'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'POST'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and ACPG_MAJORS &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and START_DATE IS NOT NULL) as SOURCE&#xA;&#x9;ON TARGET.RCID = SOURCE.RCID AND MajorType = 1 AND TARGET.Program = SOURCE.ACPG_MAJORS AND Target.Degree = SOURCE.ACPG_DEGREE&#xA;&#x9;WHEN NOT MATCHED THEN &#xA;&#x9;&#x9;INSERT(RCID, MajorType, Program, Degree, DeclareDate, EndDate)&#xA;&#x9;&#x9;VALUES(SOURCE.RCID, 1, SOURCE.ACPG_MAJORS, SOURCE.ACPG_DEGREE, SOURCE.START_DATE, SOURCE.END_DATE);&#xA;&#xA;&#xA;--- insert additional majors&#xA;MERGE INTO ods_staging.dbo.studentProgramDeclarations as Target&#xA;&#x9;USING (select distinct programs.stpr_student as RCID, acpg_degree, stpr_addnl_majors, stpr_addnl_major_start_date,stpr_addnl_major_end_date&#xA;&#x9;&#x9;&#x9;FROM SPT_STU_PROG_ADDNL_MAJORS as Programs &#xA;&#x9;&#x9;&#x9;INNER JOIN R_ACPG_MAJORS_L on Programs.STPR_ACAD_PROGRAM = ACAD_PROGRAMS_ID&#xA;&#x9;&#x9;&#x9;INNER JOIN ods_staging.dbo.studentProgramDeclarationsList on studentProgramDeclarationsList.RCID = programs.STPR_STUDENT&#xA;&#x9;&#x9;&#x9;where Programs.STPR_ACAD_PROGRAM not like 'ANT%'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'POST'&#xA;&#x9;&#x9;&#x9;and Programs.STPR_ACAD_PROGRAM &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and ACPG_MAJORS &lt;&gt; 'UNDE'&#xA;&#x9;&#x9;&#x9;and stpr_addnl_major_start_date IS NOT NULL) as SOURCE&#xA;&#x9;ON TARGET.RCID = SOURCE.RCID AND MajorType = 1 AND TARGET.Program = SOURCE.stpr_addnl_majors AND Target.Degree = SOURCE.ACPG_DEGREE&#xA;&#x9;WHEN NOT MATCHED THEN &#xA;&#x9;&#x9;INSERT(RCID, MajorType, Program, Degree, DeclareDate, EndDate)&#xA;&#x9;&#x9;VALUES(SOURCE.RCID, 1, SOURCE.stpr_addnl_majors, SOURCE.ACPG_DEGREE, SOURCE.stpr_addnl_major_start_date, SOURCE.stpr_addnl_major_end_date);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -362,7 +362,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Minor Program Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -379,7 +379,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Minor Program Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -401,7 +401,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Specializaitons Program Declarations Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -423,7 +423,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Populate Specializations Program Declarations"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -613,11 +613,11 @@
           Id="Package\Add Current Students to List"
           TopLeft="47,335" />
         <NodeLayout
-          Size="245,42"
+          Size="245.333333333334,42"
           Id="Package\Add Current Students to List Failed"
           TopLeft="353,343" />
         <NodeLayout
-          Size="229,42"
+          Size="229.333333333334,42"
           Id="Package\Add Next Term Students to List"
           TopLeft="46,411" />
         <NodeLayout
@@ -625,11 +625,11 @@
           Id="Package\Add Next Term Students to List Failed"
           TopLeft="347,410" />
         <NodeLayout
-          Size="187,42"
+          Size="186.666666666667,42"
           Id="Package\Add Previous Students"
           TopLeft="53,246" />
         <NodeLayout
-          Size="245,42"
+          Size="245.333333333334,42"
           Id="Package\Add Previous Students to List Failed"
           TopLeft="340,239" />
         <NodeLayout
@@ -637,7 +637,7 @@
           Id="Package\CLEAR DM_Student_Program_Declarations"
           TopLeft="32,688" />
         <NodeLayout
-          Size="345,42"
+          Size="345.333333333334,42"
           Id="Package\Clear ODS Staging Table StudentProgramDeclarationList"
           TopLeft="36,36" />
         <NodeLayout
@@ -645,11 +645,11 @@
           Id="Package\Clear ODS Staging Table StudentProgramDeclarations"
           TopLeft="16,145" />
         <NodeLayout
-          Size="365,42"
+          Size="365.333333333334,42"
           Id="Package\Clear ODS Staging Table StudentProgramDeclarations Failed"
           TopLeft="381,150" />
         <NodeLayout
-          Size="381,42"
+          Size="381.333333333334,42"
           Id="Package\Clear ODS Staging Table StudentProgramDeclarationsList Failed"
           TopLeft="370,84" />
         <NodeLayout
@@ -657,11 +657,11 @@
           Id="Package\Clear Staging Table DM_Student_Program_Declarations Failed"
           TopLeft="379,696" />
         <NodeLayout
-          Size="339,42"
+          Size="338.666666666667,42"
           Id="Package\Move data to table DM_Student_Program_Declarations"
           TopLeft="42,765" />
         <NodeLayout
-          Size="373,42"
+          Size="373.333333333334,42"
           Id="Package\Move data to Table DM_Student_Program_Declarations Failed"
           TopLeft="351,821" />
         <NodeLayout
@@ -669,7 +669,7 @@
           Id="Package\Populate Major Program Declarations"
           TopLeft="40,476" />
         <NodeLayout
-          Size="287,42"
+          Size="286.666666666667,42"
           Id="Package\Populate Major Program Declarations Failed"
           TopLeft="345,488" />
         <NodeLayout
@@ -677,7 +677,7 @@
           Id="Package\Populate Minor Program Declarations"
           TopLeft="40,555" />
         <NodeLayout
-          Size="287,42"
+          Size="286.666666666667,42"
           Id="Package\Populate Minor Program Declarations Failed"
           TopLeft="351,551" />
         <NodeLayout
