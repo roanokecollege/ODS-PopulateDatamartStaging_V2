@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Daily_Maintenance"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{A0D3163F-1303-4835-B8A3-44230F1E0921}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{FB5F4B63-D306-441D-BB1F-272C1E7B1920}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -349,7 +349,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5F037F9F-F7FF-457E-B156-AEEB94BD79F7}"
-          SQLTask:SqlStatementSource="USE ODS_Reporting;  &#xA;GO  &#xA;-- Truncate the log by changing the database recovery model to SIMPLE.  &#xA;ALTER DATABASE ODS_Reporting&#xA;SET RECOVERY SIMPLE;  &#xA;GO  &#xA;-- Shrink the truncated log file to 1 MB.  &#xA;DBCC SHRINKFILE (ODS_Reporting_log01, 8000);  &#xA;GO  &#xA;-- Reset the database recovery model.  &#xA;ALTER DATABASE ODS_Reporting&#xA;SET RECOVERY FULL;  &#xA;GO  " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="USE ODS_Reporting;  &#xA;GO  &#xA;-- Truncate the log by changing the database recovery model to SIMPLE.  &#xA;ALTER DATABASE ODS_Reporting&#xA;SET RECOVERY SIMPLE;  &#xA;GO  &#xA;-- Shrink the truncated log file to 1 MB.  &#xA;DBCC SHRINKFILE (ODS_Reporting_log01, 8000);  &#xA;GO  &#xA;-- Reset the database recovery model.  &#xA;ALTER DATABASE ODS_Reporting&#xA;SET RECOVERY FULL;  &#xA;GO  &#xA;&#xA;USE ODS_Staging;  &#xA;GO  &#xA;-- Truncate the log by changing the database recovery model to SIMPLE.  &#xA;ALTER DATABASE ODS_Staging&#xA;SET RECOVERY SIMPLE;  &#xA;GO  &#xA;-- Shrink the truncated log file to 1 MB.  &#xA;DBCC SHRINKFILE (ODS_Staging_log, 800);  &#xA;GO  &#xA;-- Reset the database recovery model.  &#xA;ALTER DATABASE ODS_Staging&#xA;SET RECOVERY FULL;  &#xA;GO  &#xA;&#xA;USE ODS_Test;  &#xA;GO  &#xA;-- Truncate the log by changing the database recovery model to SIMPLE.  &#xA;ALTER DATABASE ODS_Test&#xA;SET RECOVERY SIMPLE;  &#xA;GO  &#xA;-- Shrink the truncated log file to 800 MB.  &#xA;DBCC SHRINKFILE (ODS_TEST_log, 800);  &#xA;GO  &#xA;-- Reset the database recovery model.  &#xA;ALTER DATABASE ODS_Test&#xA;SET RECOVERY FULL;  &#xA;GO  &#xA;&#xA;USE ODS_Synoptix;  &#xA;GO  &#xA;-- Truncate the log by changing the database recovery model to SIMPLE.  &#xA;ALTER DATABASE ODS_Synoptix&#xA;SET RECOVERY SIMPLE;  &#xA;GO  &#xA;-- Shrink the truncated log file to 800 MB.  &#xA;DBCC SHRINKFILE (ODS_Synoptix_log, 800);  &#xA;GO  &#xA;-- Reset the database recovery model.  &#xA;ALTER DATABASE ODS_Synoptix&#xA;SET RECOVERY FULL;  &#xA;GO  &#xA;&#xA;USE ODS_Vendor;&#xA;GO  &#xA;-- Truncate the log by changing the database recovery model to SIMPLE.  &#xA;ALTER DATABASE ODS_Vendor&#xA;SET RECOVERY SIMPLE;  &#xA;GO  &#xA;-- Shrink the truncated log file to 80 MB.  &#xA;DBCC SHRINKFILE (ODS_Vendor_log, 80);  &#xA;GO  &#xA;-- Reset the database recovery model.  &#xA;ALTER DATABASE ODS_Vendor&#xA;SET RECOVERY FULL;  &#xA;GO  &#xA;&#xA;USE R16_ODS_Production;  &#xA;GO  &#xA;-- Truncate the log by changing the database recovery model to SIMPLE.  &#xA;ALTER DATABASE R16_ODS_Production&#xA;SET RECOVERY SIMPLE;  &#xA;GO  &#xA;-- Shrink the truncated log file to 800 MB.  &#xA;DBCC SHRINKFILE (R16_ODS_Production_log01, 800);  &#xA;GO  &#xA;-- Reset the database recovery model.  &#xA;ALTER DATABASE R16_ODS_Production&#xA;SET RECOVERY FULL;  &#xA;GO  &#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
