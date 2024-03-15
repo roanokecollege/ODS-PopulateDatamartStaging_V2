@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateEmployees"
   DTS:PackageType="5"
-  DTS:VersionBuild="229"
-  DTS:VersionGUID="{4FB7045D-BC99-42AD-9B38-44EC4235B992}">
+  DTS:VersionBuild="231"
+  DTS:VersionGUID="{2E978481-8370-4AED-9D48-E92E274A1840}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -125,7 +125,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Contract Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -147,7 +147,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -164,7 +164,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Faculty Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -186,7 +186,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -203,7 +203,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Retirees Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -225,7 +225,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -242,7 +242,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Staff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -264,7 +264,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff &amp; Helpdesk"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -281,7 +281,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Add VStaff &amp; JStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -303,7 +303,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -321,7 +321,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Contract Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -339,7 +339,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up David Gring Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -356,7 +356,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP David Gring Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -378,7 +378,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="clean up departments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -397,7 +397,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="clean up departments 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -414,7 +414,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Jonathan Lee Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -436,7 +436,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean up Jonathan Lee Record"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -471,7 +471,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clean UP Ramona Moore Record Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -528,7 +528,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Clear ODS Staging Table FacStaff Failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -572,7 +572,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Dan Cohan Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -939,7 +939,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="Kate Smith Clean Up"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -962,7 +962,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{DEA24321-B3D9-4FEE-BF2E-7E16A5DF0BAF}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_Employees&#xA;&#xA;select DISTINCT ODS_Staging.dbo.facStaff.RCID, &#xA;&#x9;&#x9;FIRST_NAME as First,&#xA;&#x9;&#x9;LAST_NAME as Last,&#xA;&#x9;&#x9;Middle_Name as Middle,&#xA;&#x9; &#xA;&#x9;&#x9;COALESCE(COALESCE(PERSON_MAIL_LABEL, R_PERSON.PREFERRED_NAME), dbo.FN_DATAMART_FULL_NAME(ODS_Staging.dbo.facStaff.rcid)) AS FullName, &#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryPosition = 1) &#xA;&#x9;&#x9;as Title,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;order by pos) &#xA;&#x9;&#x9;&#x9; as Title2,&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;and POSITION_TITLE not in (SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;order by pos)&#xA;&#x9;&#x9;&#x9;) &#xA;&#x9;&#x9;&#x9; as Title3,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;(SELECT top 1 DEPARTMENT_DESC FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition = 1)  &#xA;&#x9;&#x9; as Department,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPT_BUILDINGS.BLDG_DESC&#xA;&#x9;&#x9;FROM SPT_BUILDINGS&#xA;&#x9;&#x9;WHERE SPT_BUILDINGS.BUILDINGS_ID = HRP_PRI_CAMPUS_BUILDING)  as Building,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_OFFICE as Room,&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_EXTENSION as Extension,&#xA;&#x9;&#x9;NULL as Extension1,&#xA;&#x9;&#x9;CampusEmail as Email,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select dbo.fn_DATAMART_SPOUSE_NAME (R_PERSON.ID)) as Spouse,&#xA;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;R_PERSON.NICKNAME as Nickname,&#xA;&#xA;X_PER_PREF_NAME AS Preferred_Name, &#xA;&#xA;&#x9;&#x9;PREFIX as Prefix,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPOUSE.Nickname&#xA;&#x9;&#x9;FROM R_PERSON Spouse&#xA;&#x9;&#x9;WHERE Spouse.ID = R_PERSON.SPOUSE) as SpouseNickname,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and PERSTAT_STATUS = 'FTR' --and primaryposition = 1&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;WHEN 0 then 'P'&#xA;&#x9;&#x9;ELSE 'F' &#xA;&#x9;&#x9;END as Status,&#xA;&#x9;&#xA;&#x9;&#x9;Username,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE GENDER WHEN 'M' THEN 'Male' WHEN 'F' THEN 'Female' ELSE NULL END AS Gender, &#xA;&#x9;&#x9;address.ADDRESS_LINE1 as HomeAddress,&#xA;&#x9;&#x9;address.ADDRESS_LINE2 as HomeAddress2,&#xA;&#x9;&#x9;address.CITY as HomeCity,&#xA;&#x9;&#x9;address.STATE as HomeState,&#xA;&#x9;&#x9;address.ZIP as HomeZip,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;address.ADDRESS_PHONES as HomePhone,&#xA;        &#x9;&#xA;&#x9;&#x9;Faculty,&#xA;&#x9;&#x9;Staff,&#xA;&#x9;&#x9;Retiree,&#xA;&#x9;&#x9;case (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and POSITION_TITLE LIKE 'Chair%')&#xA;&#x9;&#x9;&#x9;WHEN 0 THEN 'N'&#xA;&#x9;&#x9;&#x9;ELSE 'Y'&#xA;&#x9;&#x9;END  as DeptChair,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9;&#x9;FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = ODS_Staging.dbo.facStaff.RCID and primaryPosition = 1 and deptSec = 1&#xA;&#x9;&#x9;&#x9;&#x9;and substring(perpos_position_id,1,5) &lt;&gt; '25011' AND substring(perpos_position_id, 1,5) &lt;&gt;'30030') as&#xA;&#x9;&#x9;&#x9;  Sec1Dept,&#xA;&#xA;&#xA;--- secretary for multiple depts currently not stored in the data in a way that it can be derived hardcoded this field is used for directory sorting via department&#xA;&#xA;&#x9;&#x9;&#x9; CASE ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;&#x9; WHEN '0042195' THEN 'Religion/Philosophy'&#xA;&#x9;&#x9;&#x9; WHEN '1251679' THEN 'Business Admin. &amp; Economics'&#xA;&#x9;&#x9;&#x9; WHEN '0957897' THEN 'Health and Human Performance'&#xA;&#x9;&#x9;&#x9; WHEN '0224154' THEN 'Psychology'&#xA;&#x9;&#x9;&#x9; WHEN '0048527' THEN 'Environmental Studies'&#xA;&#x9;&#x9;&#x9; WHEN '1235053' THEN 'Dining Services'&#xA; &#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9; END as Sec2Dept,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select TOP 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9; from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;AND POSITION_CLASS = 'FAC' &#xA;&#x9;&#x9;AND PERPOS_DEPT &lt;&gt; (SELECT top 1 PERPOS_DEPT FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition=1) &#xA;&#x9;&#x9;)  as AdditionalDepartment,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case PRIVACY_FLAG&#xA;&#x9;&#x9;WHEN 'N' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeDirectory,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NA' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9; WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'        &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeAddress,&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NP' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'    &#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhone,&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NS' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeSpouse,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'       &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;&#x9;&#x9;WHEN 'NM' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NX' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhoto,&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;GETDATE() as ImportDate,&#xA;&#xA;(select top 1 PositionClass from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as EmployeeClass, &#xA;&#x9;&#x9;Supervisor as Supervisor, &#xA;(select top 1 BuildingID from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as BuildingID,&#xA;(select top 1 Cell from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as CellPhone,&#xA;(select top 1 Work from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as WorkPhone,&#xA;(select top 1 Home from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as HomePhoneNumber&#xA;&#xA;&#xA;&#x9;&#x9;FROM ODS_Staging.dbo.facStaff INNER JOIN R_PERSON&#xA;&#x9;&#x9;ON ODS_Staging.dbo.facStaff.RCID = R_PERSON.ID LEFT OUTER JOIN dbo.R_DATAMART_CAMPUS_EMAIL_VIEW&#xA;&#x9;&#x9;on ODS_Staging.dbo.facStaff.RCID = dbo.R_DATAMART_CAMPUS_EMAIL_VIEW.ID &#xA;&#x9;&#x9;LEFT OUTER JOIN ODS_HRPER on ODS_Staging.dbo.facStaff.RCID = ODS_HRPER.HRPER_ID  &#xA;&#x9;&#x9;LEFT OUTER JOIN dbo.R_DATAMART_PERSON_ADDRESSES_VIEW address&#xA;&#x9;&#x9;on R_Person.PREFERRED_ADDRESS = address.ADDRESS_ID and r_person.id = address.rcid&#xA;&#x9;&#x9;LEFT OUTER JOIN R_PER_MAIL_LABEL_L ON R_PERSON.ID = R_PER_MAIL_LABEL_L.ID AND R_PER_MAIL_LABEL_L.POS = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO HERMES.STAGING.dbo.DM_Employees&#xA;&#xA;select DISTINCT ODS_Staging.dbo.facStaff.RCID, &#xA;&#x9;&#x9;FIRST_NAME as First,&#xA;&#x9;&#x9;LAST_NAME as Last,&#xA;&#x9;&#x9;Middle_Name as Middle,&#xA;&#x9; &#xA;&#x9;&#x9;COALESCE(COALESCE(PERSON_MAIL_LABEL, R_PERSON.PREFERRED_NAME), dbo.FN_DATAMART_FULL_NAME(ODS_Staging.dbo.facStaff.rcid)) AS FullName, &#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryPosition = 1) &#xA;&#x9;&#x9;as Title,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;order by pos) &#xA;&#x9;&#x9;&#x9; as Title2,&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;(SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;and POSITION_TITLE not in (SELECT top 1 POSITION_TITLE FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID AND (primaryPosition is NULL or primaryPosition &lt;&gt; 1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;order by pos)&#xA;&#x9;&#x9;&#x9;) &#xA;&#x9;&#x9;&#x9; as Title3,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;(SELECT top 1 DEPARTMENT_DESC FROM  dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition = 1)  &#xA;&#x9;&#x9; as Department,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPT_BUILDINGS.BLDG_DESC&#xA;&#x9;&#x9;FROM SPT_BUILDINGS&#xA;&#x9;&#x9;WHERE SPT_BUILDINGS.BUILDINGS_ID = HRP_PRI_CAMPUS_BUILDING)  as Building,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_OFFICE as Room,&#xA;&#x9;&#x9;HRP_PRI_CAMPUS_EXTENSION as Extension,&#xA;&#x9;&#x9;NULL as Extension1,&#xA;&#x9;&#x9;CampusEmail as Email,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select dbo.fn_DATAMART_SPOUSE_NAME (R_PERSON.ID)) as Spouse,&#xA;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;R_PERSON.NICKNAME as Nickname,&#xA;&#xA;X_PER_PREF_NAME AS Preferred_Name, &#xA;&#xA;&#x9;&#x9;PREFIX as Prefix,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT SPOUSE.Nickname&#xA;&#x9;&#x9;FROM R_PERSON Spouse&#xA;&#x9;&#x9;WHERE Spouse.ID = R_PERSON.SPOUSE) as SpouseNickname,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and PERSTAT_STATUS = 'FTR' --and primaryposition = 1&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;WHEN 0 then 'P'&#xA;&#x9;&#x9;ELSE 'F' &#xA;&#x9;&#x9;END as Status,&#xA;&#x9;&#xA;&#x9;&#x9;Username,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CASE GENDER WHEN 'M' THEN 'Male' WHEN 'F' THEN 'Female' ELSE NULL END AS Gender, &#xA;&#x9;&#x9;address.ADDRESS_LINE1 as HomeAddress,&#xA;&#x9;&#x9;address.ADDRESS_LINE2 as HomeAddress2,&#xA;&#x9;&#x9;address.CITY as HomeCity,&#xA;&#x9;&#x9;address.STATE as HomeState,&#xA;&#x9;&#x9;address.ZIP as HomeZip,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;address.ADDRESS_PHONES as HomePhone,&#xA;        &#x9;&#xA;&#x9;&#x9;Faculty,&#xA;&#x9;&#x9;Staff,&#xA;&#x9;&#x9;Retiree,&#xA;&#x9;&#x9;case (select COUNT(*) from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID and POSITION_TITLE LIKE 'Chair%')&#xA;&#x9;&#x9;&#x9;WHEN 0 THEN 'N'&#xA;&#x9;&#x9;&#x9;ELSE 'Y'&#xA;&#x9;&#x9;END  as DeptChair,&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;(SELECT top 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9;&#x9;FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW&#xA;&#x9;&#x9;&#x9;&#x9;WHERE HRPER_ID = ODS_Staging.dbo.facStaff.RCID and primaryPosition = 1 and deptSec = 1&#xA;&#x9;&#x9;&#x9;&#x9;and substring(perpos_position_id,1,5) &lt;&gt; '25011' AND substring(perpos_position_id, 1,5) &lt;&gt;'30030') as&#xA;&#x9;&#x9;&#x9;  Sec1Dept,&#xA;&#xA;&#xA;--- secretary for multiple depts currently not stored in the data in a way that it can be derived hardcoded this field is used for directory sorting via department&#xA;&#xA;&#x9;&#x9;&#x9; CASE ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;&#x9; WHEN '0042195' THEN 'Religion/Philosophy'&#xA;&#x9;&#x9;&#x9; WHEN '1251679' THEN 'Business Admin. &amp; Economics'&#xA;&#x9;&#x9;&#x9; WHEN '0957897' THEN 'Health and Human Performance'&#xA;&#x9;&#x9;&#x9; WHEN '0224154' THEN 'Psychology'&#xA;&#x9;&#x9;&#x9; WHEN '0048527' THEN 'Environmental Studies'&#xA;&#x9;&#x9;&#x9; WHEN '1235053' THEN 'Dining Services'&#xA; &#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9; END as Sec2Dept,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;(select TOP 1 R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW.DEPARTMENT_DESC&#xA;&#x9;&#x9; from dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;&#x9;where HRPER_ID=ODS_Staging.dbo.facStaff.RCID&#xA;&#x9;&#x9;AND POSITION_CLASS = 'FAC' &#xA;&#x9;&#x9;AND PERPOS_DEPT &lt;&gt; (SELECT top 1 PERPOS_DEPT FROM dbo.R_DATAMART_EMPLOYEE_CURRENT_POSITIONS_VIEW &#xA;&#x9;&#x9;WHERE HRPER_ID = R_PERSON.ID and primaryposition=1) &#xA;&#x9;&#x9;)  as AdditionalDepartment,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case PRIVACY_FLAG&#xA;&#x9;&#x9;WHEN 'N' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeDirectory,&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NA' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9; WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'        &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeAddress,&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NP' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NB' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'    &#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhone,&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NS' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NC' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'ND' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NE' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NG' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'&#xA;        &#x9;&#x9;WHEN 'NI' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludeSpouse,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;case DIRECTORY_FLAG&#xA;&#x9;&#x9;WHEN 'NU' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NY' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NZ' THEN 'Y'       &#xA;        &#x9;&#x9;WHEN 'NF' THEN 'Y'    &#xA;        &#x9;&#x9;WHEN 'NH' THEN 'Y'    &#xA;&#x9;&#x9;WHEN 'NM' THEN 'Y'&#xA;&#x9;&#x9;WHEN 'NX' THEN 'Y'&#xA;&#x9;&#x9;ELSE 'N'&#xA;&#x9;&#x9;END AS ExcludePhoto,&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;GETDATE() as ImportDate,&#xA;&#xA;(select top 1 PositionClass from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as EmployeeClass, &#xA;&#x9;&#x9;Supervisor as Supervisor, &#xA;(select top 1 BuildingID from view_HRPER where view_HRPER.RCID= R_PERSON.ID) as BuildingID,&#xA;(select top 1 Cell from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as CellPhone,&#xA;(select top 1 Work from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as WorkPhone,&#xA;(select top 1 Home from R_PHONE_GROUP_DATA where R_PHONE_GROUP_DATA.PERSONID = R_PERSON.ID) as HomePhoneNumber&#xA;&#xA;&#xA;&#x9;&#x9;FROM ODS_Staging.dbo.facStaff INNER JOIN R_PERSON&#xA;&#x9;&#x9;ON ODS_Staging.dbo.facStaff.RCID = R_PERSON.ID LEFT OUTER JOIN dbo.R_DATAMART_CAMPUS_EMAIL_VIEW&#xA;&#x9;&#x9;on ODS_Staging.dbo.facStaff.RCID = dbo.R_DATAMART_CAMPUS_EMAIL_VIEW.ID &#xA;&#x9;&#x9;LEFT OUTER JOIN R_HRPER on ODS_Staging.dbo.facStaff.RCID = R_HRPER.HRPER_ID  &#xA;&#x9;&#x9;LEFT OUTER JOIN dbo.R_DATAMART_PERSON_ADDRESSES_VIEW address&#xA;&#x9;&#x9;on R_Person.PREFERRED_ADDRESS = address.ADDRESS_ID and r_person.id = address.rcid&#xA;&#x9;&#x9;LEFT OUTER JOIN R_PER_MAIL_LABEL_L ON R_PERSON.ID = R_PER_MAIL_LABEL_L.ID AND R_PER_MAIL_LABEL_L.POS = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1069,7 +1069,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Update Department Secretary Map"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1086,7 +1086,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
       DTS:LocaleID="-1"
       DTS:ObjectName="v staff name"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1506,7 +1506,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
           Id="Package\Clean UP David Gring Record Failed"
           TopLeft="1143,851" />
         <NodeLayout
-          Size="183,42"
+          Size="181,42"
           Id="Package\clean up departments"
           TopLeft="291,1244" />
         <NodeLayout
@@ -1671,9 +1671,9 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-182.666666666667,341"
+              EndConnector="-183.666666666667,341"
               Start="0,0"
-              End="-182.666666666667,333.5">
+              End="-183.666666666667,333.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1684,13 +1684,13 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
                     Point2="0,90.3907035175879"
                     Point3="-4,90.3907035175879" />
                   <mssgle:LineSegment
-                    End="-178.666666666667,90.3907035175879" />
+                    End="-179.666666666667,90.3907035175879" />
                   <mssgle:CubicBezierSegment
-                    Point1="-178.666666666667,90.3907035175879"
-                    Point2="-182.666666666667,90.3907035175879"
-                    Point3="-182.666666666667,94.3907035175879" />
+                    Point1="-179.666666666667,90.3907035175879"
+                    Point2="-183.666666666667,90.3907035175879"
+                    Point3="-183.666666666667,94.3907035175879" />
                   <mssgle:LineSegment
-                    End="-182.666666666667,333.5" />
+                    End="-183.666666666667,333.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1877,7 +1877,7 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 17]"
-          TopLeft="381.75,1286">
+          TopLeft="381.25,1286">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2643,14 +2643,14 @@ FROM            R_DATAMART_FACULTY_LIST_VIEW</DTS:VariableValue>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-252,0"
+              EndConnector="-254,0"
               Start="0,0"
-              End="-244.5,0">
+              End="-246.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-244.5,0" />
+                    End="-246.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
