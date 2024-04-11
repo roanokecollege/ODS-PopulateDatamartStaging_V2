@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateStudents_StudentList"
   DTS:PackageType="5"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{BBC2B39C-CC69-47BB-BDB8-B4D561C95312}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{EE6310C0-D1B5-420C-8A50-1B22B05C41E1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -88,6 +88,22 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{6B780DC3-3AF0-4432-AA12-75823B5AAC40}"
           SQLTask:SqlStatementSource="INSERT ODS_Staging.dbo.tempStudentsTerm&#xA;SELECT RCID, &#x9;&#xA;&#x9;'Y' as CurrentTerm,&#xA;&#x9;'N' as PreviousTerm,&#xA;&#x9;'N' as NextTerm&#xA;from dbo.R_DATAMART_CURRENTSTUDENT_LIST_VIEW" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add future ROOG students"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{310D90F5-7113-44FD-B3E5-B5CEC00107E3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add future ROOG students"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6B780DC3-3AF0-4432-AA12-75823B5AAC40}"
+          SQLTask:SqlStatementSource="MERGE ODS_Staging.dbo.tempStudentsTerm as TARGET&#xA;USING (SELECT rcid&#xA;FROM dbo.view_students_in_future_roog_lists) as SOURCE&#xA;ON TARGET.RCID = SOURCE.rcid&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID,CurrentTerm,PreviousTerm,&#x9;NextTerm)&#xA;&#x9;VALUES(SOURCE.rcid,'N','N','N');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -260,7 +276,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Other Registered Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -283,7 +299,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Previous Term Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -306,7 +322,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Clear ODS Staging Table TempStudentsTerm failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -364,6 +380,14 @@
       DTS:ObjectName="Constraint 12"
       DTS:To="Package\Task Add Other Registered Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{0F90523F-207D-4900-AFCC-8D4FE2FE204C}"
+      DTS:From="Package\Add any other registered students for future terms to ODS Staging table TempStudentsTerm"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Add future ROOG students" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -485,7 +509,7 @@
           Id="Package\Add JStudent to ODS Staging Table TempStudentsTerm"
           TopLeft="109,373" />
         <NodeLayout
-          Size="397,42"
+          Size="395,42"
           Id="Package\Add Next Term Students to ODS Staging Table TempStudentsTerm"
           TopLeft="85,301" />
         <NodeLayout
@@ -666,7 +690,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="284.25,260">
+          TopLeft="283.75,260">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -688,7 +712,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="282.25,343">
+          TopLeft="281.75,343">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -838,18 +862,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="482,323.5">
+          TopLeft="480,323.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="148,0"
+              EndConnector="150,0"
               Start="0,0"
-              End="140.5,0">
+              End="142.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="140.5,0" />
+                    End="142.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -858,6 +882,32 @@
             <mssgm:EdgeLabel
               BoundingBox="56.00865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Add future ROOG students"
+          TopLeft="251,719" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="354,633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

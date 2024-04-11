@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">ODS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzVXHitQ3WE2/GzW31h3zbQAAAAACAAAAAAADZgAAwAAAABAAAABcOC0pn+5EqgsJLF6QplzOAAAAAASAAACgAAAAEAAAAAQHmefZ4dlq+4Udp2fo8GaIAAAADr2L5iwe9u8AUBDFK9MoxcKg8iXBvGVva928U4KSQgrdfTCBZCCFuHUfRjQZEROuFsMwDYsKpYaXTAh8wvjOjMSeGY+093tAmGuM+kJlXtd5vksKJsNEdFvHk32VMdrW8Mi3PqM3tCsVBd2khij+opinkajxAOzKIQMrXSkRXHdcmat5R9bQAxQAAABkWkvR7MRZVGZ/x0z2WBcLbEjvDw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzVXHitQ3WE2/GzW31h3zbQAAAAACAAAAAAADZgAAwAAAABAAAADLPwIKJSszNzjBlyB4X+ccAAAAAASAAACgAAAAEAAAANz02Iu47yC8ash/0Yd7FFyIAAAAtITVEHownlOQfbzN/Wm8bkSP7zyy7LJ0A8P7kmtHyJMPa+4B1RmJIbcGlgF48e/wacLfYeMxj1BG01uGcCzcpDinszTU+8rc11Ji4UyZ/511BooZgiSUwVEfFkw0tkiT2xCrTzdnNjoFu8TkVwki8mSWcKMKGjKo/eiAGezybJ7IlQop9JvG/BQAAACxkDOr6S1wge9E01s/glPLMy10aA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -2063,10 +2063,10 @@
                 <SSIS:Property SSIS:Name="Name">PopulateStudents_StudentList</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">39</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">42</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{EA17AC1E-A5B7-471C-9586-054924872866}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EE6310C0-D1B5-420C-8A50-1B22B05C41E1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -2206,6 +2206,21 @@
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.SMTP Connection Manager.TargetServerVersion">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.SMTP Connection Manager.UseWindowsAuthentication">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
@@ -2229,10 +2244,10 @@
                 <SSIS:Property SSIS:Name="Name">PopulateStudents</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">151</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">155</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D55972A1-A8CD-44A4-A82C-9EC8CCFA5BCF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4FC72A1B-2E6F-4865-A195-3A0B5A292CDC}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -3117,7 +3132,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">110</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -7531,10 +7546,10 @@
                 <SSIS:Property SSIS:Name="Name">Daily_Maintenance</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{FB5F4B63-D306-441D-BB1F-272C1E7B1920}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{213C6E46-303E-45E0-9E95-D52E8F2C2E24}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
