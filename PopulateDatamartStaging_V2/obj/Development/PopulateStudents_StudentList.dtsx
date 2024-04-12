@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateStudents_StudentList"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{EE6310C0-D1B5-420C-8A50-1B22B05C41E1}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{B8BD24BE-4E8B-4097-9332-A3AA0446A598}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -48,7 +48,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Allan Lockett to ODS staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -65,7 +65,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add any other registered students for future terms to ODS Staging table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -98,12 +98,12 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Add future ROOG students"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{6B780DC3-3AF0-4432-AA12-75823B5AAC40}"
-          SQLTask:SqlStatementSource="MERGE ODS_Staging.dbo.tempStudentsTerm as TARGET&#xA;USING (SELECT rcid&#xA;FROM dbo.view_students_in_future_roog_lists) as SOURCE&#xA;ON TARGET.RCID = SOURCE.rcid&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID,CurrentTerm,PreviousTerm,&#x9;NextTerm)&#xA;&#x9;VALUES(SOURCE.rcid,'N','N','N');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="MERGE ODS_Staging.dbo.tempStudentsTerm as TARGET&#xA;USING (SELECT rcid&#xA;FROM dbo.view_students_in_future_roog_lists) as SOURCE&#xA;ON TARGET.RCID = SOURCE.rcid&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID,CurrentTerm,PreviousTerm,&#x9;NextTerm)&#xA;&#x9;VALUES(SOURCE.rcid,'N','N','Y');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -115,7 +115,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add JStudent to ODS Staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -132,7 +132,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Next Term Students to ODS Staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -149,7 +149,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Previous Term Students to ODS Staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -184,7 +184,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add  Allan Lockett to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -207,7 +207,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add  JStudent to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -230,7 +230,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Current Term Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -253,7 +253,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Next Term Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -276,7 +276,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Other Registered Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -299,7 +299,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Previous Term Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -505,6 +505,10 @@
           Id="Package\Add Current Term Students to ODS Staging Table TempStudentsTerm"
           TopLeft="79,105" />
         <NodeLayout
+          Size="204,42"
+          Id="Package\Add future ROOG students"
+          TopLeft="251,719" />
+        <NodeLayout
           Size="344,42"
           Id="Package\Add JStudent to ODS Staging Table TempStudentsTerm"
           TopLeft="109,373" />
@@ -686,6 +690,28 @@
             <mssgm:EdgeLabel
               BoundingBox="26.00865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="354,633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -882,32 +908,6 @@
             <mssgm:EdgeLabel
               BoundingBox="56.00865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Add future ROOG students"
-          TopLeft="251,719" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="354,633">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,86"
-              Start="0,0"
-              End="0,78.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,78.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
