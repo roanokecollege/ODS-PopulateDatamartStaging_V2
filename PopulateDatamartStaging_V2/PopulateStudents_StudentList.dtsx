@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PopulateStudents_StudentList"
   DTS:PackageType="5"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{B8BD24BE-4E8B-4097-9332-A3AA0446A598}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{8072B656-64BE-4B9C-A143-C41B1BA6F5B9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -48,7 +48,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Allan Lockett to ODS staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -65,7 +65,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add any other registered students for future terms to ODS Staging table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -82,7 +82,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Current Term Students to ODS Staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -98,12 +98,12 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Add future ROOG students"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{6B780DC3-3AF0-4432-AA12-75823B5AAC40}"
-          SQLTask:SqlStatementSource="MERGE ODS_Staging.dbo.tempStudentsTerm as TARGET&#xA;USING (SELECT rcid&#xA;FROM dbo.view_students_in_future_roog_lists) as SOURCE&#xA;ON TARGET.RCID = SOURCE.rcid&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID,CurrentTerm,PreviousTerm,&#x9;NextTerm)&#xA;&#x9;VALUES(SOURCE.rcid,'N','N','Y');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="MERGE ODS_Staging.dbo.tempStudentsTerm as TARGET&#xA;USING (SELECT rcid&#xA;FROM dbo.view_students_in_future_roog_lists) as SOURCE&#xA;ON TARGET.RCID = SOURCE.rcid&#xA;WHEN NOT MATCHED THEN&#xA;&#x9;INSERT (RCID,CurrentTerm,PreviousTerm,&#x9;NextTerm)&#xA;&#x9;VALUES(SOURCE.rcid,'N','N','N');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -115,7 +115,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add JStudent to ODS Staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -132,7 +132,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Next Term Students to ODS Staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -149,7 +149,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Add Previous Term Students to ODS Staging Table TempStudentsTerm"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -184,7 +184,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add  Allan Lockett to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -207,7 +207,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add  JStudent to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -230,7 +230,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Current Term Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -253,7 +253,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Next Term Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -276,7 +276,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Other Registered Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -299,7 +299,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Add Previous Term Students to ODS Staging Table TermpStudentsTerm has failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
@@ -322,7 +322,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Task Clear ODS Staging Table TempStudentsTerm failed"
       DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SendMailTask:SendMailTaskData
